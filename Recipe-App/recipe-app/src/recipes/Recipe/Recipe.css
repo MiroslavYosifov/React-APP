@@ -1,0 +1,31 @@
+.Recipe {
+    border: 1px solid black;
+}
+
+
+.Recipe-media {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.Recipe-media:before {
+    display: block;
+    content: '';
+    padding-top: 40%;
+}
+
+.Recipe-media img {
+    position: absolute;
+    width: 100%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Recipe-content {
+
+}
+
+.Products {
+
+}

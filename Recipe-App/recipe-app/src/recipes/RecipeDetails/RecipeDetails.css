@@ -1,0 +1,13 @@
+.RecipeDetails {
+    margin: 0 left;
+    padding: 0 10em;
+}
+
+.RecipeDetails header {
+    width: 100%;
+    text-align: center;
+}
+
+.RecipeDetails header h1 {
+    
+}

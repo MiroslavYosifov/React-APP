@@ -1,0 +1,9 @@
+.RecipePostComment {
+    width: 100%;
+}
+
+.RecipePostComment textarea {
+    width: 100%;
+    padding: 0;
+    border: 1px solid black;
+}
