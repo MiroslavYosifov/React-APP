@@ -2,7 +2,7 @@ import React from 'react';
 import './Recipe.css';
 import { Link } from 'react-router-dom';
 
-function Recipe({recipeId, title, imageUrl, products}) {
+function Recipe({recipeId, title, imageUrl, products, showDetailsButton}) {
   return (
     <section className="Recipe">
       <section className="Recipe-media">
@@ -16,7 +16,7 @@ function Recipe({recipeId, title, imageUrl, products}) {
               </ul>
           </section>
           <section>
-            <Link to={"/recipe/details/" + recipeId}>Details</Link>
+          { showDetailsButton ? <Link to={"/recipe/details/" + recipeId}>Details</Link> : '' }
           </section>
       </section>
     </section>

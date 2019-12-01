@@ -1,30 +1,34 @@
 const userService = {
-    register: function (data) {
-      return fetch(`http://localhost:3333/api/user/register`, {
-        body: JSON.stringify(data),
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json'
-        }
-      }).then(res => res.json());
+    register: async function (data) {
+      const res = await fetch(`http://localhost:3333/api/user/register`, {
+      body: JSON.stringify(data),
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      }
+    });
+    return await res.json();
     },
   
-    login: function (data) {
-      return fetch(`http://localhost:3333/api/user/login`, {
+    login: async function (data) {
+      const res = await fetch(`http://localhost:3333/api/user/login`, {
         body: JSON.stringify(data),
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
         },
         credentials: 'include'
-      }).then(res => res.text().then(text => res.status === 200 ? text : 'notlogged'));
+      });
+      const text = await res.text();
+      return res.status === 200 ? text : 'notlogged';
     },
   
-    logout: function () {
-      return fetch(`http://localhost:3333/api/user/logout`, {
+    logout: async function () {
+      const res = await fetch(`http://localhost:3333/api/user/logout`, {
         method: 'POST',
         credentials: 'include'
-      }).then(res => res.text());
+      });
+      return await res.text();
     }
   
   };

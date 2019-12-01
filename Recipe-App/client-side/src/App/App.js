@@ -61,7 +61,7 @@ class App extends React.Component {
           <div className="Container">
             <Switch>
               <Route path="/home" component={Home} />
-              <Route path="/recipe/details/:id" component={RecipeDetails} />
+              <Route path="/recipe/details/:id" render={render('RecipeDetails', RecipeDetails, { isLogged })} />
               <Route path="/recipe" render={render('Recipes', Recipes, { isLogged })} />
               <Route path="/contacts" component={Contacts} />
               <Route path="/login" render={render('Login', Login, { isLogged, login: this.login })} />

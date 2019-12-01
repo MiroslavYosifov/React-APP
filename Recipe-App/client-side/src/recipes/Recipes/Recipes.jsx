@@ -10,32 +10,38 @@ class Recipes extends React.Component {
   constructor (props) {
     super(props) 
         this.state = {
-            recipes: ['1']
+            recipes: [],
+            showDetailsButton: Boolean
         }
   }
 
   componentDidMount() {
     recipeService.getAllRecipes().then(recipes => {
-      this.setState({ recipes });
+      this.setState({ 
+        recipes: recipes,
+        showDetailsButton: true 
+      });
     });
   }
 
   render() {
     const { recipes } = this.state;
+    const showDetailsButton = this.state.showDetailsButton;
     return (
-      <div key={'32453'} className="RecipesWrapper">
+      <div className="RecipesWrapper">
         {this.props.isLogged && <Link to="/recipe/post">Post Recipe</Link>}
         <Route path={this.props.match.url + '/post'} component={PostRecipe} />
         <header>
           <h1>LIST RECIPES</h1>
         </header>
         <div className="RecipesContainer">
-        {recipes.map((recipes, index) => 
+        {recipes.map((recipe, index) => 
             <Recipe key={index}
-              recipeId={recipes._id}
-              imageUrl={recipes.imageUrl}
-              title={recipes.title}
-              products={recipes.products}
+              recipeId={recipe._id}
+              imageUrl={recipe.imageUrl}
+              title={recipe.title}
+              products={recipe.products}
+              showDetailsButton={showDetailsButton}
             ></Recipe>)}
         </div>
       </div>
