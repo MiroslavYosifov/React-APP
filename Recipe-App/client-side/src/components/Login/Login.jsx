@@ -1,7 +1,6 @@
 import React from 'react';
-
-import withForm from '../shared/hocs/withForm';
-import userService from '../services/user-service';
+import withForm from '../../shared/hocs/withForm';
+import userService from '../../services/user-service';
 
 class Login extends React.Component {
 

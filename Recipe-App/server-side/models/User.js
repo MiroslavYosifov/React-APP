@@ -8,7 +8,9 @@ const { String, Number, Boolean, ObjectId } = Schema.Types;
 
 const userSchema = new Schema({
     username: { type: String, unique: true, required: true },
-    password: { type: String, require: true }
+    password: { type: String, require: true },
+    comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],
+    recipes: [{ type: mongoose.Types.ObjectId, ref: 'Recipe' }],
 });
 
 userSchema.methods = {

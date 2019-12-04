@@ -1,6 +1,6 @@
 import React from 'react';
 import './PostRecipe.css';
-import recipeService from '../../services/recipe-service';
+import recipeService from '../../../services/recipe-service';
 
 class PostRecipe extends React.Component {
     constructor (props) {

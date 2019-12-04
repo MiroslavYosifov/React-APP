@@ -5,7 +5,8 @@ const recipeService = {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
-            }
+            },
+            credentials: 'include'
         });
         return await res.text();
     },
@@ -15,7 +16,8 @@ const recipeService = {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json'
-            }
+            },
+            credentials: 'include'
         });
         return await res.json();
     },

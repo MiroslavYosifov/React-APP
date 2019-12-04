@@ -1,10 +1,10 @@
 import React from 'react';
 import './RecipeDetails.css';
 import Recipe from '../Recipe/Recipe'
-import RecipeComments from '../RecipeComments/RecipeComments'
-import RecipePostComment from '../RecipePostComment/RecipePostComment';
-import recipeService from '../../services/recipe-service';
-import commentService from '../../services/comment-service';
+import Comments from '../../comments/Comments/Comments'
+import PostComment from '../../comments/PostComment/PostComment';
+import recipeService from '../../../services/recipe-service';
+import commentService from '../../../services/comment-service';
 
 
 class RecipeDetails extends React.Component {
@@ -31,13 +31,19 @@ class RecipeDetails extends React.Component {
     
     }
 
-   
+//    componentDidUpdate() {
+//     commentService.getAllComments().then(comments => {
+//         this.setState({
+//             comments: comments,
+//         });
+//     });
+//    }
 
     render() {
         const recipe = this.state.recipe;
         const comments = this.state.comments;
         const showDetailButton = this.state.showDetailsButton;
-
+        const isLogged = this.props.isLogged;
         return (
             <div className="RecipeDetails">
                 <header>
@@ -47,11 +53,8 @@ class RecipeDetails extends React.Component {
                         imageUrl={recipe.imageUrl}
                         products={recipe.products}
                         showDetailsButton={showDetailButton}/>
-                <header>
-                    <h2>Post comment:</h2>
-                </header>
-                <RecipePostComment parentData={this.props}/>
-                <RecipeComments comments={comments}/>
+                { isLogged && <PostComment parentData={this.props}/> }
+                <Comments comments={comments}/>
             </div>
     )
    } 

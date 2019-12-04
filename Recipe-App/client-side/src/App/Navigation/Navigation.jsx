@@ -7,6 +7,7 @@ function Navigation({ isLogged }) {
       <nav className="Navigation">
         <ul>
           <Link to="/home">Home</Link>
+          <Link to="/about">About</Link>
           <Link to="/recipe">Recipe</Link>
           <Link to="/contacts">Contacts</Link>
           { !isLogged && <Link to="/register">Register</Link>}

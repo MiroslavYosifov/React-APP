@@ -3,7 +3,7 @@ import './Recipes.css';
 import { Link, Route } from 'react-router-dom';
 import Recipe from '../Recipe/Recipe';
 import PostRecipe from '../PostRecipe/PostRecipe';
-import recipeService from '../../services/recipe-service';
+import recipeService from '../../../services/recipe-service';
 
 
 class Recipes extends React.Component {
@@ -27,10 +27,12 @@ class Recipes extends React.Component {
   render() {
     const { recipes } = this.state;
     const showDetailsButton = this.state.showDetailsButton;
+    const isLogged = this.props.isLogged;
+
     return (
       <div className="RecipesWrapper">
-        {this.props.isLogged && <Link to="/recipe/post">Post Recipe</Link>}
-        <Route path={this.props.match.url + '/post'} component={PostRecipe} />
+        {isLogged && <Link to="/recipe/post">Post Recipe</Link>}
+        {isLogged && <Route path={this.props.match.url + '/post'} component={PostRecipe} />}
         <header>
           <h1>LIST RECIPES</h1>
         </header>

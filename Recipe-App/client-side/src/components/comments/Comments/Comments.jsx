@@ -1,8 +1,9 @@
 import React from 'react';
-import './RecipeComments.css';
-import RecipeComment from '../RecipeComment/RecipeComment';
+import './Comments.css';
+import Comment from '../Comment/Comment';
 
-function RecipeComments ({comments}) {  
+function Comments ({comments}) {
+
   return (
     <section className="RecipeCommentsContainer">
         <section className="RecipeComments">
@@ -10,13 +11,13 @@ function RecipeComments ({comments}) {
                 <h2>Comments:</h2>
             </header>
             {comments.map((comment, index) => 
-              <RecipeComment key={index}
+              <Comment key={index}
                 title={comment.title}
                 content={comment.content}
-              ></RecipeComment>)}
+              ></Comment>)}
         </section>
     </section>
   )
 };
 
-export default RecipeComments;
+export default Comments;

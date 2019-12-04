@@ -1,4 +1,5 @@
 const router = require('../routes/');
+const auth = require('../utils/auth');
 
 module.exports = (app) => {
     app.use('/api/user', router.user);

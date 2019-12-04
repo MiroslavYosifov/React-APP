@@ -1,8 +1,8 @@
 import React from 'react';
 import * as yup from 'yup';
 
-import withForm from '../shared/hocs/withForm';
-import userService from '../services/user-service';
+import withForm from '../../shared/hocs/withForm';
+import userService from '../../services/user-service';
 
 
 class Register extends React.Component {
