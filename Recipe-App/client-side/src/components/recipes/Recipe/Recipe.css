@@ -1,5 +1,6 @@
 .Recipe {
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    box-shadow: 0 0 0.1em 0.1em rgba(228, 228, 228, 0.75);
 }
 
 
@@ -23,7 +24,16 @@
 }
 
 .Recipe-content {
+    padding: 0.4em;
+}
 
+.Recipe-content section {
+
+}
+
+.Recipe-content section a {
+    text-decoration: none;
+    color: gray;
 }
 
 .Products {

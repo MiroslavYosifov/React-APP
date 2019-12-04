@@ -13,7 +13,7 @@ class RecipeDetails extends React.Component {
             this.state = {
                 recipe: {},
                 comments: [],
-                showDetailsButton: Boolean,
+                hideRecipeElements: Boolean,
             }  
     }
 
@@ -24,7 +24,7 @@ class RecipeDetails extends React.Component {
                 this.setState({
                     recipe: recipe,
                     comments: comments,
-                    showDetailsButton: false,
+                    hideRecipeElements: false,
                 });
             });
         });
@@ -42,7 +42,7 @@ class RecipeDetails extends React.Component {
     render() {
         const recipe = this.state.recipe;
         const comments = this.state.comments;
-        const showDetailButton = this.state.showDetailsButton;
+        const hideRecipeElements = this.state.hideRecipeElements;
         const isLogged = this.props.isLogged;
         return (
             <div className="RecipeDetails">
@@ -52,7 +52,7 @@ class RecipeDetails extends React.Component {
                 <Recipe recipeId={recipe._id}
                         imageUrl={recipe.imageUrl}
                         products={recipe.products}
-                        showDetailsButton={showDetailButton}/>
+                        hideRecipeElements={hideRecipeElements}/>
                 { isLogged && <PostComment parentData={this.props}/> }
                 <Comments comments={comments}/>
             </div>

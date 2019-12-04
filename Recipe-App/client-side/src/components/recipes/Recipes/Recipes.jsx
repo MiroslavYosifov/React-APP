@@ -4,6 +4,7 @@ import { Link, Route } from 'react-router-dom';
 import Recipe from '../Recipe/Recipe';
 import PostRecipe from '../PostRecipe/PostRecipe';
 import recipeService from '../../../services/recipe-service';
+import RecipeNavigation from '../RecipeNavigation/RecipeNavigation';
 
 
 class Recipes extends React.Component {
@@ -11,7 +12,7 @@ class Recipes extends React.Component {
     super(props) 
         this.state = {
             recipes: [],
-            showDetailsButton: Boolean
+            hideRecipeElements: Boolean
         }
   }
 
@@ -19,22 +20,23 @@ class Recipes extends React.Component {
     recipeService.getAllRecipes().then(recipes => {
       this.setState({ 
         recipes: recipes,
-        showDetailsButton: true 
+        hideRecipeElements: true 
       });
     });
   }
 
   render() {
     const { recipes } = this.state;
-    const showDetailsButton = this.state.showDetailsButton;
+    const hideRecipeElements = this.state.hideRecipeElements;
     const isLogged = this.props.isLogged;
-
+    console.log(hideRecipeElements);
+    
     return (
       <div className="RecipesWrapper">
-        {isLogged && <Link to="/recipe/post">Post Recipe</Link>}
+        <RecipeNavigation isLogged={isLogged}/>
         {isLogged && <Route path={this.props.match.url + '/post'} component={PostRecipe} />}
         <header>
-          <h1>LIST RECIPES</h1>
+          <h1>RECIPES</h1>
         </header>
         <div className="RecipesContainer">
         {recipes.map((recipe, index) => 
@@ -43,7 +45,7 @@ class Recipes extends React.Component {
               imageUrl={recipe.imageUrl}
               title={recipe.title}
               products={recipe.products}
-              showDetailsButton={showDetailsButton}
+              hideRecipeElements={hideRecipeElements}
             ></Recipe>)}
         </div>
       </div>

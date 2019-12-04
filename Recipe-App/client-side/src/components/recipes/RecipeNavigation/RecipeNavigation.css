@@ -1,0 +1,19 @@
+.RecipeNavigation {
+    width: 100%;
+    background-color: #f7f7f7;
+}
+
+.RecipeNavigation ul {
+    display: flex;
+}
+
+.RecipeNavigation ul a {
+    margin: 0.4em 0.5em 0.4em;
+    display: block;
+    text-decoration: none;
+    color: rgb(99, 99, 99);
+}
+
+.RecipeNavigation ul a:first-child {
+    margin-left: auto;
+}
