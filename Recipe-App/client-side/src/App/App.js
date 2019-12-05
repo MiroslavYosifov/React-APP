@@ -5,6 +5,7 @@ import Main from './Main/Main';
 import Navigation from './Navigation/Navigation';
 import Footer from './Footer/Footer';
 import Recipes from '../components/recipes/Recipes/Recipes';
+import MyRecipes from '../components/recipes/MyRecipes/MyRecipes';
 import RecipeDetails from '../components/recipes/RecipeDetails/RecipeDetails';
 import Home from '../components/Home/Home';
 import About from '../components/About/About';
@@ -32,7 +33,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     const cookies = parseCookeis();
-    const isLogged = false;
+    const isLogged = document.cookie ? true : false;
     this.state = { isLogged };
   }
   
@@ -66,6 +67,7 @@ class App extends React.Component {
               <Route path="/about" component={About} />
               <Route path="/recipe/details/:id" render={render('RecipeDetails', RecipeDetails, { isLogged })} />
               <Route path="/recipe" render={render('Recipes', Recipes, { isLogged })} />
+              <Route path="/myRecipes" render={render('MyRecipes', MyRecipes, { isLogged })} />
               <Route path="/contacts" component={Contacts} />
               { !isLogged && <Route path="/login" render={render('Login', Login, { isLogged, login: this.login })} />} 
               { !isLogged && <Route path="/register" render={render('Register', Register, { isLogged })} />}

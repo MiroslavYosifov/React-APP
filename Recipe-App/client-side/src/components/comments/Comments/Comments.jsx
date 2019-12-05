@@ -5,8 +5,8 @@ import Comment from '../Comment/Comment';
 function Comments ({comments}) {
 
   return (
-    <section className="RecipeCommentsContainer">
-        <section className="RecipeComments">
+    <section className="CommentsContainer">
+        <section className="Comments">
             <header>
                 <h2>Comments:</h2>
             </header>
@@ -14,6 +14,7 @@ function Comments ({comments}) {
               <Comment key={index}
                 title={comment.title}
                 content={comment.content}
+                creator={comment.creator}
               ></Comment>)}
         </section>
     </section>

@@ -1,12 +1,12 @@
 import React from 'react';
 import './Comment.css';
 
-function Comment({title, content}) {  
+function Comment({title, content, creator}) {  
   return (
     <section className="Comment">
       <p>{title}</p>
       <p>{content}</p>
-      <p>AuthorName: Miroslav</p>
+      <p>Author: {creator}</p>
     </section>
   )
 };

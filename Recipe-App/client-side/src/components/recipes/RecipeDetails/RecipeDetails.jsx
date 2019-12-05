@@ -20,12 +20,10 @@ class RecipeDetails extends React.Component {
     componentDidMount() {
         const id = this.props.match.params.id;
         recipeService.getRecipe(id).then(recipe => {
-            commentService.getAllComments().then(comments => {
-                this.setState({
-                    recipe: recipe,
-                    comments: comments,
-                    hideRecipeElements: false,
-                });
+            this.setState({
+                recipe: recipe,
+                comments: recipe.comments,
+                hideRecipeElements: false,
             });
         });
     

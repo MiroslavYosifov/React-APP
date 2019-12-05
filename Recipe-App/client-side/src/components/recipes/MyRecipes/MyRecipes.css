@@ -1,18 +1,18 @@
-.RecipesWrapper {
+.MyRecipesWrapper {
     width: 100%;
     
 }
 
-.RecipesWrapper header {
+.MyRecipesWrapper header {
     width: 100%;
     text-align: center;
 }
 
-.RecipesWrapper header h1 {
+.MyRecipesWrapper header h1 {
    
 }
 
-.RecipesContainer {
+.MyRecipesContainer {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);

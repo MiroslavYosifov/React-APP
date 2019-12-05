@@ -1,6 +1,6 @@
 const recipeService = {
-    addComment: async function (data) {   
-      const res = await fetch(`http://localhost:3333/api/comment/addComment`, {
+    addComment: async function (data, recipeId) {   
+      const res = await fetch(`http://localhost:3333/api/comment/addComment/${recipeId}`, {
             body: JSON.stringify(data),
             method: 'POST',
             headers: {

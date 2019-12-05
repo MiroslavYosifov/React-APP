@@ -25,9 +25,9 @@ class PostComment extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(document.cookie['x-auth-token']);
+        const recipeId = this.props.parentData.match.params.id;
         const data = this.state;  
-        commentService.addComment(data).then(() => {
+        commentService.addComment(data,recipeId).then(() => {
         this.props.parentData.history.push(this.props.parentData.location.pathname);          
     });
   }

@@ -8,7 +8,8 @@ function Navigation({ isLogged }) {
         <ul>
           <Link to="/home">Home</Link>
           <Link to="/about">About</Link>
-          <Link to="/recipe">Recipe</Link>
+          <Link to="/recipe">Recipes</Link>
+          { isLogged && <Link to="/myRecipes">My Recipes</Link>}
           <Link to="/contacts">Contacts</Link>
           { !isLogged && <Link to="/register">Register</Link>}
           { !isLogged && <Link to="/login">Login</Link>}

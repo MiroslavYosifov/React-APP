@@ -7,9 +7,10 @@ const { String, Number, Boolean, ObjectId } = Schema.Types;
 const recipeSchema = new Schema({
     title: { type: String, unique: true, required: true },
     products: { type: String, require: true, required: true },
+    createdDate: { type: Date, default: Date.now, required: true},
     imageUrl: { type: String, require: true, required: true },
     comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],
-    user: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
+    creator: { type: mongoose.Types.ObjectId, ref: 'User' },
 });
 
 

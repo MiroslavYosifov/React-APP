@@ -11,18 +11,26 @@ module.exports = {
     },
     getRecipe: (req, res, next) => {    
         const id = req.params.id;
-        models.Recipe.findById(id)
-        .then((recipe) => res.send(recipe))
-        .catch(next)
+        models.Recipe.findById(id).populate('creator comments').exec( function( err, recipe ) {
+          if(err){ console.log(err); return; }
+          console.log(recipe.comments[0]);
+          console.log(recipe.creator.username);
+          res.send(recipe);
+      });
     }
   },
 
   post: {
     addRecipe: (req, res, next) => {
-        const { products, title, imageUrl } = req.body;       
-        models.Recipe.create({ products, title, imageUrl })
-            .then((createdRecipe) => res.send(createdRecipe))
-            .catch(next)
+        const { products, title, imageUrl } = req.body;
+        const userId = req.user._id;
+        console.log('IT IS',userId);
+        
+        models.Recipe.create({ products, title, imageUrl, creator: userId }).then((createdRecipe) => {
+          models.User.updateOne({ _id: userId }, { "$push": { "recipes": createdRecipe._id } }).then(updateUser => {
+            res.send(createdRecipe)
+          }).catch(next);
+        }).catch(next)
     },
   },
 

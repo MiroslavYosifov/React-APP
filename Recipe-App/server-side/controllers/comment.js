@@ -16,10 +16,18 @@ module.exports = {
 
   post: {
     addComment: (req, res, next) => {
-        const { title, content } = req.body;       
-        models.Comment.create({ title, content })
-            .then((createdComment) => res.send(createdComment))
-            .catch(next)
+        const { title, content } = req.body;
+        const userId = req.user._id;
+        const username = req.user.username;
+        const recipeId = req.params.id;
+
+        models.Comment.create({ title, content, user: userId, creator: username, recipe: recipeId }).then((createdComment) => {
+          models.User.updateOne({ _id: userId }, { "$push": { "comments": createdComment._id } }).then(updateUser => {
+            models.Recipe.updateOne({ _id: recipeId }, { "$push": { "comments": createdComment._id } }).then(updateRecipe => {
+              res.send(createdComment);
+            }).catch(next);
+          }).catch(next);
+        }).catch(next);
     },
   },
 
