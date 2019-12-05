@@ -28,6 +28,9 @@
     border-radius: 0.1em;
     border: none;
 }
+.EditRecipe p span {
+    color: rgb(238, 10, 10);
+}
 
 .EditRecipe p .EditButton {
     margin: 1em auto 0 auto;
