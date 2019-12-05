@@ -5,9 +5,17 @@ const utils = require('../utils');
 module.exports = {
   get: {
     getAllRecipes: (req, res, next) => {
-        models.Recipe.find()
-        .then((recipes) => res.send(recipes))
-        .catch(next)
+        models.Recipe.find().then((recipes) =>{
+          res.send(recipes);
+        }).catch(next);
+    },
+    getMyRecipes: (req, res, next) => {
+        const userId = req.user._id;
+        console.log(userId);
+        
+        models.Recipe.find({ creator: { $eq: userId } }).then((recipes) => {
+          res.send(recipes)
+        }).catch(next);
     },
     getRecipe: (req, res, next) => {    
         const id = req.params.id;
@@ -24,8 +32,7 @@ module.exports = {
     addRecipe: (req, res, next) => {
         const { products, title, imageUrl } = req.body;
         const userId = req.user._id;
-        console.log('IT IS',userId);
-        
+
         models.Recipe.create({ products, title, imageUrl, creator: userId }).then((createdRecipe) => {
           models.User.updateOne({ _id: userId }, { "$push": { "recipes": createdRecipe._id } }).then(updateUser => {
             res.send(createdRecipe)

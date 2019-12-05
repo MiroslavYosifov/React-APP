@@ -36,7 +36,7 @@ class Recipes extends React.Component {
         <RecipeNavigation isLogged={isLogged}/>
         {isLogged && <Route path={this.props.match.url + '/post'} component={PostRecipe} />}
         <header>
-          <h1>RECIPES</h1>
+          <h2>RECIPES</h2>
         </header>
         <div className="RecipesContainer">
         {recipes.map((recipe, index) => 

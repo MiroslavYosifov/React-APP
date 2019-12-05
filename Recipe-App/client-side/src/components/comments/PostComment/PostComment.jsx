@@ -38,18 +38,18 @@ class PostComment extends React.Component {
         return (
               <div className="RecipePostComment">
                 <header>
-                    <h2>Post comment:</h2>
+                    <h2>Post comment</h2>
                 </header>
-                <form className="RecipePostComment" onSubmit={this.handleSubmit}>
+                <form className="RecipePostCommentForm" onSubmit={this.handleSubmit}>
                     <p>
                         <label htmlFor="title">Title</label>
                         <input type="text" onChange={this.changeTitle} value={title} id="title"/>
                     </p>
                     <p>
                         <label htmlFor="products">Comment</label>
-                        <textarea type="text" onChange={this.changeContent} value={content} id="products" id="" cols="30" rows="10"/>
+                        <textarea type="text" onChange={this.changeContent} value={content} id="products" id="" cols="30" rows="4"/>
                     </p>
-                    <button type="submit">Add Recipe</button>
+                    <button type="submit">POST COMMENT</button>
                 </form>
               </div> 
         )

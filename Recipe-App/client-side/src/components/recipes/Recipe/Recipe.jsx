@@ -10,7 +10,7 @@ function Recipe({recipeId, title, imageUrl, products, hideRecipeElements}) {
       </section>
       <section className="Recipe-content">
           <section className="Products">
-              <h3>{title}</h3>
+              <h4>{title}</h4>
               <ul>
                 { !hideRecipeElements ? <li>{products}</li> : ''}
               </ul>

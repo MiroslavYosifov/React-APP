@@ -6,9 +6,10 @@
 .MyRecipesWrapper header {
     width: 100%;
     text-align: center;
+    padding: 2em;
 }
 
-.MyRecipesWrapper header h1 {
+.MyRecipesWrapper header h2 {
    
 }
 

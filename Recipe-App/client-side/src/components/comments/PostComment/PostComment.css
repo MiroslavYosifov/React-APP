@@ -1,9 +1,24 @@
 .RecipePostComment {
     width: 100%;
+    margin-top: 1em;
+    border-top: 2px solid rgb(238, 238, 238);
 }
 
-.RecipePostComment textarea {
+.RecipePostComment header {
+    padding: 1em;
+}
+
+.RecipePostCommentForm p {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.RecipePostCommentForm p input,
+.RecipePostCommentForm p label {
+    width: 100%;
+}
+
+.RecipePostCommentForm textarea {
     width: 100%;
     padding: 0;
-    border: 1px solid black;
 }

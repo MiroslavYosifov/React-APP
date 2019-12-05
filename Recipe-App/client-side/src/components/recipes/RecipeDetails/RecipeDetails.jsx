@@ -45,7 +45,7 @@ class RecipeDetails extends React.Component {
         return (
             <div className="RecipeDetails">
                 <header>
-                    <h1>{recipe.title}</h1>
+                    <h2>{recipe.title}</h2>
                 </header>
                 <Recipe recipeId={recipe._id}
                         imageUrl={recipe.imageUrl}

@@ -4,9 +4,9 @@ import './Comment.css';
 function Comment({title, content, creator}) {  
   return (
     <section className="Comment">
-      <p>{title}</p>
+      <h5>Title: {title}</h5>
       <p>{content}</p>
-      <p>Author: {creator}</p>
+      <blockquote>Author: {creator}</blockquote>
     </section>
   )
 };

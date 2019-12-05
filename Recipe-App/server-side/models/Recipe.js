@@ -6,7 +6,7 @@ const { String, Number, Boolean, ObjectId } = Schema.Types;
 
 const recipeSchema = new Schema({
     title: { type: String, unique: true, required: true },
-    products: { type: String, require: true, required: true },
+    products: { type: String, required: true },
     createdDate: { type: Date, default: Date.now, required: true},
     imageUrl: { type: String, require: true, required: true },
     comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],

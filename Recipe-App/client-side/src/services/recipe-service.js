@@ -29,8 +29,18 @@ const recipeService = {
         }
       });
       return await res.json();
-    }
-    
+    },
+
+    getMyRecipes: async function () {
+        const res = await fetch(`http://localhost:3333/api/recipe/getMyRecipes`, {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        credentials: 'include'
+      });
+      return await res.json();
+    },
 };
   
 export default recipeService;

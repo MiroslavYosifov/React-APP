@@ -1,3 +1,11 @@
 .Comment {
-    border-top: 1px solid rgb(233, 233, 233);
+    /* border-top: 1px solid rgb(233, 233, 233); */
+}
+
+.Comment h5 {
+    /* border-bottom: 1px solid rgb(212, 212, 212); */
+}
+
+.Comment > p {
+    padding: 0.4em 0.4em;
 }
