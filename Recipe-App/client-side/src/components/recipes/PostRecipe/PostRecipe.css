@@ -18,6 +18,7 @@
 
 .PostRecipe p input {
     margin-right: 1em;
+    padding: 0.2em;
 }
 
 .PostRecipe p label {
@@ -29,18 +30,7 @@
 }
 
 
-.PostRecipe button {
-    border: none;
-    padding: 0.4em;
+.PostRecipe .PostButton {
     margin-right: auto;
-    border: 1px solid rgb(211, 112, 0);
-    background: white;
-    color: rgb(211, 112, 0);
-}
-
-.PostRecipe button:hover {
-    cursor: pointer;
-    background: rgb(211, 112, 0);
-    border: 1px solid rgb(211, 112, 0);
-    color: white;
+    margin-bottom: 0.2em;
 }

@@ -1,7 +1,10 @@
 .RecipePostComment {
     width: 100%;
     margin-top: 1em;
-    border-top: 2px solid rgb(238, 238, 238);
+    padding: 1em;
+    border-top: 2px solid rgb(243, 243, 243);
+    background: rgb(245, 245, 245);
+    border-radius: 0.2em;
 }
 
 .RecipePostComment header {
@@ -14,11 +17,23 @@
 }
 
 .RecipePostCommentForm p input,
+.RecipePostCommentForm textarea {
+    border: 1px solid rgb(223, 223, 223)
+}
+
+.RecipePostCommentForm p input,
 .RecipePostCommentForm p label {
     width: 100%;
+    border-radius: 0.1em;
+    padding: 0.2em;
 }
 
 .RecipePostCommentForm textarea {
     width: 100%;
-    padding: 0;
+    padding: 0.2em;
+}
+
+.RecipePostCommentForm p .PostButton {
+    margin-left: auto;
+    margin-top: 1em;
 }

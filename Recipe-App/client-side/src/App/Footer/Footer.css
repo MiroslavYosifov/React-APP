@@ -1,5 +1,7 @@
 .Footer {
-  width: 100%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;  
   background: #ebebeb;
   color: gray;
 }

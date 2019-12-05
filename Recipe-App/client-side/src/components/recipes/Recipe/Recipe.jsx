@@ -1,8 +1,10 @@
 import React from 'react';
 import './Recipe.css';
 import { Link } from 'react-router-dom';
+import recipeService from '../../../services/recipe-service'
 
 function Recipe({recipeId, title, imageUrl, products, hideRecipeElements}) {
+
   return (
     <section className="Recipe">
       <section className="Recipe-media">
@@ -15,8 +17,9 @@ function Recipe({recipeId, title, imageUrl, products, hideRecipeElements}) {
                 { !hideRecipeElements ? <li>{products}</li> : ''}
               </ul>
           </section>
-          <section>
-          { hideRecipeElements ? <Link to={"/recipe/details/" + recipeId}>Details</Link> : '' }
+          <section className="RecipeButtonsWrapper">
+          { hideRecipeElements ? <Link className="DetailButton" to={"/recipe/details/" + recipeId}>Details</Link> : '' }
+          { !hideRecipeElements ? <Link className="EditButton" to={"/recipe/edit/" + recipeId}>Edit</Link> : ''}
           </section>
       </section>
     </section>

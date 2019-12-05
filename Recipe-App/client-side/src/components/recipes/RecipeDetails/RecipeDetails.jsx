@@ -5,7 +5,8 @@ import Comments from '../../comments/Comments/Comments'
 import PostComment from '../../comments/PostComment/PostComment';
 import recipeService from '../../../services/recipe-service';
 import commentService from '../../../services/comment-service';
-
+import { Link, Route } from 'react-router-dom';
+import EditRecipe from '../EditRecipe/EditRecipe'
 
 class RecipeDetails extends React.Component {
     constructor (props) {
@@ -18,24 +19,15 @@ class RecipeDetails extends React.Component {
     }
 
     componentDidMount() {
-        const id = this.props.match.params.id;
-        recipeService.getRecipe(id).then(recipe => {
+        const recipeId = this.props.match.params.id;
+        recipeService.getRecipe(recipeId).then(recipe => {
             this.setState({
                 recipe: recipe,
                 comments: recipe.comments,
                 hideRecipeElements: false,
             });
         });
-    
     }
-
-//    componentDidUpdate() {
-//     commentService.getAllComments().then(comments => {
-//         this.setState({
-//             comments: comments,
-//         });
-//     });
-//    }
 
     render() {
         const recipe = this.state.recipe;

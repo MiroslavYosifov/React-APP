@@ -29,7 +29,7 @@ class Recipes extends React.Component {
     const { recipes } = this.state;
     const hideRecipeElements = this.state.hideRecipeElements;
     const isLogged = this.props.isLogged;
-    console.log(hideRecipeElements);
+    //console.log(hideRecipeElements);
     
     return (
       <div className="RecipesWrapper">

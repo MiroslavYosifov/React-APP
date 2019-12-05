@@ -41,6 +41,18 @@ const recipeService = {
       });
       return await res.json();
     },
+    
+    editMyRecipe: async function (data, id) {
+        const res = await fetch(`http://localhost:3333/api/recipe/editMyRecipe/${id}`, {
+        body: JSON.stringify(data),
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        credentials: 'include'
+      });
+      return await res.json();
+    },
 };
   
 export default recipeService;

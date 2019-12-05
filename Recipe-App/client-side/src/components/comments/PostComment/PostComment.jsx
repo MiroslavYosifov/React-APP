@@ -49,7 +49,9 @@ class PostComment extends React.Component {
                         <label htmlFor="products">Comment</label>
                         <textarea type="text" onChange={this.changeContent} value={content} id="products" id="" cols="30" rows="4"/>
                     </p>
-                    <button type="submit">POST COMMENT</button>
+                    <p>
+                        <button className="PostButton" type="submit">Post comment</button>
+                    </p>
                 </form>
               </div> 
         )

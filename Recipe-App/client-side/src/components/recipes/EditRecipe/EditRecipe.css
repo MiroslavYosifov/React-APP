@@ -1,0 +1,36 @@
+.EditRecipeWrapper {
+    background: rgb(245, 245, 245);
+    width: 30em;
+    margin: 4em auto;
+    padding: 1em 2em 2em 2em;
+}
+
+.EditRecipe {
+    
+}
+
+.EditRecipe p {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.EditRecipe p label,
+.EditRecipe p input {
+    width: 100%;
+    padding: 0.4em;
+}
+
+.EditRecipe p label {
+    padding: 0.4em 0;
+}
+.EditRecipe p input {
+    border-radius: 0.1em;
+    border: none;
+}
+
+.EditRecipe p .EditButton {
+    margin: 1em auto 0 auto;
+    width: 100%;
+    padding: 0.5em;
+}

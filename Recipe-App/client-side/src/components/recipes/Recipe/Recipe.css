@@ -1,6 +1,8 @@
 .Recipe {
-    /* border: 1px solid black; */
-    box-shadow: 0 0 0.1em 0.1em rgba(228, 228, 228, 0.75);box-shadow: 0 0 0.1em 0.1em rgba(228, 228, 228, 0.75);
+    border: 1px solid rgba(228, 228, 228, 0.75);
+    border-radius: 0.2em;
+    box-shadow: 0 0 0.2em 0.1em rgba(228, 228, 228, 0.75);
+    overflow: hidden;
 }
 
 
@@ -24,6 +26,10 @@
 }
 
 .Recipe-content {
+
+}
+
+.Products {
     padding: 0.4em;
 }
 
@@ -33,9 +39,20 @@
 
 .Recipe-content section a {
     text-decoration: none;
-    color: gray;
 }
 
 .Products {
 
+}
+
+.RecipeButtonsWrapper {
+    display: flex;
+}
+
+.RecipeButtonsWrapper a {
+    margin-left: 0.4em;
+}
+
+.RecipeButtonsWrapper a:first-child {
+    margin-left: auto;
 }

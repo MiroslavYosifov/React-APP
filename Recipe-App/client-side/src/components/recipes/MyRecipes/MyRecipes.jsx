@@ -17,7 +17,6 @@ class MyRecipes extends React.Component {
   }
 
   componentDidMount() {
-    console.log('I am here');
     recipeService.getMyRecipes().then(recipes => {
       this.setState({ 
         recipes: recipes,
@@ -25,7 +24,7 @@ class MyRecipes extends React.Component {
       });
     });
   }
-
+  
   render() {
     const { recipes } = this.state;
     console.log(recipes);

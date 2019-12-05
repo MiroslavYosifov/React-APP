@@ -1,7 +1,69 @@
 .App {
+  position: relative;
   max-width: 100vw;
+  min-height: 100vh;
 }
 
 .Container {
   padding: 4em 2em;
+}
+
+.EditButton,
+.DeleteButton {
+  display: block;
+  padding: 0.2em;
+  color: white;
+  border-radius: 0.1em;
+  width: 8em;
+  text-align: center;
+}
+
+.EditButton {
+  border: 1px solid rgb(120, 74, 151);
+  background: rgb(120, 74, 151);
+  color: white;
+}
+
+.EditButton:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.DeleteButton {
+  border: 1px solid rgb(214, 1, 1);
+  background: rgb(214, 1, 1);
+  color: white;
+}
+
+.DeleteButton:hover {
+  border: 1px solid rgb(214, 1, 1);
+  background: rgb(214, 1, 1);
+  color: white;
+  cursor: pointer;
+}
+
+.PostButton {
+  border: none;
+  border-radius: 0.1em;
+  padding: 0.4em;
+  background: rgb(224, 132, 25);
+  border: 1px solid rgb(224, 132, 25);
+  color: white;
+  font-size: 1.1em;
+}
+
+.PostButton:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.DetailButton {
+  display: block;
+  background: rgb(238, 238, 238);
+  padding: 0.4em;
+  color: white;
+  border-radius: 0.1em;
+  width: 8em;
+  text-align: center;
+  color: gray;
 }
