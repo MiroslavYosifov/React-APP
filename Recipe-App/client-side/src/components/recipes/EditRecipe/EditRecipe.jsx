@@ -41,8 +41,9 @@ class EditRecipe extends React.Component {
         schema.validate({ title: this.state.title, products: this.state.products, imageUrl: this.state.imageUrl})
         .then(() => {
             recipeService.editMyRecipe(data,recipeId).then(() => {
-                let url = '/recipe/details/' + recipeId;
-                this.props.history.push('/recipe');
+                console.log(this.props);
+                
+                this.props.history.push('/myRecipes');
             });
         }).catch((err) => {
             this.setState({inputError: err});

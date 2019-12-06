@@ -18,7 +18,7 @@ class Recipe extends React.Component {
   handleDelete = (e) => {
     const recipeId = this.props.recipeId;  
     recipeService.deleteMyRecipe(recipeId).then(() => {
-      this.props.history.push('/recipe');
+      this.props.history.push('/myRecipes');
     });
   }
 

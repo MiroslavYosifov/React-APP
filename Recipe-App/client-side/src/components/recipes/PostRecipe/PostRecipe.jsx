@@ -38,7 +38,7 @@ class PostRecipe extends React.Component {
         .then(() => {
             const data = this.state;
             recipeService.addRecipe(data).then(() => {
-                this.props.history.push('/recipe');
+                this.props.history.push('/myRecipes');
             });
         }).catch((err) => {
             this.setState({inputError: err});

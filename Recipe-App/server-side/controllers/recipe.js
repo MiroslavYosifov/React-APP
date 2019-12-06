@@ -56,10 +56,11 @@ module.exports = {
       const recipId = req.params.id;
       const userId = req.user._id;
       
-      models.Recipe.deleteOne({ _id: recipId }).then(recipe => {
+      models.Recipe.findOneAndDelete({ _id: recipId }).then(recipe => {
         models.Comment.deleteMany({ recipe: recipId }).then(comments => {
-          models.User.updateOne({ _id: userId }, { '$pull:': { recipes: recipId }}).then(user => {
-            res.send(updatedRecipe);
+          models.User.updateOne({ _id: userId }, { '$pull': { recipes: recipId }}).then(user => {
+              console.log(recipe);
+            res.send(recipe);
           }).catch(next);
         }).catch(next);
       }).catch(next);

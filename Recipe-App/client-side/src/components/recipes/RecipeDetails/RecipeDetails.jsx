@@ -29,7 +29,7 @@ class RecipeDetails extends React.Component {
         });
     }
 
-    
+
 
     render() {
         const recipe = this.state.recipe;
@@ -44,7 +44,8 @@ class RecipeDetails extends React.Component {
                 <Recipe recipeId={recipe._id}
                         imageUrl={recipe.imageUrl}
                         products={recipe.products}
-                        hideRecipeElements={hideRecipeElements}/>
+                        hideRecipeElements={hideRecipeElements}
+                        {...this.props}/>
                 { isLogged && <PostComment parentData={this.props}/> }
                 <Comments comments={comments}/>
             </div>

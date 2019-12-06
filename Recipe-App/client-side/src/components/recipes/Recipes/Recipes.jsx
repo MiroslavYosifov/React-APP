@@ -46,6 +46,7 @@ class Recipes extends React.Component {
               title={recipe.title}
               products={recipe.products}
               hideRecipeElements={hideRecipeElements}
+              {...this.props}
             ></Recipe>)}
         </div>
       </div>
