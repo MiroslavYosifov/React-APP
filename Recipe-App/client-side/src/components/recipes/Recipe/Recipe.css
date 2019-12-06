@@ -49,9 +49,9 @@
     display: flex;
 }
 
-.RecipeButtonsWrapper a {
+/* .RecipeButtonsWrapper a {
     margin-left: 0.4em;
-}
+} */
 
 .RecipeButtonsWrapper a:first-child {
     margin-left: auto;

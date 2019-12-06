@@ -1,6 +1,7 @@
 .Comment {
     /* border-top: 1px solid rgb(233, 233, 233); */
     padding: 0 0.6em;
+    width: 100%;
 }
 
 .Comment h5 {

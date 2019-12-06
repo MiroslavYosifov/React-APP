@@ -43,10 +43,8 @@ module.exports = {
       const { products, title, imageUrl } = req.body;
       const recipId = req.params.id;
       const userId = req.user._id;
-      
       models.Recipe.findOneAndUpdate({ _id: recipId }, { products, title, imageUrl }).exec( function( err, updatedRecipe ) {
         if(err){ console.log(err); return; }
-        console.log(updatedRecipe);
         res.send(updatedRecipe);
       });
 
@@ -54,6 +52,18 @@ module.exports = {
   },
 
   delete: {
-    
+    deleteMyRecipe: (req, res, next) => {
+      const recipId = req.params.id;
+      const userId = req.user._id;
+      
+      models.Recipe.deleteOne({ _id: recipId }).then(recipe => {
+        models.Comment.deleteMany({ recipe: recipId }).then(comments => {
+          models.User.updateOne({ _id: userId }, { '$pull:': { recipes: recipId }}).then(user => {
+            res.send(updatedRecipe);
+          }).catch(next);
+        }).catch(next);
+      }).catch(next);
+
+    },
   }
 };

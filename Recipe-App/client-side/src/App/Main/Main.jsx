@@ -2,6 +2,7 @@ import React from 'react';
 import './Main.css';
 
 function Main({ children, title }) {
+  // console.log(children);
   return (
     <div className="Main">
       {/* <h1>{title}</h1> */}

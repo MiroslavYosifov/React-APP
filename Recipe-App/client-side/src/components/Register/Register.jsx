@@ -21,7 +21,7 @@ class Register extends React.Component {
       this.props.history.push('/login');
     });
   };
-
+ 
   getFirstControlError = name => {
     const errorState = this.props.getFormErrorState();
     return errorState && errorState[name] && errorState[name][0];

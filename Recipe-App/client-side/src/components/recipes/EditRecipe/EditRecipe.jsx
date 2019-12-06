@@ -4,8 +4,6 @@ import recipeService from '../../../services/recipe-service';
 import { Redirect } from 'react-router-dom';
 import * as yup from 'yup'; // for everything
 
-
-
 class EditRecipe extends React.Component {
     constructor (props) {
         super(props) 
@@ -42,23 +40,15 @@ class EditRecipe extends React.Component {
 
         schema.validate({ title: this.state.title, products: this.state.products, imageUrl: this.state.imageUrl})
         .then(() => {
-            return this.state;
-        })
-        .catch((err) => {
-            console.log(err);
+            recipeService.editMyRecipe(data,recipeId).then(() => {
+                let url = '/recipe/details/' + recipeId;
+                this.props.history.push('/recipe');
+            });
+        }).catch((err) => {
             this.setState({inputError: err});
         });
         
-        recipeService.editMyRecipe(data,recipeId).then(() => {
-            let url = '/recipe/details/' + recipeId;
-            return <Redirect to={url} />
-        });
     }
-
-    // getFirstControlError = (name) => {
-    //     const errorState = this.state.inputError;
-    //     return errorState && errorState[name] && errorState[name][0];
-    //   };
 
     componentDidMount() {
         const recipeId = this.props.match.params.id;
@@ -78,7 +68,6 @@ class EditRecipe extends React.Component {
         const titleError = inputError.path === 'title';
         const productsError = inputError.path === 'products';
         const imageUrlError = inputError.path === 'imageUrl';
-
         // console.log('titleError', titleError);
         // console.log('productsError', productsError);
         // console.log('imageUrlError', imageUrlError);

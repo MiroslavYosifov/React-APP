@@ -25,6 +25,11 @@
     margin-right: 0.4em;
 }
 
+.PostRecipe p span {
+    color: rgb(226, 13, 13);
+    margin-right: 0.4em;
+}
+
 .PostRecipe p:first-child {
     margin-left: auto;
 }

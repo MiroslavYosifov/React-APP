@@ -29,6 +29,8 @@ class RecipeDetails extends React.Component {
         });
     }
 
+    
+
     render() {
         const recipe = this.state.recipe;
         const comments = this.state.comments;

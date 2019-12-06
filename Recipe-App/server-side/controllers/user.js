@@ -46,17 +46,17 @@ module.exports = {
   },
 
   put: (req, res, next) => {
-    const id = req.params.id;
-    const { username, password } = req.body;
-    models.User.update({ _id: id }, { username, password })
-      .then((updatedUser) => res.send(updatedUser))
-      .catch(next)
+    // const id = req.params.id;
+    // const { username, password } = req.body;
+    // models.User.update({ _id: id }, { username, password })
+    //   .then((updatedUser) => res.send(updatedUser))
+    //   .catch(next)
   },
 
   delete: (req, res, next) => {
-    const id = req.params.id;
-    models.User.deleteOne({ _id: id })
-      .then((removedUser) => res.send(removedUser))
-      .catch(next)
+    // const id = req.params.id;
+    // models.User.deleteOne({ _id: id })
+    //   .then((removedUser) => res.send(removedUser))
+    //   .catch(next)
   }
 };

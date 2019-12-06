@@ -53,6 +53,17 @@ const recipeService = {
       });
       return await res.json();
     },
+
+    deleteMyRecipe: async function (id) {
+      const res = await fetch(`http://localhost:3333/api/recipe/deleteMyRecipe/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      credentials: 'include'
+    });
+    return await res.json();
+  },
 };
   
 export default recipeService;
