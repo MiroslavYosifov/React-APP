@@ -25,12 +25,14 @@ class PostComment extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const recipeId = this.props.parentData.match.params.id;
+        const recipeId = this.props.match.params.id;
         const data = this.state;  
         commentService.addComment(data,recipeId).then(() => {
-        this.props.parentData.history.push(this.props.parentData.location.pathname);          
-    });
-  }
+            this.props.history.replace(`/reload`);
+            this.props.history.replace(this.props.location.pathname);
+        });
+    }
+
 
     render() {
         const  { title, content } = this.state;

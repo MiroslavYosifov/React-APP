@@ -1,6 +1,6 @@
 const models = require('../models');
 const config = require('../config/config');
-const utils = require('../utils');
+const jwt = require('../utils/jwt');
 
 module.exports = {
   get: {
@@ -15,22 +15,31 @@ module.exports = {
           res.send(recipes)
         }).catch(next);
     },
-    getRecipe: (req, res, next) => {    
+    getRecipe: (req, res, next) => {
         const id = req.params.id;
+        const token = req.cookies[config.authCookieName];
+
         models.Recipe.findById(id).populate('creator comments').exec( function( err, recipe ) {
           if(err){ console.log(err); return; }
-          // console.log(recipe.comments[0]);
-          // console.log(recipe.creator.username);
-          res.send(recipe);
+          if(token) {
+            jwt.verifyToken(token).then(data => {
+              const currentdUserId = data.id;
+              const recipeCreatorId = recipe.creator._id.toString();
+              recipe.isCreator = currentdUserId === recipeCreatorId;
+              res.send(recipe);
+            }).catch(next);  
+          } else {
+            res.send(recipe);
+          }
       });
     }
   },
 
   post: {
     addRecipe: (req, res, next) => {
-        const { products, title, imageUrl } = req.body;
+        const { title, imageUrl, preparation, ingredients } = req.body;
         const userId = req.user._id;
-        models.Recipe.create({ products, title, imageUrl, creator: userId }).then((createdRecipe) => {
+        models.Recipe.create({ title, imageUrl, preparation, ingredients, creator: userId }).then((createdRecipe) => {
           models.User.updateOne({ _id: userId }, { "$push": { "recipes": createdRecipe._id } }).then(updateUser => {
             res.send(createdRecipe)
           }).catch(next);
@@ -40,10 +49,10 @@ module.exports = {
 
   put: {
     editMyRecipe: (req, res, next) => {
-      const { products, title, imageUrl } = req.body;
+      const { title, imageUrl, preparation, ingredients } = req.body;
       const recipId = req.params.id;
       const userId = req.user._id;
-      models.Recipe.findOneAndUpdate({ _id: recipId }, { products, title, imageUrl }).exec( function( err, updatedRecipe ) {
+      models.Recipe.findOneAndUpdate({ _id: recipId }, { title, imageUrl, preparation, ingredients }).exec( function( err, updatedRecipe ) {
         if(err){ console.log(err); return; }
         res.send(updatedRecipe);
       });
@@ -55,12 +64,10 @@ module.exports = {
     deleteMyRecipe: (req, res, next) => {
       const recipId = req.params.id;
       const userId = req.user._id;
-      
-      models.Recipe.findOneAndDelete({ _id: recipId }).then(recipe => {
+      models.Recipe.findOneAndDelete({ _id: recipId }).then(updatedRecipe => {
         models.Comment.deleteMany({ recipe: recipId }).then(comments => {
-          models.User.updateOne({ _id: userId }, { '$pull': { recipes: recipId }}).then(user => {
-              console.log(recipe);
-            res.send(recipe);
+          models.User.updateOne({ _id: userId }, { '$pull': { recipes : recipId }}).then(user => {
+            res.send(updatedRecipe);
           }).catch(next);
         }).catch(next);
       }).catch(next);

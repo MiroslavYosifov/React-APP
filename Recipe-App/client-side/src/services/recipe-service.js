@@ -26,7 +26,8 @@ const recipeService = {
         method: 'GET',
         headers: {
           'Content-type': 'application/json'
-        }
+        },
+        credentials: 'include'
       });
       return await res.json();
     },

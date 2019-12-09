@@ -29,14 +29,16 @@ class Recipes extends React.Component {
     const { recipes } = this.state;
     const hideRecipeElements = this.state.hideRecipeElements;
     const isLogged = this.props.isLogged;
-    //console.log(hideRecipeElements);
+    console.log(this.props);
+    
+    console.log(isLogged);
     
     return (
       <div className="RecipesWrapper">
         <RecipeNavigation isLogged={isLogged}/>
         {isLogged && <Route path={this.props.match.url + '/post'} component={PostRecipe} />}
         <header>
-          <h2>RECIPES</h2>
+          <h2>ALL RECIPES</h2>
         </header>
         <div className="RecipesContainer">
         {recipes.map((recipe, index) => 
@@ -46,7 +48,6 @@ class Recipes extends React.Component {
               title={recipe.title}
               products={recipe.products}
               hideRecipeElements={hideRecipeElements}
-              {...this.props}
             ></Recipe>)}
         </div>
       </div>

@@ -6,7 +6,6 @@ import PostComment from '../../comments/PostComment/PostComment';
 import recipeService from '../../../services/recipe-service';
 import commentService from '../../../services/comment-service';
 import { Link, Route } from 'react-router-dom';
-import EditRecipe from '../EditRecipe/EditRecipe'
 
 class RecipeDetails extends React.Component {
     constructor (props) {
@@ -29,25 +28,30 @@ class RecipeDetails extends React.Component {
         });
     }
 
-
-
     render() {
         const recipe = this.state.recipe;
-        const comments = this.state.comments;
         const hideRecipeElements = this.state.hideRecipeElements;
+        const comments = this.state.comments
         const isLogged = this.props.isLogged;
         return (
             <div className="RecipeDetails">
-                <header>
+                {/* <header>
                     <h2>{recipe.title}</h2>
-                </header>
-                <Recipe recipeId={recipe._id}
-                        imageUrl={recipe.imageUrl}
-                        products={recipe.products}
-                        hideRecipeElements={hideRecipeElements}
-                        {...this.props}/>
-                { isLogged && <PostComment parentData={this.props}/> }
-                <Comments comments={comments}/>
+                </header> */}
+                <div className="MainContentRecipeDetails">
+                    <Recipe recipeId={recipe._id}
+                            title={recipe.title}
+                            imageUrl={recipe.imageUrl}
+                            ingredients={recipe.ingredients}
+                            preparation={recipe.preparation}
+                            isCreator={recipe.isCreator}
+                            hideRecipeElements={hideRecipeElements}
+                            {...this.props}/>
+                    <section className="ContentComments">
+                        { isLogged && <PostComment  {...this.props}/> }
+                        <Comments comments={comments}/>
+                    </section>
+                </div>
             </div>
     )
    } 

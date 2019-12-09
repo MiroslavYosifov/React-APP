@@ -27,18 +27,18 @@ class MyRecipes extends React.Component {
   
   render() {
     const { recipes } = this.state;
-    console.log(recipes);
+    // console.log(recipes);
     
     const hideRecipeElements = this.state.hideRecipeElements;
     const isLogged = this.props.isLogged;
-    console.log(hideRecipeElements);
+    // console.log(hideRecipeElements);
     
     return (
       <div className="MyRecipesWrapper">
         <RecipeNavigation isLogged={isLogged}/>
         {isLogged && <Route path={this.props.match.url + '/post'} component={PostRecipe} />}
         <header>
-          <h2>RECIPES</h2>
+          <h2>MY RECIPES</h2>
         </header>
         <div className="MyRecipesContainer">
         {recipes.map((recipe, index) => 

@@ -2,27 +2,36 @@
     width: 100%;
 }
 
-.PostRecipeWrapper header {
-
+.PostRecipeWrapper .PostRecipe header {
+    padding: 0;
 }
 
 .PostRecipe {
+    background: rgb(245, 245, 245);
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    padding: 1em 0;
+    width: 30%;
+    margin: 2em auto;
+    padding: 1em 2em 2em 2em;
 }
 
 .PostRecipe p {
-
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .PostRecipe p input {
-    margin-right: 1em;
-    padding: 0.2em;
+    width: 100%;
+}
+
+.PostRecipe p textarea {
+    width: 100%;
 }
 
 .PostRecipe p label {
-    margin-right: 0.4em;
+    width: 100%;
 }
 
 .PostRecipe p span {
@@ -30,12 +39,9 @@
     margin-right: 0.4em;
 }
 
-.PostRecipe p:first-child {
-    margin-left: auto;
-}
-
 
 .PostRecipe .PostButton {
-    margin-right: auto;
+    margin-left: auto;
     margin-bottom: 0.2em;
+    margin-top: 1em;
 }

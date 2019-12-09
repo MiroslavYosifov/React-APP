@@ -3,32 +3,52 @@ import withForm from '../../shared/hocs/withForm';
 import userService from '../../services/user-service';
 
 class Login extends React.Component {
+  constructor (props) {
+    super(props) 
+        this.state = {
+            username: '',
+            password: '',
+        }
+  }
 
-  usernameChangeHandler = this.props.controlChangeHandlerFactory('username');
-  passwordChangeHandler = this.props.controlChangeHandlerFactory('password');
+  usernameChangeHandler = (e) => {
+    this.setState({
+      username: e.target.value
+    });
+  }
 
-  submitHandler = () => {
-    const errors = this.props.getFormErrorState();
-    if (!!errors) { return; }
-    const data = this.props.getFormState();
+  passwordChangeHandler = (e) => {
+    this.setState({ password: e.target.value
+    });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const data = this.state;  
     this.props.login(this.props.history, data);
   }
 
   render() {
-    return <form className="Login">
-      <div className="form-control">
-        <label>Username</label>
-        <input type="text" onChange={this.usernameChangeHandler} />
-      </div>
-      <div className="form-control">
-        <label>Password</label>
-        <input type="password" onChange={this.passwordChangeHandler} />
-      </div>
-      <div className="form-control">
-        <button type="button" onClick={this.submitHandler}>Login</button>
-      </div>
-    </form>;
+    const  { username, password } = this.state;
+
+    return (
+      <form onSubmit={this.handleSubmit} className="Login">
+        <p>
+            <label htmlFor="username">Username</label>
+            <input type="text" onChange={this.usernameChangeHandler} value={username} id="username"/>
+            {/* {productsError && <span>{inputError.message}</span>} */}
+        </p>
+        <p>
+            <label htmlFor="password">Password</label>
+            <input type="password" onChange={this.passwordChangeHandler} value={password} id="username"/>
+            {/* {productsError && <span>{inputError.message}</span>} */}
+        </p>
+        <div className="form-control">
+          <button type="Submit">Login</button>
+        </div>
+      </form>
+    )
   }
 }
 
-export default withForm(Login, { username: '', password: '' });
+export default Login;

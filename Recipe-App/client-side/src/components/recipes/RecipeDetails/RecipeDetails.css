@@ -1,13 +1,32 @@
 .RecipeDetails {
     margin: 0 left;
-    padding: 0 12em;
+    width: 100%;
 }
 
 .RecipeDetails header {
     width: 100%;
     text-align: center;
-}
-
-.RecipeDetails header h2 {
     
 }
+
+.MainContentRecipeDetails {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+.MainContentRecipeDetails .Recipe {
+    width: 55%;
+    box-shadow: 0 0 0.6em 0.4em rgba(228, 228, 228, 0.75);
+}
+
+.MainContentRecipeDetails .ContentComments {
+    padding-left: 4em;
+    width: 45%;
+}
+
+
+

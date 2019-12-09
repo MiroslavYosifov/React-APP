@@ -1,14 +1,16 @@
 .CommentsContainer {
     display: flex;
     flex-wrap: wrap;
+    overflow: auto;
     width: 100%;
+    height: 30em;
     margin-top: 1em;
 }
 
 .Comments {
-
+    width: 100%;
 }
 
 .Comments header {
-    padding: 1em;
+    padding: 1em 0;
 }

@@ -25,7 +25,7 @@
     transform: translate(-50%, -50%);
 }
 
-.Recipe-content {
+.Recipe-content-container {
 
 }
 
@@ -33,20 +33,21 @@
     padding: 0.4em;
 }
 
-.Recipe-content section {
+.Recipe-content-container section {
 
 }
 
-.Recipe-content section a {
+.Recipe-content-container section a {
     text-decoration: none;
 }
 
-.Products {
+.Recipe-Description {
 
 }
 
 .RecipeButtonsWrapper {
     display: flex;
+    padding: 0.6em;
 }
 
 /* .RecipeButtonsWrapper a {
@@ -55,4 +56,5 @@
 
 .RecipeButtonsWrapper a:first-child {
     margin-left: auto;
+    margin-right: 0.6em;
 }

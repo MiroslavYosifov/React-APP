@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import Main from './Main/Main';
 import Navigation from './Navigation/Navigation';
 import Footer from './Footer/Footer';
 import Recipes from '../components/recipes/Recipes/Recipes';
@@ -16,13 +15,8 @@ import Register from '../components/Register/Register';
 import Logout from '../components/Logout/Logout';
 import userService from '../services/user-service';
 
-function render(title, Cmp, otherProps) {
-  return function (props) {
-    return <Main title={title} ><Cmp {...props} {...otherProps} /></Main>
-  };
-}
 
-function parseCookeis() {
+function parseCookies() {
   return document.cookie.split('; ').reduce((acc, cookie) => {
     const [cookieName, cookieValue] = cookie.split('=');
     acc[cookieName] = cookieValue;
@@ -33,7 +27,7 @@ function parseCookeis() {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    const cookies = parseCookeis();
+    const cookies = parseCookies();
     const isLogged = document.cookie ? true : false;
     this.state = { isLogged };
   }
@@ -48,6 +42,7 @@ class App extends React.Component {
   }
 
   login = (history, data) => {
+    console.log(data);
     userService.login(data).then((data) => {
       if(data === 'notlogged') return;
       this.setState({ isLogged: true });
@@ -57,7 +52,7 @@ class App extends React.Component {
 
   render () {
     const { isLogged } = this.state;
-    console.log(isLogged);
+    console.log('IsLogged => ',isLogged);
     return (
       <BrowserRouter>
         <div className="App">
@@ -66,14 +61,14 @@ class App extends React.Component {
             <Switch>
               <Route path="/home" component={Home} />
               <Route path="/about" component={About} />
-              <Route path="/recipe/details/:id" render={render('RecipeDetails', RecipeDetails, { isLogged })} />
-              { isLogged && <Route path="/recipe/edit/:id" render={render('EditRecipe', EditRecipe, { isLogged })} />}
-              <Route path="/recipe" render={render('Recipes', Recipes, { isLogged })} />
-              <Route path="/myRecipes" render={render('MyRecipes', MyRecipes, { isLogged })} />
+              <Route path="/recipe/details/:id"  render={(props) => (<RecipeDetails {...props} isLogged={isLogged}/>)} />
+              { isLogged && <Route path="/recipe/edit/:id" render={(props) => (<EditRecipe {...props} isLogged={isLogged}/>)} />}
+              <Route path="/recipe" render={(props) => (<Recipes {...props} isLogged={isLogged}/>)} />
+              <Route path="/myRecipes" render={(props) => (<MyRecipes {...props} isLogged={isLogged}/>)} />
               <Route path="/contacts" component={Contacts} />
-              { !isLogged && <Route path="/login" render={render('Login', Login, { isLogged, login: this.login })} />} 
-              { !isLogged && <Route path="/register" render={render('Register', Register, { isLogged })} />}
-              { isLogged && <Route path="/logout" render={render('Logout', Logout, { isLogged, logout: this.logout })} />}
+              { !isLogged && <Route path="/login" render={(props) => (<Login {...props} isLogged={isLogged} login={this.login}/>)} />} 
+              { !isLogged && <Route path="/register" render={(props) => (<Register {...props} isLogged={isLogged}/>)}/>}
+              { isLogged && <Route path="/logout" render={(props) => (<Logout {...props} isLogged={isLogged} logout={this.logout}/>)} />}  />}
             </Switch>
           </div>
           <Footer /> 
