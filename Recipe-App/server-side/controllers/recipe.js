@@ -4,7 +4,15 @@ const jwt = require('../utils/jwt');
 
 module.exports = {
   get: {
+    searchRecipes: (req, res, next) => {
+      const { search } =  req.query;
+      console.log(search);
+        models.Recipe.find({'title': {'$regex': search, $options:'i'}}).then(recipes => {
+            res.send(recipes);
+        }).catch(next);
+    },
     getAllRecipes: (req, res, next) => {
+      console.log('all recipe', req.query);
         models.Recipe.find().then((recipes) =>{
           res.send(recipes);
         }).catch(next);
@@ -48,16 +56,7 @@ module.exports = {
   },
 
   put: {
-    editMyRecipe: (req, res, next) => {
-      const { title, imageUrl, preparation, ingredients } = req.body;
-      const recipId = req.params.id;
-      const userId = req.user._id;
-      models.Recipe.findOneAndUpdate({ _id: recipId }, { title, imageUrl, preparation, ingredients }).exec( function( err, updatedRecipe ) {
-        if(err){ console.log(err); return; }
-        res.send(updatedRecipe);
-      });
-
-    },
+   
   },
 
   delete: {

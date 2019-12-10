@@ -3,8 +3,6 @@ import './App.css';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Navigation from './Navigation/Navigation';
 import Footer from './Footer/Footer';
-import SideNav from '../components/SideNav/SideNav';
-import Search from '../components/Search/Search';
 import Recipes from '../components/recipes/Recipes/Recipes';
 import MyRecipes from '../components/recipes/MyRecipes/MyRecipes';
 import RecipeDetails from '../components/recipes/RecipeDetails/RecipeDetails';
@@ -16,7 +14,6 @@ import Login from '../components/Login/Login';
 import Register from '../components/Register/Register';
 import Logout from '../components/Logout/Logout';
 import userService from '../services/user-service';
-
 
 function parseCookies() {
   return document.cookie.split('; ').reduce((acc, cookie) => {
@@ -33,7 +30,6 @@ class App extends React.Component {
     const isLogged = document.cookie ? true : false;
     this.state = { 
       isLogged, 
-      showHideSearch: false
     };
   }
   
@@ -47,7 +43,6 @@ class App extends React.Component {
   }
 
   login = (history, data) => {
-    console.log(data);
     userService.login(data).then((data) => {
       if(data === 'notlogged') return;
       this.setState({ isLogged: true });
@@ -55,16 +50,14 @@ class App extends React.Component {
     });
   }
 
+
   render () {
     const { isLogged } = this.state;
-    const { showHideSearch } = this.state;
-    console.log('IsLogged => ',isLogged);
+    console.log('IsLogged => ', isLogged);
     return (
       <BrowserRouter>
         <div className="App">
-          <Navigation isLogged ={isLogged} />
-          <SideNav />
-          { showHideSearch && <Search />}
+          <Navigation {...this.props} isLogged ={isLogged}/>
           <div className="Container">
             <Switch>
               <Route path="/home" component={Home} />

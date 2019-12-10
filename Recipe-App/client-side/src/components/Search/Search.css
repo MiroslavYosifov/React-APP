@@ -1,24 +1,29 @@
 .Search {
-    background: rgb(68, 68, 68);
-    position: fixed;
-    width: 100vw;
+    background: rgb(230, 230, 230);
+    width: 100%;
     height: 6em;
     z-index: 1000;
 }
 
 .Search form {
     display: flex;
+    align-items: flex-start;
     width: 30%;
     margin: 0 auto;
     padding: 2em;
 }
 
 .Search form p {
-    
+
 }
 
 .Search form p input {
     margin-left: 2em;
     padding: 0.4em;
+    border: none;
+}
+
+.Search form p .PostButton {
+    display: block;
 }
 

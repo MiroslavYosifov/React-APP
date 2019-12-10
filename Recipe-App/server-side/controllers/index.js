@@ -5,5 +5,5 @@ const comment = require('./comment');
 module.exports = {
   user,
   recipe,
-  comment
+  comment,
 };

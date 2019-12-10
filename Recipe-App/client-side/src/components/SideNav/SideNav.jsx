@@ -7,22 +7,23 @@ class SideNav extends React.Component {
   constructor (props) {
     super(props) 
         this.state = {
-            
+            showHideSearch: false
         }
   }
 
-//   handleDelete = (e) => {
-//     const recipeId = this.props.recipeId;  
-//     recipeService.deleteMyRecipe(recipeId).then(() => {
-//       this.props.history.push('/myRecipes');
-//     });
-//   }
+  handleSearchCmp = (e) => {
+    e.preventDefault();
+    this.props.showHideSearch();
+  }
 
   render() {
+    const {isSearchHidden} = this.props;
     return (
       <section className="SideNav">
         <ul>
-          
+          <li onClick={this.handleSearchCmp}>
+            { !isSearchHidden ? <i className="fas fa-search"></i> : <i class="fas fa-times"></i>}
+          </li>
         </ul>
       </section>
     )

@@ -2,13 +2,15 @@ import React from 'react';
 import './RecipeNavigation.css'
 import { Link } from 'react-router-dom';
 
-function RecipeNavigation({ isLogged }) {
+function RecipeNavigation(props) {
+  console.log('fe3f3',props);
+  
   return (
       <nav className="RecipeNavigation">
         <ul>
-            {isLogged && <Link to="/myRecipes/post">Add Recipe</Link>}
-            <Link to="/recipe/category">Category</Link>
-            <Link to="/recipe/category">Sort</Link>
+            {props.isLogged && <Link to="/myRecipes/post">Add Recipe</Link>}
+            <Link to="/recipe/liked">Мost Liked</Link>
+            <Link to="/recipe/recent">Мost recent</Link>
         </ul>
       </nav>
   )
