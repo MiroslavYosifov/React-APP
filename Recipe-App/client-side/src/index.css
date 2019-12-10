@@ -11,6 +11,10 @@ html {
     font: 14px/1.5 Verdana, Geneva, Tahoma, sans-serif;
 }
 
+body {
+    background: rgb(252, 252, 252);
+}
+
 body, table, form, select, option, input, textarea {
     font: inherit;
 }

@@ -6,7 +6,6 @@ import Footer from './Footer/Footer';
 import Recipes from '../components/recipes/Recipes/Recipes';
 import MyRecipes from '../components/recipes/MyRecipes/MyRecipes';
 import RecipeDetails from '../components/recipes/RecipeDetails/RecipeDetails';
-import EditRecipe from '../components/recipes/EditRecipe/EditRecipe';
 import Home from '../components/Home/Home';
 import About from '../components/About/About';
 import Contacts from '../components/Contacts/Contacts';
@@ -63,7 +62,6 @@ class App extends React.Component {
               <Route path="/home" component={Home} />
               <Route path="/about" component={About} />
               <Route path="/recipe/details/:id"  render={(props) => (<RecipeDetails {...props} isLogged={isLogged}/>)} />
-              { isLogged && <Route path="/recipe/edit/:id" render={(props) => (<EditRecipe {...props} isLogged={isLogged}/>)} />}
               <Route path="/recipe" render={(props) => (<Recipes {...props} isLogged={isLogged}/>)} />
               <Route path="/myRecipes" render={(props) => (<MyRecipes {...props} isLogged={isLogged}/>)} />
               <Route path="/contacts" component={Contacts} />

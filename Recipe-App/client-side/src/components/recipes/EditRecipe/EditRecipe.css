@@ -1,7 +1,6 @@
 .EditRecipeWrapper {
     background: rgb(245, 245, 245);
-    width: 30em;
-    margin: 4em auto;
+    margin: 0 auto 1em auto;
     padding: 1em 2em 2em 2em;
 }
 

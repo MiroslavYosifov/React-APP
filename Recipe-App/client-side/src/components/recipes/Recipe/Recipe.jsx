@@ -33,9 +33,13 @@ class Recipe extends React.Component {
     });
   }
 
+  handleEditCmp = (e) => {
+    e.preventDefault();
+    this.props.showHideEdit();
+  }
+
   render() {
-    const {recipeId, title, imageUrl, ingredients, preparation, isCreator, isFavorite, hideRecipeElements, likes, isLogged} = this.props;
-    console.log(isFavorite);
+    const {recipeId, title, imageUrl, ingredients, preparation, isCreator, isFavorite, hideRecipeElements, likes, isLogged, isEditHidden} = this.props;
   
     return (
       <section className="Recipe">
@@ -49,9 +53,9 @@ class Recipe extends React.Component {
           { hideRecipeElements ? <p className="Favorites"><i className="fas fa-star"></i><span>{likes}</span></p> : ''}
           { hideRecipeElements ? <Link className="DetailButton" to={"/recipe/details/" + recipeId}>Details</Link> : '' }
           { !hideRecipeElements && !isFavorite && isLogged && <button onClick={this.handleLike} className="LikeButton" >Add to Favorites</button>}
-          { !hideRecipeElements && isFavorite && isLogged && <button onClick={this.handleDisLike} className="LikeButton" >Remove from Favorites</button>}
-          { !hideRecipeElements && isCreator ? <Link className="EditButton" to={"/recipe/edit/" + recipeId}>Edit</Link> : ''}
-          { !hideRecipeElements && isCreator ? <button onClick={this.handleDelete} className="DeleteButton" >Delete</button> : ''}
+          { !hideRecipeElements && isFavorite && isLogged && <button onClick={this.handleDisLike} className="LikeButton" > Remove from Favorites</button>}
+          { !hideRecipeElements && isLogged && isCreator ? <button onClick={this.handleEditCmp} className="EditButton">{isEditHidden ? 'Show Edit' : 'Hide Edit'}</button> : ''}
+          { !hideRecipeElements && isLogged && isCreator ? <button onClick={this.handleDelete} className="DeleteButton" >Delete</button> : ''}
           </section>
         </section>
       </section>

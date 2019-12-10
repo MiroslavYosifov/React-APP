@@ -68,6 +68,10 @@
     margin-left: auto
 }
 
+.RecipeButtonsWrapper .DeleteButton {
+    margin-left: 0.4em;
+}
+
 .Favorites {
     display: flex;
 }

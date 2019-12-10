@@ -45,11 +45,11 @@ class EditRecipe extends React.Component {
         e.preventDefault();
         const data = this.state;
         const recipeId = this.props.match.params.id;
-
         schema.validate({ title: this.state.title, imageUrl: this.state.imageUrl})
         .then(() => {
             recipeService.editMyRecipe(data,recipeId).then(() => {
-                this.props.history.push('/myRecipes');
+                this.props.history.replace(`/reload`);
+                this.props.history.replace(this.props.location.pathname);
             });
         }).catch((err) => {
             this.setState({inputError: err});
