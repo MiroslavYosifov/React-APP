@@ -22,7 +22,7 @@ class SideNav extends React.Component {
     return (
       <section className="SideNav">
         <ul>
-          <Link to="/search"><i class="fas fa-search"></i></Link>
+          
         </ul>
       </section>
     )

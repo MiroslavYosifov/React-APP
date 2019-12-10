@@ -31,7 +31,10 @@ class App extends React.Component {
     super(props);
     const cookies = parseCookies();
     const isLogged = document.cookie ? true : false;
-    this.state = { isLogged };
+    this.state = { 
+      isLogged, 
+      showHideSearch: false
+    };
   }
   
   logout = (history) => {
@@ -54,12 +57,14 @@ class App extends React.Component {
 
   render () {
     const { isLogged } = this.state;
+    const { showHideSearch } = this.state;
     console.log('IsLogged => ',isLogged);
     return (
       <BrowserRouter>
         <div className="App">
           <Navigation isLogged ={isLogged} />
           <SideNav />
+          { showHideSearch && <Search />}
           <div className="Container">
             <Switch>
               <Route path="/home" component={Home} />
