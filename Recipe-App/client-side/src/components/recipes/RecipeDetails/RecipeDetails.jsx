@@ -30,6 +30,8 @@ class RecipeDetails extends React.Component {
 
     render() {
         const recipe = this.state.recipe;
+        console.log(recipe);
+        
         const hideRecipeElements = this.state.hideRecipeElements;
         const comments = this.state.comments
         const isLogged = this.props.isLogged;
@@ -45,6 +47,7 @@ class RecipeDetails extends React.Component {
                             ingredients={recipe.ingredients}
                             preparation={recipe.preparation}
                             isCreator={recipe.isCreator}
+                            isFavorite={recipe.isFavorite}
                             hideRecipeElements={hideRecipeElements}
                             {...this.props}/>
                     <section className="ContentComments">

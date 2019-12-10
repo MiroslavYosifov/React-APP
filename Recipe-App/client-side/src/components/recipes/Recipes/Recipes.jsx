@@ -50,9 +50,9 @@ class Recipes extends React.Component {
 
   render() {
     const { recipes, isSearchHidden } = this.state;
+
     const hideRecipeElements = this.state.hideRecipeElements;
     const isLogged = this.props.isLogged;
-    
     return (
       <div className="RecipesWrapper">
         <RecipeNavigation {...this.props}/>
@@ -67,7 +67,10 @@ class Recipes extends React.Component {
               recipeId={recipe._id}
               imageUrl={recipe.imageUrl}
               title={recipe.title}
-              products={recipe.products}
+              ingredients={recipe.ingredients}
+              preparation={recipe.preparation}
+              likes={recipe.likes}
+              isLogged={isLogged}
               hideRecipeElements={hideRecipeElements}
             ></Recipe>)}
         </div>

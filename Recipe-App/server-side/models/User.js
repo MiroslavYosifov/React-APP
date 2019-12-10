@@ -11,7 +11,7 @@ const userSchema = new Schema({
     password: { type: String, require: true },
     // comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],
     recipes: [{ type: mongoose.Types.ObjectId, ref: 'Recipe' }],
-    favorite: [{ type: mongoose.Types.ObjectId, ref: 'Recipe' }],
+    likedRecipes: [{ type: mongoose.Types.ObjectId, ref: 'Recipe' }],
 });
 
 userSchema.methods = {

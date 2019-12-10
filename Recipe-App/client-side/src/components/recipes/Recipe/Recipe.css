@@ -37,6 +37,11 @@
 
 }
 
+.Recipe-content-container h4 {
+    display: block;
+    padding: 0.1em 0 0 0.6em;
+}
+
 .Recipe-content-container section a {
     text-decoration: none;
 }
@@ -54,7 +59,26 @@
     margin-left: 0.4em;
 } */
 
-.RecipeButtonsWrapper a:first-child {
-    margin-left: auto;
-    margin-right: 0.6em;
+.RecipeButtonsWrapper .LikeButton {
+    width: 12em;
+    margin-right: auto
+}
+
+.RecipeButtonsWrapper .DetailButton {
+    margin-left: auto
+}
+
+.Favorites {
+    display: flex;
+}
+
+.Favorites span {
+    font-size: 1.6em;
+}
+
+.Favorites i {
+    display: block;
+    margin-top: 0.2em;
+    font-size: 1.6em;
+    color: rgb(255, 217, 0);
 }

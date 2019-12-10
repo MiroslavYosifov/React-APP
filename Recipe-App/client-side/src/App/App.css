@@ -9,13 +9,24 @@
 }
 
 .EditButton,
-.DeleteButton {
+.DeleteButton,
+.LikeButton {
   display: block;
   padding: 0.2em;
   color: white;
   border-radius: 0.1em;
   width: 6em;
   text-align: center;
+}
+
+.LikeButton {
+  cursor: pointer;
+}
+
+.LikeButton {
+  border: 1px solid rgb(255, 217, 0);
+  background: rgb(255, 217, 0);
+  color: white;
 }
 
 .EditButton {

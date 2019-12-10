@@ -16,7 +16,7 @@ module.exports = {
         .then((createdUser) => res.send(createdUser))
         .catch(next)
     },
-
+    
     login: (req, res, next) => {
       const { username, password } = req.body;
       models.User.findOne({ username })

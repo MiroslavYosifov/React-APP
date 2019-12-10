@@ -11,7 +11,9 @@ const recipeSchema = new Schema({
     ingredients: { type: String, require: true, required: true },
     comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],
     creator: { type: mongoose.Types.ObjectId, ref: 'User' },
-    isCreator: { type: Boolean, default: false }
+    likes: { type: Number, default: 0 },
+    isCreator: { type: Boolean, default: false },
+    isFavorite: { type: Boolean, default: false }
 });
 
 

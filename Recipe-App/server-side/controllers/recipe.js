@@ -6,13 +6,11 @@ module.exports = {
   get: {
     searchRecipes: (req, res, next) => {
       const { search } =  req.query;
-      console.log(search);
         models.Recipe.find({'title': {'$regex': search, $options:'i'}}).then(recipes => {
             res.send(recipes);
         }).catch(next);
     },
     getAllRecipes: (req, res, next) => {
-      console.log('all recipe', req.query);
         models.Recipe.find().then((recipes) =>{
           res.send(recipes);
         }).catch(next);
@@ -33,8 +31,11 @@ module.exports = {
             jwt.verifyToken(token).then(data => {
               const currentdUserId = data.id;
               const recipeCreatorId = recipe.creator._id.toString();
-              recipe.isCreator = currentdUserId === recipeCreatorId;
-              res.send(recipe);
+              models.User.findById(currentdUserId).then(user => {
+                recipe.isCreator = currentdUserId === recipeCreatorId;
+                recipe.isFavorite = user.likedRecipes.includes(recipe._id);
+                res.send(recipe);
+              }).catch(next);
             }).catch(next);  
           } else {
             res.send(recipe);
@@ -56,9 +57,36 @@ module.exports = {
   },
 
   put: {
-   
-  },
+    editMyRecipe: (req, res, next) => {
+      const { title, imageUrl, preparation, ingredients } = req.body;
+      const recipId = req.params.id;
+      const userId = req.user._id;
+      models.Recipe.findOneAndUpdate({ _id: recipId }, { title, imageUrl, preparation, ingredients }).exec( function( err, updatedRecipe ) {
+        if(err){ console.log(err); return; }
+        res.send(updatedRecipe);
+      });
+    },
 
+    likeRecipe: (req, res, next) => {
+      const recipId = req.params.id;
+      const userId = req.user._id;
+      models.User.updateOne({ _id: userId }, { "$addToSet": { "likedRecipes": recipId } }).then(user => {
+        models.Recipe.updateOne({ _id: recipId }, { "$inc": { "likes": 1 } }).then(recipe => {
+          res.send(recipe);
+        }).catch(next);  
+      }).catch(next);
+    },
+
+    disLikeRecipe: (req, res, next) => {
+      const recipId = req.params.id;
+      const userId = req.user._id;
+      models.User.updateOne({ _id: userId }, { "$pull": { "likedRecipes": recipId } }).then(recipe => {
+        models.Recipe.updateOne({ _id: recipId }, { "$inc": { "likes": -1 } }).then(recipe => {
+          res.send(recipe);
+        }).catch(next);  
+      }).catch(next);
+    },
+  },
   delete: {
     deleteMyRecipe: (req, res, next) => {
       const recipId = req.params.id;
@@ -70,7 +98,6 @@ module.exports = {
           }).catch(next);
         }).catch(next);
       }).catch(next);
-
     },
   }
 };

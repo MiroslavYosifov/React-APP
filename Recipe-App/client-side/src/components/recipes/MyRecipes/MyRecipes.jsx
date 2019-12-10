@@ -46,7 +46,10 @@ class MyRecipes extends React.Component {
               recipeId={recipe._id}
               imageUrl={recipe.imageUrl}
               title={recipe.title}
-              products={recipe.products}
+              ingredients={recipe.ingredients}
+              preparation={recipe.preparation}
+              likes={recipe.likes}
+              isLogged={isLogged}
               hideRecipeElements={hideRecipeElements}
             ></Recipe>)}
         </div>
