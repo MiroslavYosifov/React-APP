@@ -8,7 +8,7 @@ function Comments ({comments}) {
     <section className="CommentsContainer">
         <section className="Comments">
             <header>
-                <h2>Comments</h2>
+                <h3>Comments</h3>
             </header>
             {comments.map((comment, index) => 
               <Comment key={index}

@@ -40,7 +40,7 @@ class PostComment extends React.Component {
         return (
               <div className="RecipePostComment">
                 <header>
-                    <h2>Post comment</h2>
+                    <h3>Post comment</h3>
                 </header>
                 <form className="RecipePostCommentForm" onSubmit={this.handleSubmit}>
                     <p>

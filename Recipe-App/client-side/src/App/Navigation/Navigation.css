@@ -20,6 +20,10 @@
   margin-left: 1em;
 }
 
+.Navigation ul a:hover {
+  color: rgb(44, 44, 44);
+}
+
 #logo {
   width: 56px;
 }

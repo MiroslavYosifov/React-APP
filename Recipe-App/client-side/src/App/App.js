@@ -3,6 +3,8 @@ import './App.css';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Navigation from './Navigation/Navigation';
 import Footer from './Footer/Footer';
+import SideNav from '../components/SideNav/SideNav';
+import Search from '../components/Search/Search';
 import Recipes from '../components/recipes/Recipes/Recipes';
 import MyRecipes from '../components/recipes/MyRecipes/MyRecipes';
 import RecipeDetails from '../components/recipes/RecipeDetails/RecipeDetails';
@@ -57,6 +59,7 @@ class App extends React.Component {
       <BrowserRouter>
         <div className="App">
           <Navigation isLogged ={isLogged} />
+          <SideNav />
           <div className="Container">
             <Switch>
               <Route path="/home" component={Home} />

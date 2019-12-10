@@ -6,14 +6,14 @@ function RecipeContent({ingredients, preparation, title}) {
   return (
     <section className="RecipeContent">
         <header>
-            <h3>{title}</h3>
+            <h2><b>{title}</b></h2>
         </header>
         <section>
-            <h5>Ingredients</h5>
+            <h5><b>Ingredients</b></h5>
             <p>{ingredients}</p>
         </section>
         <section>
-            <h5>Preparation</h5>
+            <h5><b>Preparation</b></h5>
             <p>{preparation}</p>
         </section>
     </section>

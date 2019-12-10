@@ -1,4 +1,5 @@
 .RecipeDetails {
+    padding-top: 1em;
     margin: 0 left;
     width: 100%;
 }
@@ -20,7 +21,7 @@
 
 .MainContentRecipeDetails .Recipe {
     width: 55%;
-    box-shadow: 0 0 0.6em 0.4em rgba(228, 228, 228, 0.75);
+    box-shadow: 0 0 1em 0.6em rgba(221, 221, 221, 0.75);
 }
 
 .MainContentRecipeDetails .ContentComments {
