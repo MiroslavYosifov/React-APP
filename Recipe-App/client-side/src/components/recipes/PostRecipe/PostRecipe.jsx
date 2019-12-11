@@ -24,10 +24,10 @@ class PostRecipe extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-
-        schema.validate({ title: this.state.title, imageUrl: this.state.imageUrl})
-        .then(() => {
-            const data = this.state;
+        const data = this.state;
+        schema.validate({...data}).then(() => {
+            console.log(data);
+            
             recipeService.addRecipe(data).then((res) => {
                 this.props.history.replace(`/reload`);
                 this.props.history.replace('/myRecipes');
@@ -38,9 +38,12 @@ class PostRecipe extends React.Component {
     }
 
     render() {
-        const  { title, imageUrl, ingredients, inputError, preparation, category } = this.state;
-        const titleError = inputError.path === 'title'
+        const  { title, imageUrl, category, ingredients, preparation, inputError } = this.state;
+        const titleError = inputError.path === 'title';
         const imageUrlError = inputError.path === 'imageUrl';
+        const categoryError = inputError.path === 'category';
+        const ingredientsError = inputError.path === 'ingredients';
+        const preparationError = inputError.path === 'preparation';
 
         return (
             <section className="PostRecipeWrapper">
@@ -69,14 +72,17 @@ class PostRecipe extends React.Component {
                             <option value="pasta">Pasta</option>
                             <option value="dessert">Dessert</option>
                         </select>
+                        {categoryError && <span>{inputError.message}</span>}
                     </p>
                     <p>
                         <label htmlFor="ingredients">Ingredients</label>
                         <textarea type="text" onChange={this.changeIngredients} value={ingredients} id="ingredients" id="" rows="4"/>
+                        {ingredientsError && <span>{inputError.message}</span>}
                     </p>
                     <p>
                         <label htmlFor="preparation">Preparation</label>
                         <textarea type="text" onChange={this.changepPreparation} value={preparation} id="preparation" id="" rows="4"/>
+                        {preparationError && <span>{inputError.message}</span>}
                     </p>
                     <button className="PostButton" type="submit">Add Recipe</button>
                 </form>
@@ -86,8 +92,11 @@ class PostRecipe extends React.Component {
 };
 
 const schema = yup.object({
-    title: yup.string('Title should be string!').required('Title is required!').min(4, 'Title should be more than 4 characters!'),
-    imageUrl: yup.string('Image URL should be string!').required('Image URL is required!'),
-});
+        title: yup.string('Title should be string!').required('Title is required!').min(3, 'Title should be more than 4 characters!'),
+        imageUrl: yup.string('Image URL should be string!').required('Image URL is required!'),
+        category: yup.string('Category should be string!').required('Category is required!'),
+        ingredients: yup.string('Ingredients should be string!').required('Ingredients is required!').min(10, 'Ingredients should be more than 10 characters!').max(300, 'Ingredients should be smaller than 100 characters!'),
+        preparation: yup.string('Preparation should be string!').required('Preparation is required!').min(10, 'Preparation should be more than 10 characters!').max(300, 'Preparation should be smaller than 100 characters!'),
+    });
 
 export default PostRecipe;

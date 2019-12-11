@@ -48,17 +48,21 @@ class MyRecipes extends React.Component {
     e.preventDefault();
     this.setState({ isPostRecipeHidden: this.state.isPostRecipeHidden ? false : true });
   }
+
+  handleShowHideFavoriteRecipes = (e) => {
+    e.preventDefault();
+    this.setState({ isFavoriteRecipesHidden: this.state.isFavoriteRecipesHidden ? false : true });
+  }
   
   render() {
-    const { recipes, myFavoriteRecipes, hideRecipeElements, isPostRecipeHidden } = this.state;
+    const { recipes, myFavoriteRecipes, hideRecipeElements, isPostRecipeHidden, isFavoriteRecipesHidden } = this.state;
     const isLogged = this.props.isLogged;
     
     return (
       <div className="My-recipes-wrapper">
         <section className="My-recipes-nav">
           {isLogged && <button onClick={this.handleShowHidePostRecipe} className="PostButton">{ isPostRecipeHidden ? "Show Add Recipe" : "Hide Add Recipe"}</button>}
-          {isLogged && <button onClick={this.handleShowHidePostRecipe} className="LikeButton">Favorites Recipes</button>}
-          {isLogged && <button onClick={this.handleShowHidePostRecipe} className="LikeButton">My Recipes</button>}
+          {isLogged && <button onClick={this.handleShowHideFavoriteRecipes} className="LikeButton">{ isFavoriteRecipesHidden ? "Show Favorites Recipes" : "Hide Favorites Recipes"}</button>}
         </section>
         {isLogged && !isPostRecipeHidden && <PostRecipe {...this.props} />}
         {isLogged && !isFavoriteRecipesHidden && <MyFovoriteRecipes myFavoriteRecipes={myFavoriteRecipes} isLogged={isLogged}  hideRecipeElements={hideRecipeElements}/>}

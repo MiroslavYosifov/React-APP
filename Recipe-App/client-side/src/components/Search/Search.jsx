@@ -15,16 +15,12 @@ class Search extends React.Component {
     componentDidMount () {
         const searchQuery = this.props.location.search;
         const searchParams = queryString.parse(searchQuery);
-        this.setState ({
-            searchParams: searchParams.search
+        this.setState ({ 
+            searchParams: searchParams.search 
         })
     }
-
-    searchChangeHandler = (e) => {
-        this.setState({
-            searchParams: e.target.value
-        });
-    }
+    
+    searchChangeHandler = (e) => { this.setState({ searchParams: e.target.value })}
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -42,11 +38,9 @@ class Search extends React.Component {
             <form onSubmit={this.handleSubmit}>
               <p>
                   <input type="search" onChange={this.searchChangeHandler} value={searchParams}/>
-                  {/* {productsError && <span>{inputError.message}</span>} */}
               </p>
                <p>
                   <button className="PostButton">Search</button>
-                  {/* {productsError && <span>{inputError.message}</span>} */}
               </p>
             </form>
           </section>

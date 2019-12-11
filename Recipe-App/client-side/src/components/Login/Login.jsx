@@ -1,6 +1,6 @@
 import React from 'react';
 import './Login.css';
-import withForm from '../../shared/hocs/withForm';
+import * as yup from 'yup';
 import userService from '../../services/user-service';
 
 class Login extends React.Component {
@@ -9,28 +9,28 @@ class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
+            inputError: ''
         }
   }
 
-  usernameChangeHandler = (e) => {
-    this.setState({
-      username: e.target.value
-    });
-  }
-
-  passwordChangeHandler = (e) => {
-    this.setState({ password: e.target.value
-    });
-  }
+  usernameChangeHandler = (e) => { this.setState({ username: e.target.value })}
+  passwordChangeHandler = (e) => { this.setState({ password: e.target.value })}
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const data = this.state;  
-    this.props.login(this.props.history, data);
+    const data = this.state;
+    schema.validate({...data}).then(() => {
+        this.props.login(this.props.history, data);
+      }).catch((err) => {
+          this.setState({inputError: err});
+      });
   }
 
   render() {
-    const  { username, password } = this.state;
+    const  { username, password, inputError } = this.state;
+    const usernameError = inputError.path === 'username';
+    const passwordError = inputError.path === 'password';
+
     return (
       <section className="Login-wrapper">
         <header>
@@ -40,12 +40,12 @@ class Login extends React.Component {
           <p>
               <label htmlFor="username">Username</label>
               <input type="text" onChange={this.usernameChangeHandler} value={username} id="username"/>
-              {/* {productsError && <span>{inputError.message}</span>} */}
+              {usernameError && <span>{inputError.message}</span>}
           </p>
           <p>
               <label htmlFor="password">Password</label>
               <input type="password" onChange={this.passwordChangeHandler} value={password} id="username"/>
-              {/* {productsError && <span>{inputError.message}</span>} */}
+              {passwordError && <span>{inputError.message}</span>}
           </p>
           <p>
             <button className="PostButton" type="Submit">Login</button>
@@ -55,5 +55,10 @@ class Login extends React.Component {
     )
   }
 }
+
+const schema = yup.object({
+    username: yup.string('Username should be string!').required('Username is required!').min(4, 'Username should be more than 4 characters!'),
+    password: yup.string('Password should be string!').required('Password is required!').min(6, 'Password should be more than 4 characters!'),
+});
 
 export default Login;
