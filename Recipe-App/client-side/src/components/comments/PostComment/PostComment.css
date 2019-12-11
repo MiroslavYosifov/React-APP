@@ -27,6 +27,10 @@
     padding: 0.2em;
 }
 
+.RecipePostCommentForm p span {
+    color: red;
+}
+
 .RecipePostCommentForm textarea {
     width: 100%;
     padding: 0.2em;

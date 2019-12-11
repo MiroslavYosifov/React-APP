@@ -26,8 +26,6 @@ class PostRecipe extends React.Component {
         e.preventDefault();
         const data = this.state;
         schema.validate({...data}).then(() => {
-            console.log(data);
-            
             recipeService.addRecipe(data).then((res) => {
                 this.props.history.replace(`/reload`);
                 this.props.history.replace('/myRecipes');

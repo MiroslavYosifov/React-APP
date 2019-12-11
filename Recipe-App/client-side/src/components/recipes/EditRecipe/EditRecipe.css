@@ -30,7 +30,7 @@
     border: none;
 }
 .EditRecipe p span {
-    color: rgb(238, 10, 10);
+    color: red;
 }
 
 .EditRecipe p .EditButton {
