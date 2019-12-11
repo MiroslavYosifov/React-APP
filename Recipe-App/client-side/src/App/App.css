@@ -70,11 +70,10 @@
 
 .DetailButton {
   display: block;
-  background: rgb(238, 238, 238);
+  background: rgb(156, 170, 177);
   padding: 0.4em;
   color: white;
   border-radius: 0.1em;
-  width: 8em;
+  width: 6em;
   text-align: center;
-  color: rgb(105, 105, 105);
 }

@@ -9,6 +9,7 @@ const recipeSchema = new Schema({
     imageUrl: { type: String, require: true, required: true },
     preparation: { type: String, require: true, required: true },
     ingredients: { type: String, require: true, required: true },
+    category: { type: String, require: true, required: true },
     comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],
     creator: { type: mongoose.Types.ObjectId, ref: 'User' },
     likes: { type: Number, default: 0 },

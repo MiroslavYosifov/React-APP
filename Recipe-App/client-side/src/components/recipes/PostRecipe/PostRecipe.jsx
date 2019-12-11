@@ -1,7 +1,7 @@
 import React from 'react';
 import './PostRecipe.css';
 import recipeService from '../../../services/recipe-service';
-import * as yup from 'yup'; // for everything
+import * as yup from 'yup';
 
 class PostRecipe extends React.Component {
     constructor (props) {
@@ -11,48 +11,26 @@ class PostRecipe extends React.Component {
                 imageUrl: '',
                 ingredients: '',
                 preparation: '',
+                category: '',
                 inputError: '',
             }
     }
 
-    changeTitle = (e) => {
-        this.setState({
-            title: e.target.value
-        });
-    }
-
-
-    changeImageUrl = (e) => {
-        this.setState({
-            imageUrl: e.target.value
-        });
-    }
-
-    changeIngredients = (e) => {
-        this.setState({
-            ingredients: e.target.value
-        });
-    }
-
-    changepPreparation = (e) => {
-        this.setState({
-            preparation: e.target.value
-        });
-    }
+    changeTitle = (e) => { this.setState({ title: e.target.value })}
+    changeImageUrl = (e) => { this.setState({ imageUrl: e.target.value })}
+    changeIngredients = (e) => {this.setState({ ingredients: e.target.value })}
+    changepPreparation = (e) => { this.setState({ preparation: e.target.value })}
+    changeCategory = (e) => { this.setState({ category: e.target.value })}
 
     handleSubmit = (e) => {
         e.preventDefault();
+
         schema.validate({ title: this.state.title, imageUrl: this.state.imageUrl})
         .then(() => {
             const data = this.state;
-            console.log(data);
-            
             recipeService.addRecipe(data).then((res) => {
                 this.props.history.replace(`/reload`);
                 this.props.history.replace('/myRecipes');
-                // setTimeout(() => {
-                //     this.props.history.push('/myRecipes');
-                // }, 2000)
             });
         }).catch((err) => {
             this.setState({inputError: err});
@@ -60,7 +38,7 @@ class PostRecipe extends React.Component {
     }
 
     render() {
-        const  { title, imageUrl, ingredients, inputError, preparation } = this.state;
+        const  { title, imageUrl, ingredients, inputError, preparation, category } = this.state;
         const titleError = inputError.path === 'title'
         const imageUrlError = inputError.path === 'imageUrl';
 
@@ -79,6 +57,18 @@ class PostRecipe extends React.Component {
                         <label htmlFor="imageUrl">Image URL</label>
                         <input type="text" onChange={this.changeImageUrl} value={imageUrl} id="imageUrl"/>
                         {imageUrlError && <span>{inputError.message}</span>}
+                    </p>
+                    <p>
+                        <label htmlFor="category">Category</label>
+                        <select onChange={this.changeCategory} name="category" id="category">
+                            <option value="default">Select category...</option>
+                            <option value="salad">Salad</option>
+                            <option value="meat">Meat</option>
+                            <option value="soup">Soup</option>
+                            <option value="fish">Fish</option>
+                            <option value="pasta">Pasta</option>
+                            <option value="dessert">Dessert</option>
+                        </select>
                     </p>
                     <p>
                         <label htmlFor="ingredients">Ingredients</label>

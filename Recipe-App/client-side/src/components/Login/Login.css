@@ -1,0 +1,40 @@
+.Login-wrapper {
+    background: rgb(224, 224, 224);
+    width: 20em;
+    margin: 6em auto 0 auto;
+    padding: 1em 2em 2em 2em;
+}
+
+.Login {
+}
+
+.Login > p {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.Login p label,
+.Login p input,
+.Login p textarea {
+    width: 100%;
+    padding: 0.4em;
+}
+
+.Login p label {
+    padding: 0.4em 0;
+}
+.Login p input,
+.Login p textarea {
+    border-radius: 0.1em;
+    border: none;
+}
+.Login p span {
+    color: rgb(238, 10, 10);
+}
+
+.Login p .PostButton {
+    margin: 1em auto 0 auto;
+    width: 100%;
+    padding: 0.5em;
+}

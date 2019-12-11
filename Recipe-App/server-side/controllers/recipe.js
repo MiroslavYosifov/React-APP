@@ -46,9 +46,10 @@ module.exports = {
 
   post: {
     addRecipe: (req, res, next) => {
-        const { title, imageUrl, preparation, ingredients } = req.body;
+        const { title, imageUrl, preparation, ingredients, category } = req.body;
+        console.log(category);
         const userId = req.user._id;
-        models.Recipe.create({ title, imageUrl, preparation, ingredients, creator: userId }).then((createdRecipe) => {
+        models.Recipe.create({ title, imageUrl, preparation, ingredients, category, creator: userId }).then((createdRecipe) => {
           models.User.updateOne({ _id: userId }, { "$push": { "recipes": createdRecipe._id } }).then(updateUser => {
             res.send(createdRecipe)
           }).catch(next);
@@ -58,10 +59,11 @@ module.exports = {
 
   put: {
     editMyRecipe: (req, res, next) => {
-      const { title, imageUrl, preparation, ingredients } = req.body;
+      const { title, imageUrl, preparation, ingredients, category } = req.body;
+      console.log(category);
       const recipId = req.params.id;
       const userId = req.user._id;
-      models.Recipe.findOneAndUpdate({ _id: recipId }, { title, imageUrl, preparation, ingredients }).exec( function( err, updatedRecipe ) {
+      models.Recipe.findOneAndUpdate({ _id: recipId }, { title, imageUrl, preparation, ingredients, category }).exec( function( err, updatedRecipe ) {
         if(err){ console.log(err); return; }
         res.send(updatedRecipe);
       });
