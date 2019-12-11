@@ -93,8 +93,8 @@ const schema = yup.object({
         title: yup.string('Title should be string!').required('Title is required!').min(3, 'Title should be more than 4 characters!'),
         imageUrl: yup.string('Image URL should be string!').required('Image URL is required!'),
         category: yup.string('Category should be string!').required('Category is required!'),
-        ingredients: yup.string('Ingredients should be string!').required('Ingredients is required!').min(10, 'Ingredients should be more than 10 characters!').max(300, 'Ingredients should be smaller than 100 characters!'),
-        preparation: yup.string('Preparation should be string!').required('Preparation is required!').min(10, 'Preparation should be more than 10 characters!').max(300, 'Preparation should be smaller than 100 characters!'),
+        ingredients: yup.string('Ingredients should be string!').required('Ingredients is required!').min(10, 'Ingredients should be more than 10 characters!').max(1000, 'Ingredients should be smaller than 1000 characters!'),
+        preparation: yup.string('Preparation should be string!').required('Preparation is required!').min(10, 'Preparation should be more than 10 characters!').max(1000, 'Preparation should be smaller than 1000 characters!'),
     });
 
 export default PostRecipe;

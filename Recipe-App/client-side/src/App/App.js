@@ -33,7 +33,6 @@ class App extends React.Component {
   }
   
   logout = (history) => {
-    //console.log(history);
     userService.logout().then(() => {
       this.setState({ isLogged: false });
       history.push('/');
@@ -48,7 +47,6 @@ class App extends React.Component {
       history.push('/');
     });
   }
-
 
   render () {
     const { isLogged } = this.state;

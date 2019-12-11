@@ -45,7 +45,8 @@
 } */
 
 .Recipe-content-container .Recipe-title-content p {
-
+    font-weight: bold;
+    padding-left: 0.4em;
 }
 
 .Recipe-content-container section a {

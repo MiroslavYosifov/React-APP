@@ -40,19 +40,13 @@ class Recipes extends React.Component {
     }
   }
 
-  handleSearchParams = (data) => {
-    this.setState({ searchParams: data})
-  }
-
-  showHideSearch = (e) => { 
-     this.setState({ isSearchHidden: this.state.isSearchHidden ? false : true });
-  }
+  handleSearchParams = (data) => { this.setState({ searchParams: data })}
+  showHideSearch = (e) => {this.setState({ isSearchHidden: this.state.isSearchHidden ? false : true })}
 
   render() {
-    const { recipes, isSearchHidden } = this.state;
-
-    const hideRecipeElements = this.state.hideRecipeElements;
+    const { recipes, isSearchHidden, hideRecipeElements } = this.state;
     const isLogged = this.props.isLogged;
+    
     return (
       <div className="RecipesWrapper">
         <RecipeNavigation {...this.props}/>

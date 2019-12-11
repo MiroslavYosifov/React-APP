@@ -24,7 +24,6 @@ class MyRecipes extends React.Component {
   componentDidMount() {
     const searchQuery = this.props.location.search;
     const searchParams = queryString.parse(searchQuery);
-
     if(searchParams.search !== undefined || searchParams.category !== undefined) {
       recipeService.searchRecipes(searchQuery).then(recipes => {
         this.setState({ 
@@ -39,9 +38,8 @@ class MyRecipes extends React.Component {
           myFavoriteRecipes: user.likedRecipes,
           hideRecipeElements: true 
         });
-    });
+      });
     }
-   
   }
 
   handleShowHidePostRecipe = (e) => {
@@ -57,7 +55,6 @@ class MyRecipes extends React.Component {
   render() {
     const { recipes, myFavoriteRecipes, hideRecipeElements, isPostRecipeHidden, isFavoriteRecipesHidden } = this.state;
     const isLogged = this.props.isLogged;
-    
     return (
       <div className="My-recipes-wrapper">
         <section className="My-recipes-nav">

@@ -1,13 +1,16 @@
 import React from 'react';
 import './RecipeContent.css';
 
-function RecipeContent({ingredients, preparation, title}) { 
+function RecipeContent({ingredients, preparation, title, category}) { 
 
   return (
     <section className="RecipeContent">
         <header>
             <h2><b>{title}</b></h2>
         </header>
+        <section>
+            <h4><b>Category: {category}</b></h4>
+        </section>
         <section>
             <h5><b>Ingredients</b></h5>
             <p>{ingredients}</p>

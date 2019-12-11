@@ -17,6 +17,7 @@ function MyFovoriteRecipes({myFavoriteRecipes, isLogged, hideRecipeElements}) {
               title={recipe.title}
               ingredients={recipe.ingredients}
               preparation={recipe.preparation}
+              category={recipe.category}
               likes={recipe.likes}
               isLogged={isLogged}
               hideRecipeElements={hideRecipeElements}
