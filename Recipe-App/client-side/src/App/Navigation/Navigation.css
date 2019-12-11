@@ -3,10 +3,10 @@
   /* background-color: rgb(228, 196, 108); */
   /* background-color: #6379a8; */
   background: white;
-  box-shadow: 0 0.1em 0.1em 0.1em rgba(228, 228, 228, 0.75);
+  box-shadow: 0 0 0.6em 0.2em rgba(129, 129, 129, 0.61);
   position: fixed;
   top: 0;
-  z-index: 10;
+  z-index: 1000;
 }
 
 .Navigation ul {
@@ -18,6 +18,7 @@
   /* color: white; */
   color: gray;
   margin-left: 1em;
+  font-size: 1.2em;
 }
 
 .Navigation ul a:hover {

@@ -1,6 +1,6 @@
 .RecipeNavigation {
     width: 100%;
-    background: #f7f7f7;
+    background: rgb(224, 224, 224);
 }
 
 .RecipeNavigation ul {
@@ -12,6 +12,7 @@
     display: block;
     text-decoration: none;
     color: rgb(99, 99, 99);
+    font-size: 1.1em;
 }
 
 .RecipeNavigation ul a:first-child {

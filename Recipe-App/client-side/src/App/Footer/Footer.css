@@ -1,9 +1,11 @@
 .Footer {
   position: absolute;
+  margin: 0 auto;
   top: 100%;
+  left: 0; right: 0;
   height: 10em;
-  width: 100%;  
-  background: #ebebeb;
+  width: 80em;  
+  background: #d1d1d1;
   color: gray;
 }
 

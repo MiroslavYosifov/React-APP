@@ -1,3 +1,31 @@
 .Home {
-    padding: 5em;
+    position: relative;
+    padding: 0 8em;
+}
+
+.Recipes-category-conteiner {
+    position: relative;
+    width: 100%;
+}
+
+.Recipes-category-conteiner:before {
+    display: block;
+    content: '';
+    padding: 20%;
+}
+
+.Recipes-category-wrapper {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    padding: 0 10em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 6em;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -65%);
+}
+
+.Recipes-text-wrapper {
+    padding: 2em 10em;
 }

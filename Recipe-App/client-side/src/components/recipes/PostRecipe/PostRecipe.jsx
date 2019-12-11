@@ -68,7 +68,7 @@ class PostRecipe extends React.Component {
             <section className="PostRecipeWrapper">
                 <form className="PostRecipe" onSubmit={this.handleSubmit}>
                     <header>
-                        <h2>Post Recipe</h2>
+                        <h2>Add Recipe</h2>
                     </header>
                     <p>
                         <label htmlFor="title">Title</label>

@@ -1,0 +1,52 @@
+.Background-media {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    /* box-shadow: 0em 0em 0.6em 0.2em rgba(121, 121, 121, 0.808); */
+}
+
+.Background-media:before,
+.Background-media:after {
+    display: block;
+    content: '';
+}
+
+.Background-media:before {
+    padding-top: 40%;
+}
+
+.Background-media:after {
+    background: rgba(241, 241, 241, 0.855);
+    z-index: 1;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.Background-media img {
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 0; right: 0;
+}
+
+.Background-text {
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    text-align: center;
+    top: 35%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.Background-text .Site-title {
+    color: rgb(97, 97, 97);
+    font-size: 3em;
+}
+
+.Background-text h2 {
+    margin-top: 1em;
+}
+
+

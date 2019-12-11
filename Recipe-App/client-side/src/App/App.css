@@ -5,7 +5,7 @@
 }
 
 .Container {
-  padding: 4em 2em;
+  padding: 4em 0;
 }
 
 .EditButton,
@@ -76,5 +76,5 @@
   border-radius: 0.1em;
   width: 8em;
   text-align: center;
-  color: gray;
+  color: rgb(105, 105, 105);
 }
