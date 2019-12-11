@@ -40,7 +40,6 @@ class Recipe extends React.Component {
 
   render() {
     const {recipeId, title, imageUrl, ingredients, preparation, category, createdDate, recipeCreator, isCreator, isFavorite, hideRecipeElements, likes, isLogged, isEditHidden } = this.props;
-    console.log(this.props);
     
     return (
       <section className="Recipe">

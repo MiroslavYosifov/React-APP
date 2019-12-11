@@ -1,20 +1,27 @@
 .RecipeNavigation {
     width: 100%;
-    background: rgb(231, 227, 221);
+    /* background: rgb(231, 227, 221); */
 }
 
-.RecipeNavigation ul {
+.RecipeNavigation section {
     display: flex;
+    width: 100%;
+    margin-bottom: 0.4em;
+    
 }
 
-.RecipeNavigation ul a {
-    margin: 0.4em 0.5em 0.4em;
-    display: block;
-    text-decoration: none;
-    color: rgb(99, 99, 99);
+.RecipeNavigation section button {
+    background: rgb(110, 148, 163);
+    color: white;
+    padding: 0.6em 1em;
+    margin-left: 0.4em;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
     font-size: 1.1em;
+    border-radius: 0.2em;
 }
 
-.RecipeNavigation ul a:first-child {
+.RecipeNavigation section button:first-child {
     margin-left: auto;
 }
