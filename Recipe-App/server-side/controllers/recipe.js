@@ -5,14 +5,29 @@ const jwt = require('../utils/jwt');
 module.exports = {
   get: {
     searchRecipes: (req, res, next) => {
-      console.log(req.query);
-      const { search, category, favorite } =  req.query;
-      if(category === undefined) {
-        models.Recipe.find({'title': {'$regex': search, $options:'i'}}).then(recipes => {
+      const { search, category, criterion } =  req.query;
+
+      if(category !== undefined) {
+        models.Recipe.find({'category': {'$regex': category, $options:'i'}}).then(recipes => {
           res.send(recipes);
         }).catch(next);
-      } else if (search === undefined) {
-        models.Recipe.find({'category': {'$regex': category, $options:'i'}}).then(recipes => {
+      }
+
+      if (criterion !== undefined) {
+        if (criterion === "likes" ) {
+          models.Recipe.find().sort({ likes: -1}).then(recipes => {
+            res.send(recipes);
+          }).catch(next);
+        }
+        if(criterion === "createdDate") {
+           models.Recipe.find().sort({ createdDate: -1}).then(recipes => {
+            res.send(recipes);
+          }).catch(next);
+        }
+      } 
+
+      if (search !== undefined) {
+        models.Recipe.find({'title': {'$regex': search, $options:'i'}}).then(recipes => {
           res.send(recipes);
         }).catch(next);
       }

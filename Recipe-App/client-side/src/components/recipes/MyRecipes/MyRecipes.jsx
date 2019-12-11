@@ -55,6 +55,7 @@ class MyRecipes extends React.Component {
   render() {
     const { recipes, myFavoriteRecipes, hideRecipeElements, isPostRecipeHidden, isFavoriteRecipesHidden } = this.state;
     const isLogged = this.props.isLogged;
+    
     return (
       <div className="My-recipes-wrapper">
         <section className="My-recipes-nav">

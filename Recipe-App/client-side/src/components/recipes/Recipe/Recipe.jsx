@@ -39,8 +39,10 @@ class Recipe extends React.Component {
   }
 
   render() {
+    let formatedDate = "";
     const {recipeId, title, imageUrl, ingredients, preparation, category, createdDate, recipeCreator, isCreator, isFavorite, hideRecipeElements, likes, isLogged, isEditHidden } = this.props;
-    
+    if(createdDate) { formatedDate = createdDate.slice(0,10) + ' ' + createdDate.slice(11,19); }
+ 
     return (
       <section className="Recipe">
         <section className="Recipe-media">
@@ -48,12 +50,13 @@ class Recipe extends React.Component {
         </section>
         <section className="Recipe-content-container">
           <section className="Recipe-title-content">
+            { hideRecipeElements && <h6>{formatedDate}</h6>}
             { hideRecipeElements && <h4>{title}</h4>}
             { hideRecipeElements && <h5>category: {category}</h5> }
           </section>
           {!hideRecipeElements && <RecipeContent {...this.props}/>}
           <section className="Recipe-title-content">
-            { !hideRecipeElements && <p>Created on: {createdDate}</p> }
+            { !hideRecipeElements && <p>Created on: {formatedDate}</p> }
             { !hideRecipeElements && <p>Created by: {recipeCreator}</p>}
           </section>
           <section className="RecipeButtonsWrapper">

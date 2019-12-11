@@ -19,7 +19,7 @@ class Search extends React.Component {
             searchParams: searchParams.search 
         })
     }
-    
+
     searchChangeHandler = (e) => { this.setState({ searchParams: e.target.value })}
 
     handleSubmit = (e) => {
@@ -33,6 +33,7 @@ class Search extends React.Component {
 
     render() {
         const {searchParams} = this.state;
+        
         return (
           <section className="Search">
             <form onSubmit={this.handleSubmit}>

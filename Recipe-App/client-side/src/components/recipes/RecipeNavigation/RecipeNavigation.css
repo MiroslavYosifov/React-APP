@@ -1,13 +1,13 @@
 .RecipeNavigation {
     width: 100%;
+    margin-bottom: 1em;
     /* background: rgb(231, 227, 221); */
 }
 
 .RecipeNavigation section {
     display: flex;
     width: 100%;
-    margin-bottom: 0.4em;
-    
+    margin-bottom: 0.6em;
 }
 
 .RecipeNavigation section button {
@@ -24,4 +24,9 @@
 
 .RecipeNavigation section button:first-child {
     margin-left: auto;
+    
+}
+
+.RecipeNavigation .RecipeNavigation-criterion button {
+    background: rgb(240, 204, 87);
 }

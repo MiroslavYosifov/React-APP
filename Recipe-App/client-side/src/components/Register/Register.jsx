@@ -29,7 +29,7 @@ class Register extends React.Component {
       }).catch((err) => {
           this.setState({inputError: err});
       });  
-    }
+  }
 
   render() {
     const  { username, password, rePassword, inputError } = this.state;

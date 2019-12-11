@@ -22,7 +22,8 @@ class Recipes extends React.Component {
   componentDidMount () {
     const searchQuery = this.props.location.search;
     const searchParams = queryString.parse(searchQuery);
-    if(searchParams.search !== undefined || searchParams.category !== undefined) {
+
+    if(searchParams.search !== undefined || searchParams.category !== undefined || searchParams.criterion !== undefined) {
       recipeService.searchRecipes(searchQuery).then(recipes => {
         this.setState({ 
           recipes: recipes,
@@ -41,7 +42,7 @@ class Recipes extends React.Component {
 
   handleSearchParams = (data) => { this.setState({ searchParams: data })}
   showHideSearch = (e) => {this.setState({ isSearchHidden: this.state.isSearchHidden ? false : true })}
-
+ 
   render() {
     const { recipes, isSearchHidden, hideRecipeElements } = this.state;
     const isLogged = this.props.isLogged;

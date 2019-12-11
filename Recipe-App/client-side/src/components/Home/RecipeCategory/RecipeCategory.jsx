@@ -7,7 +7,7 @@ function RecipeCategory(props) {
     const category = props.category.toLowerCase();
     props.history.push(`/recipe?category=${category}`);
   }
-
+  
   return (
     <section onClick={handleCategory} className="Recipe-category">
         <section className="Recipe-category-media">

@@ -11,8 +11,18 @@ class RecipeNavigation extends React.Component  {
 
   handleCategory = (e) => {
     e.preventDefault();
-    const category = e.target.value
+    const category = e.target.value;
     const url = this.props.location.pathname + `?category=${category}`;
+    this.props.history.replace(`/reload`);
+    setTimeout(() => {
+        this.props.history.replace(url);
+    }, 1);
+  }
+
+  handleCriterion = (e) => {
+    e.preventDefault();
+    const criterion = e.target.value;
+    const url = this.props.location.pathname + '?criterion=' + criterion;
     this.props.history.replace(`/reload`);
     setTimeout(() => {
         this.props.history.replace(url);
@@ -27,13 +37,15 @@ class RecipeNavigation extends React.Component  {
     }, 1);
   }
 
-  handleSearch = (e) => {
-    
-  }
-
   render (){
+
     return (
       <nav className="RecipeNavigation">
+        <section className="RecipeNavigation-criterion">
+            <h3>Criterion:</h3>
+            <button onClick={this.handleCriterion} value="likes">Most Liked</button>
+            <button onClick={this.handleCriterion} value="createdDate">Most Recent</button>
+        </section>
         <section>
             <h3>Category:</h3>
             <button onClick={this.handleAll} value="salad">All</button>
@@ -43,11 +55,6 @@ class RecipeNavigation extends React.Component  {
             <button onClick={this.handleCategory} value="fish">Fish</button>
             <button onClick={this.handleCategory} value="pasta">Pasta</button>
             <button onClick={this.handleCategory} value="meat">Meats</button>
-        </section>
-        <section>
-            <h3>Criterion:</h3>
-            <button onClick={this.handleSearch} value="mostliked">Most Liked</button>
-            <button onClick={this.handleSearch} value="mostrecent">Most Recent</button>
         </section>
       </nav>
     )

@@ -3,7 +3,7 @@ import './Comments.css';
 import Comment from '../Comment/Comment';
 
 function Comments ({comments}) {
-
+  
   return (
     <section className="CommentsContainer">
         <section className="Comments">
