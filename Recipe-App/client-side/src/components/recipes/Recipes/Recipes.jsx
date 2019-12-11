@@ -23,7 +23,7 @@ class Recipes extends React.Component {
     const searchQuery = this.props.location.search;
     const searchParams = queryString.parse(searchQuery);
 
-    if(searchParams.search !== undefined) {
+    if(searchParams.search !== undefined || searchParams.category !== undefined) {
       recipeService.searchRecipes(searchQuery).then(recipes => {
         this.setState({ 
           recipes: recipes,
@@ -58,22 +58,26 @@ class Recipes extends React.Component {
         <RecipeNavigation {...this.props}/>
         <SideNav isSearchHidden={isSearchHidden} showHideSearch={this.showHideSearch}/>
         { isSearchHidden && <Search  {...this.props} handleSearchParams={this.handleSearchParams} />}
-        <header>
-          <h2>ALL RECIPES</h2>
-        </header>
-        <div className="RecipesContainer">
-        {recipes.map((recipe, index) => 
-            <Recipe key={index}
-              recipeId={recipe._id}
-              imageUrl={recipe.imageUrl}
-              title={recipe.title}
-              ingredients={recipe.ingredients}
-              preparation={recipe.preparation}
-              likes={recipe.likes}
-              isLogged={isLogged}
-              hideRecipeElements={hideRecipeElements}
-            ></Recipe>)}
-        </div>
+        <section className="All-recipes-wrapper">
+          <header>
+            <h2>ALL RECIPES</h2>
+          </header>
+          <div className="Recipes-container">
+          {recipes.map((recipe, index) => 
+              <Recipe key={index}
+                recipeId={recipe._id}
+                imageUrl={recipe.imageUrl}
+                title={recipe.title}
+                ingredients={recipe.ingredients}
+                preparation={recipe.preparation}
+                likes={recipe.likes}
+                category={recipe.category}
+                createdDate={recipe.createdDate}
+                isLogged={isLogged}
+                hideRecipeElements={hideRecipeElements}
+              ></Recipe>)}
+          </div>
+        </section>
       </div>
     )
   }

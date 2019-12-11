@@ -8,7 +8,6 @@ function RecipeNavigation(props) {
   return (
       <nav className="RecipeNavigation">
         <ul>
-            {props.isLogged && <Link to="/myRecipes/post">Add Recipe</Link>}
             <Link to="/recipe/liked">Мost Liked</Link>
             <Link to="/recipe/recent">Мost recent</Link>
         </ul>

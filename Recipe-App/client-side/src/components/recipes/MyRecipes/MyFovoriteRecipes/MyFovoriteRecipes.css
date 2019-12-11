@@ -1,0 +1,12 @@
+.My-fovorite-recipes {
+    background: rgb(231, 227, 221);
+    padding: 0 1em 1em 1em;
+    margin-top: 2em;
+}
+
+.My-fovorite-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1em;
+}

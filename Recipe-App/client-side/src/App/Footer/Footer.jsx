@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Footer({isLogged}) {
   return <nav className="Footer">
     <ul>
-      <Link to="/home">Home</Link>
+      <Link to="/">Home</Link>
       {/* <Link to="/about">About</Link> */}
       <Link to="/recipe">Recipe</Link>
       <Link to="/contacts">Contacts</Link>

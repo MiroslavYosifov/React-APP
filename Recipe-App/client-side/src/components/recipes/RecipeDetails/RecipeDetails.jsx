@@ -53,6 +53,7 @@ class RecipeDetails extends React.Component {
                             imageUrl={recipe.imageUrl}
                             ingredients={recipe.ingredients}
                             preparation={recipe.preparation}
+                            createdDate={recipe.createdDate}
                             hideRecipeElements={hideRecipeElements}
                             isCreator={recipe.isCreator}
                             isFavorite={recipe.isFavorite}

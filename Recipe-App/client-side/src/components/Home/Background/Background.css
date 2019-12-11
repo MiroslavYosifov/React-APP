@@ -17,7 +17,7 @@
 }
 
 .Background-media:after {
-    background: rgba(219, 215, 210, 0.855);
+    background: rgba(224, 220, 212, 0.825);
     z-index: 1;
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;

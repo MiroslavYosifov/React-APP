@@ -1,21 +1,27 @@
-.MyRecipesWrapper {
+.My-recipes-wrapper {
     width: 100%;
     padding: 0 8em;
 }
 
-.MyRecipesWrapper header {
+.My-recipes-wrapper header {
     width: 100%;
     text-align: center;
     padding: 2em;
 }
 
-.MyRecipesWrapper header h2 {
+.My-recipes-wrapper header h2 {
    
 }
 
-.MyRecipesContainer {
+.My-recipes-nav {
+    display: flex;
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 1em;
+}
+
+.My-recipes-nav button {
+    margin-left: 0.4em;
+}
+
+.My-recipes-nav button:first-child {
+    margin-left: auto;
 }

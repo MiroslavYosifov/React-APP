@@ -1,12 +1,18 @@
 import React from 'react';
 import './RecipeCategory.css';
 
-function RecipeCategory({imageUlr, title}) {  
+function RecipeCategory(props) {
+
+  function handleCategory (e) {
+    const category = props.category.toLowerCase();
+    props.history.push(`/recipe?category=${category}`);
+  }
+
   return (
-    <section className="Recipe-category">
+    <section onClick={handleCategory} className="Recipe-category">
         <section className="Recipe-category-media">
-            <img src={imageUlr} alt=""/>
-            <div><h1>{title}</h1></div>
+            <img src={props.imageUlr} alt=""/>
+            <div><h1>{props.category}</h1></div>
         </section>
     </section>
   )

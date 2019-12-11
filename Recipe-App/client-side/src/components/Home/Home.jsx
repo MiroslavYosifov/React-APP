@@ -11,12 +11,12 @@ function Home(props) {
         <Background imageUrl="https://images.pexels.com/photos/1435895/pexels-photo-1435895.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" />
         <section className="Recipes-category-conteiner">
           <section className="Recipes-category-wrapper">
-            <RecipeCategory title="Salads" imageUlr="https://www.culinaryhill.com/wp-content/uploads/2019/09/Cobb-Salad-Recipe-Culinary-Hill-LR-square.jpg" />
-            <RecipeCategory title="Meats" imageUlr="https://www.kitchensanctuary.com/wp-content/uploads/2019/07/Peri-Peri-Chicken-square-FS-7168.jpg" />
-            <RecipeCategory title="Soups" imageUlr="https://i.pinimg.com/originals/37/72/c7/3772c7f68eca8ba3a4bc27a7d2e27aca.jpg" />
-            <RecipeCategory title="Fish" imageUlr="https://irenamacri.com/wp-content/uploads/2017/08/paleo-sushi-nori-rolls-squarenew.jpg" />
-            <RecipeCategory title="Pasta" imageUlr="https://www.sprinklesandsprouts.com/wp-content/uploads/2019/09/Creamy-Tomato-Chicken-and-Chorizo-Pasta-SQ-360x361.jpg" />
-            <RecipeCategory title="Desserts" imageUlr="https://keyassets-p2.timeincuk.net/wp/prod/wp-content/uploads/sites/50/2017/01/square-cake.jpg" />
+            <RecipeCategory {...props} category="Salad" imageUlr="https://www.culinaryhill.com/wp-content/uploads/2019/09/Cobb-Salad-Recipe-Culinary-Hill-LR-square.jpg" />
+            <RecipeCategory {...props} category="Meat" imageUlr="https://www.kitchensanctuary.com/wp-content/uploads/2019/07/Peri-Peri-Chicken-square-FS-7168.jpg" />
+            <RecipeCategory {...props} category="Soup" imageUlr="https://i.pinimg.com/originals/37/72/c7/3772c7f68eca8ba3a4bc27a7d2e27aca.jpg" />
+            <RecipeCategory {...props} category="Fish" imageUlr="https://irenamacri.com/wp-content/uploads/2017/08/paleo-sushi-nori-rolls-squarenew.jpg" />
+            <RecipeCategory {...props} category="Pasta" imageUlr="https://www.sprinklesandsprouts.com/wp-content/uploads/2019/09/Creamy-Tomato-Chicken-and-Chorizo-Pasta-SQ-360x361.jpg" />
+            <RecipeCategory {...props} category="Dessert" imageUlr="https://keyassets-p2.timeincuk.net/wp/prod/wp-content/uploads/sites/50/2017/01/square-cake.jpg" />
           </section>
         </section>
         <section className="Recipes-text-wrapper">

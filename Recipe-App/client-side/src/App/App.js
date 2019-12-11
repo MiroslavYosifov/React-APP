@@ -59,7 +59,7 @@ class App extends React.Component {
           <Navigation {...this.props} isLogged ={isLogged}/>
           <div className="Container">
             <Switch>
-              <Route path="/home" component={Home} />
+              <Route exact path="/" component={Home} />
               <Route path="/about" component={About} />
               <Route path="/recipe/details/:id"  render={(props) => (<RecipeDetails {...props} isLogged={isLogged}/>)} />
               <Route path="/recipe" render={(props) => (<Recipes {...props} isLogged={isLogged}/>)} />

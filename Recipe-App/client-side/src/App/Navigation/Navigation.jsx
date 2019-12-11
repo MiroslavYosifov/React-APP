@@ -6,7 +6,7 @@ function Navigation({ isLogged }) {
   return (
       <nav className="Navigation">
         <ul>
-          <Link to="/home">Home</Link>
+          <Link to="/">Home</Link>
           {/* <Link to="/about">About</Link> */}
           <Link to="/recipe">Recipes</Link>
           { isLogged && <Link to="/myRecipes">My Recipes</Link>}

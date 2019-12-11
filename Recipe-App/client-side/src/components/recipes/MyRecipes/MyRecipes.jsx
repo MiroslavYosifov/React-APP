@@ -1,58 +1,68 @@
 import React from 'react';
 import './MyRecipes.css';
+import queryString from 'query-string'
 import { Link, Route } from 'react-router-dom';
 import Recipe from '../Recipe/Recipe';
 import PostRecipe from '../PostRecipe/PostRecipe';
+import MyPostedRecipes from './MyPostedRecipes/MyPostedRecipes';
+import MyFovoriteRecipes from './MyFovoriteRecipes/MyFovoriteRecipes';
 import recipeService from '../../../services/recipe-service';
 import RecipeNavigation from '../RecipeNavigation/RecipeNavigation';
-
 
 class MyRecipes extends React.Component {
   constructor (props) {
     super(props) 
         this.state = {
             recipes: [],
-            hideRecipeElements: Boolean
+            myFavoriteRecipes: [],
+            hideRecipeElements: Boolean,
+            isPostRecipeHidden: true,
+            isFavoriteRecipesHidden: true
         }
   }
 
   componentDidMount() {
-    recipeService.getMyRecipes().then(recipes => {
-      this.setState({ 
-        recipes: recipes,
-        hideRecipeElements: true 
+    const searchQuery = this.props.location.search;
+    const searchParams = queryString.parse(searchQuery);
+
+    if(searchParams.search !== undefined || searchParams.category !== undefined) {
+      recipeService.searchRecipes(searchQuery).then(recipes => {
+        this.setState({ 
+          recipes: recipes,
+          hideRecipeElements: true,
+        });
       });
+    } else {
+      recipeService.getMyRecipes().then(user => {
+        this.setState({ 
+          recipes: user.recipes,
+          myFavoriteRecipes: user.likedRecipes,
+          hideRecipeElements: true 
+        });
     });
+    }
+   
+  }
+
+  handleShowHidePostRecipe = (e) => {
+    e.preventDefault();
+    this.setState({ isPostRecipeHidden: this.state.isPostRecipeHidden ? false : true });
   }
   
   render() {
-    const { recipes } = this.state;
-    // console.log(recipes);
-    
-    const hideRecipeElements = this.state.hideRecipeElements;
+    const { recipes, myFavoriteRecipes, hideRecipeElements, isPostRecipeHidden } = this.state;
     const isLogged = this.props.isLogged;
-    // console.log(hideRecipeElements);
     
     return (
-      <div className="MyRecipesWrapper">
-        <RecipeNavigation isLogged={isLogged}/>
-        {isLogged && <Route path={this.props.match.url + '/post'} component={PostRecipe} />}
-        <header>
-          <h2>MY RECIPES</h2>
-        </header>
-        <div className="MyRecipesContainer">
-        {recipes.map((recipe, index) => 
-            <Recipe key={index}
-              recipeId={recipe._id}
-              imageUrl={recipe.imageUrl}
-              title={recipe.title}
-              ingredients={recipe.ingredients}
-              preparation={recipe.preparation}
-              likes={recipe.likes}
-              isLogged={isLogged}
-              hideRecipeElements={hideRecipeElements}
-            ></Recipe>)}
-        </div>
+      <div className="My-recipes-wrapper">
+        <section className="My-recipes-nav">
+          {isLogged && <button onClick={this.handleShowHidePostRecipe} className="PostButton">{ isPostRecipeHidden ? "Show Add Recipe" : "Hide Add Recipe"}</button>}
+          {isLogged && <button onClick={this.handleShowHidePostRecipe} className="LikeButton">Favorites Recipes</button>}
+          {isLogged && <button onClick={this.handleShowHidePostRecipe} className="LikeButton">My Recipes</button>}
+        </section>
+        {isLogged && !isPostRecipeHidden && <PostRecipe {...this.props} />}
+        {isLogged && !isFavoriteRecipesHidden && <MyFovoriteRecipes myFavoriteRecipes={myFavoriteRecipes} isLogged={isLogged}  hideRecipeElements={hideRecipeElements}/>}
+        <MyPostedRecipes recipes={recipes} isLogged={isLogged}  hideRecipeElements={hideRecipeElements}/>
       </div>
     )
   }
