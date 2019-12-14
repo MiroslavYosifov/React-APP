@@ -9,6 +9,7 @@ const { String, Number, Boolean, ObjectId } = Schema.Types;
 const userSchema = new Schema({
     username: { type: String, unique: true, required: true },
     password: { type: String, require: true },
+    profileImage: { type: String, default: 'http://josephcorporation.org/wp-content/themes/remould/images/noimage-team.png' },
     // comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],
     recipes: [{ type: mongoose.Types.ObjectId, ref: 'Recipe' }],
     likedRecipes: [{ type: mongoose.Types.ObjectId, ref: 'Recipe' }],

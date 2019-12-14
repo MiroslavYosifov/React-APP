@@ -11,6 +11,7 @@ function Navigation({ isLogged }) {
           <Link to="/recipe">Recipes</Link>
           { isLogged && <Link to="/myRecipes">My Recipes</Link>}
           <Link to="/contacts">Contacts</Link>
+          { isLogged && <Link to="/userProfile">User Profile</Link> }
           { !isLogged && <Link to="/register">Register</Link>}
           { !isLogged && <Link to="/login">Login</Link>}
           { isLogged && <Link to="/logout">Logout</Link>}

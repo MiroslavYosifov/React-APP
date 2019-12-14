@@ -7,6 +7,7 @@ import Recipes from '../components/recipes/Recipes/Recipes';
 import MyRecipes from '../components/recipes/MyRecipes/MyRecipes';
 import RecipeDetails from '../components/recipes/RecipeDetails/RecipeDetails';
 import Home from '../components/Home/Home';
+import UserProfile from '../components/UserProfile/UserProfile';
 import About from '../components/About/About';
 import Contacts from '../components/Contacts/Contacts';
 import Login from '../components/Login/Login';
@@ -63,6 +64,7 @@ class App extends React.Component {
               <Route exact path="/recipe" render={(props) => (<Recipes {...props} isLogged={isLogged}/>)} />
               <Route path="/myRecipes" render={(props) => (<MyRecipes {...props} isLogged={isLogged}/>)} />
               <Route path="/contacts" component={Contacts} />
+              { isLogged && <Route path="/userProfile" render={(props) => (<UserProfile {...props} isLogged={isLogged}/>)} />}
               { !isLogged && <Route path="/login" render={(props) => (<Login {...props} isLogged={isLogged} login={this.login}/>)} />} 
               { !isLogged && <Route path="/register" render={(props) => (<Register {...props} isLogged={isLogged}/>)}/>}
               { isLogged && <Route path="/logout" render={(props) => (<Logout {...props} isLogged={isLogged} logout={this.logout}/>)} />}  />}

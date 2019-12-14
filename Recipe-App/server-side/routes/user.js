@@ -2,16 +2,10 @@ const controllers = require('../controllers/');
 const router = require('express').Router();
 const auth = require('../utils/auth');
 
-router.get('/', controllers.user.get);
-
+router.get('/userProfile', auth(), controllers.user.get.userProfile);
+router.post('/changeUserProfileImage', auth(), controllers.user.post.changeUserProfileImage);
 router.post('/register', controllers.user.post.register);
-
 router.post('/login', controllers.user.post.login);
-
 router.post('/logout', controllers.user.post.logout);
-
-router.put('/:id', controllers.user.put);
-
-router.delete('/:id', controllers.user.delete);
 
 module.exports = router;

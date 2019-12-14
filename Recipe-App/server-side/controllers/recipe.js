@@ -39,10 +39,12 @@ module.exports = {
     },
     getMyRecipes: (req, res, next) => {
         const userId = req.user._id;
-        models.User.findById(userId).populate('likedRecipes recipes').exec( function( err, user ) {
-          if(err){ console.log(err); return; }
-          res.send(user);
-        });
+        models.User.findById(userId)
+          .populate('likedRecipes recipes')
+          .exec( function( err, user ) {
+            if(err){ console.log(err); return; }
+            res.send(user);
+          });
     },
     getRecipe: (req, res, next) => {
         const id = req.params.id;
@@ -86,10 +88,11 @@ module.exports = {
       console.log(category);
       const recipId = req.params.id;
       const userId = req.user._id;
-      models.Recipe.findOneAndUpdate({ _id: recipId }, { title, imageUrl, preparation, ingredients, category }).exec( function( err, updatedRecipe ) {
-        if(err){ console.log(err); return; }
-        res.send(updatedRecipe);
-      });
+      models.Recipe.findOneAndUpdate({ _id: recipId }, { title, imageUrl, preparation, ingredients, category })
+        .exec( function( err, updatedRecipe ) {
+          if(err){ console.log(err); return; }
+          res.send(updatedRecipe);
+        });
     },
 
     likeRecipe: (req, res, next) => {

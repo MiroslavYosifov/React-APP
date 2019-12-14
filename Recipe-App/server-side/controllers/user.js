@@ -3,10 +3,16 @@ const config = require('../config/config');
 const utils = require('../utils');
 
 module.exports = {
-  get: (req, res, next) => {
-    models.User.find()
-      .then((users) => res.send(users))
-      .catch(next)
+  get: {
+    userProfile: (req, res, next) => {
+      const userId = req.user._id;
+      models.User.findById(userId)
+        .populate('likedRecipes recipes')
+        .exec( function( err, user ) {
+          if(err){ console.log(err); return; }      
+          res.send(user);
+        });
+    }
   },
 
   post: {
@@ -42,15 +48,19 @@ module.exports = {
           res.clearCookie(config.authCookieName).send('Logout successfully!');
         })
         .catch(next);
+    },
+    changeUserProfileImage: (req, res, next) => {
+      const userId = req.user._id;
+      const { profileImage } = req.body;
+      console.log('BODYBODY', profileImage);
+      models.User.updateOne({ _id: userId }, { profileImage }).then(user => {
+        res.send(user);
+      }).catch(next)
     }
   },
 
-  put: (req, res, next) => {
-    // const id = req.params.id;
-    // const { username, password } = req.body;
-    // models.User.update({ _id: id }, { username, password })
-    //   .then((updatedUser) => res.send(updatedUser))
-    //   .catch(next)
+  put: {
+  
   },
 
   delete: (req, res, next) => {

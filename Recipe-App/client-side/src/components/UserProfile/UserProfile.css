@@ -1,0 +1,73 @@
+.User-profile {
+    background: rgb(231, 227, 221);
+    width: 30em;
+    margin: 0 auto;
+    padding-top: 2em;
+    border-radius: 0.4em;
+}
+
+.User-profile header {
+    padding: 1em 1em 0 1em;
+    text-align: center;
+}
+
+.User-profile header h2 {
+    padding: 0;
+    margin: 0;
+}
+
+.User-profile-media {
+    margin: 0 auto;
+    position: relative;
+    width: 60%;
+    overflow: hidden;
+    border-radius: 1em;
+    background: grey;
+}
+
+.User-profile-media:before {
+    display: block;
+    content: '';
+    padding: 50%;
+}
+
+.User-profile-media img {
+    position: absolute;
+    width: 100%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.User-profile-form {
+    padding: 1em 4em;
+}
+
+.User-profile-form form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.User-profile-form p {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.User-profile-form p input,
+.User-profile-form p label,
+.User-profile-form p button {
+    width: 100%;
+}
+
+.User-profile-form p input,
+.User-profile-form p label {
+    border: none;
+    padding: 0.2em;
+}
+
+.User-profile-content {
+    text-align: center;
+    padding-bottom: 1em;
+}
