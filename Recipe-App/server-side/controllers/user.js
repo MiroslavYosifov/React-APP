@@ -38,7 +38,13 @@ module.exports = {
 
   post: {
     register: (req, res, next) => {
-      const { username, password } = req.body;
+      const { username, password, rePassword } = req.body;
+
+      if(password !== rePassword) {
+        console.log('password must be equael');
+        return;
+      }
+
       models.User.create({ username, password })
         .then((createdUser) => res.send(createdUser))
         .catch(next)

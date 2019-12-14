@@ -9,7 +9,7 @@ function Navigation({ isLogged, currentUser, props }) {
         <ul>
           <Link to="/">Home</Link>
           {/* <Link to="/about">About</Link> */}
-          <Link to="/recipe">Recipes</Link>
+          <Link to="/recipes">Recipes</Link>
           { isLogged && <Link to="/myRecipes">MyRecipes</Link>}
           { isLogged && <Link to={`/myProfile`}>MyProfile</Link> }
           { !isLogged && <Link to="/register">Register</Link>}

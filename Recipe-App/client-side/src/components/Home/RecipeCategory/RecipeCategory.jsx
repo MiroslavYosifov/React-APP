@@ -5,7 +5,7 @@ function RecipeCategory(props) {
 
   function handleCategory (e) {
     const category = props.category.toLowerCase();
-    props.history.push(`/recipe?category=${category}`);
+    props.history.push(`/recipes/${category}?category=${category}`);
   }
   
   return (

@@ -10,7 +10,7 @@
     margin-bottom: 0.6em;
 }
 
-.RecipeNavigation section button {
+.RecipeNavigation section a {
     background: rgb(110, 148, 163);
     color: white;
     padding: 0.6em 1em;

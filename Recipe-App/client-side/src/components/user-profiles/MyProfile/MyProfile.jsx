@@ -28,9 +28,9 @@ class MyProfile extends React.Component {
         const { userData, recipes, likedRecipes } = this.state
         const { isLogged } = this.props;    
         return (
-          <section className="User-profile">
-            <section className="User-profile">
-                <section className="User-profile-media">
+          <section className="My-profile">
+            <section className="My-profile">
+                <section className="My-profile-media">
                     <img src={userData.profileImage} />
                 </section>
                 <header>
@@ -38,7 +38,7 @@ class MyProfile extends React.Component {
                 </header>
                 {isLogged && userData.isCurrentLoggedUser && <PostImageProfile {...this.props} />}
             </section>
-            <section className="User-profile-content">
+            <section className="My-profile-content">
                 <p>Posted Recipes: {recipes.length}</p>
                 <p>Favorite Recipes: {likedRecipes.length}</p>
             </section>

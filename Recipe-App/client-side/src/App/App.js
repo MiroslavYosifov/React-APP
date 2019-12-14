@@ -71,7 +71,7 @@ class App extends React.Component {
               <Route exact path="/" component={Home} />
               <Route path="/about" component={About} />
               <Route path="/recipe/details/:id"  render={(props) => (<RecipeDetails {...props} isLogged={isLogged}/>)} />
-              <Route exact path="/recipe" render={(props) => (<Recipes {...props} isLogged={isLogged}/>)} />
+              <Route path="/recipes" render={(props) => (<Recipes {...props} isLogged={isLogged}/>)} />
               <Route path="/myRecipes" render={(props) => (<MyRecipes {...props} isLogged={isLogged}/>)} />
               <Route path="/contacts" component={Contacts} /> 
               { isLogged && <Route exact path="/myProfile" render={(props) => (<MyProfile {...props} isLogged={isLogged}/>)} />}
