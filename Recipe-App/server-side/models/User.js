@@ -13,6 +13,7 @@ const userSchema = new Schema({
     // comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],
     recipes: [{ type: mongoose.Types.ObjectId, ref: 'Recipe' }],
     likedRecipes: [{ type: mongoose.Types.ObjectId, ref: 'Recipe' }],
+    isCurrentLoggedUser: { type: Boolean, default: false },
 });
 
 userSchema.methods = {

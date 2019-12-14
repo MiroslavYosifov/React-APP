@@ -32,7 +32,6 @@ const userService = {
     },
 
     changeUserProfileImage: async function (data) {
-      console.log('SERVICES', data);
       const res = await fetch(`http://localhost:3333/api/user/changeUserProfileImage`, {
       body: JSON.stringify(data),
       method: 'POST',
@@ -43,9 +42,20 @@ const userService = {
     });
     return await res.json();
     },
-    
-    getUserProfile: async function () {
-      const res = await fetch(`http://localhost:3333/api/user/userProfile`, {
+
+    getmyProfile: async function () {
+      const res = await fetch(`http://localhost:3333/api/user/getmyProfile`, {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        credentials: 'include'
+      });
+      return await res.json();
+    },
+
+    getUserProfile: async function (username) {
+      const res = await fetch(`http://localhost:3333/api/user/userProfile/${username}`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json'

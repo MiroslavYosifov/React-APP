@@ -46,7 +46,6 @@ class Recipes extends React.Component {
   render() {
     const { recipes, isSearchHidden, hideRecipeElements } = this.state;
     const isLogged = this.props.isLogged;
-    console.log('i am here');
     return (
       <div className="RecipesWrapper">
         <RecipeNavigation {...this.props}/>

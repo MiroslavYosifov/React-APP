@@ -57,12 +57,10 @@ class Recipe extends React.Component {
           {!hideRecipeElements && <RecipeContent {...this.props}/>}
           <section className="Recipe-title-content">
             { !hideRecipeElements && <p>Created on: {formatedDate}</p> }
-            { !hideRecipeElements && <p>Created by: {recipeCreator}</p>}
-            
-            {/* { isLogged && <Link to="/userProfile">User Profile</Link> } */}
+            { !hideRecipeElements && <p>Created by: { isLogged && <Link to={`/userProfile/${recipeCreator}`} > {recipeCreator} </Link> }</p>}
           </section>
           <section className="RecipeButtonsWrapper">
-          { hideRecipeElements ? <Link className="DetailButton" to={"/recipe/details/" + recipeId}>Details</Link> : '' }
+          { hideRecipeElements ? <Link className="DetailButton" to={`/recipe/details/${recipeId}`}>Details</Link> : '' }
           { hideRecipeElements ? <p className="Favorites"><i className="fas fa-star"></i><span>{likes}</span></p> : ''}
           { !hideRecipeElements && !isFavorite && isLogged && <button onClick={this.handleLike} className="LikeButton" >Add to Favorites</button>}
           { !hideRecipeElements && isFavorite && isLogged && <button onClick={this.handleDisLike} className="LikeButton" > Remove from Favorites</button>}
