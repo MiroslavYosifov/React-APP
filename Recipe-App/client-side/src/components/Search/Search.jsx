@@ -23,7 +23,7 @@ class Search extends React.Component {
     searchChangeHandler = (e) => { this.setState({ searchParams: e.target.value })}
     handleSubmit = (e) => {
         e.preventDefault();
-        const url = this.props.location.pathname + '?search=' + this.state.searchParams;
+        const url = 'recipes/' + 'search' + '?search=' + this.state.searchParams;
         this.props.history.replace(`/reload`);
         setTimeout(() => {
             this.props.history.replace(url);
