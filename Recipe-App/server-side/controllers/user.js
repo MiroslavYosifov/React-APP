@@ -40,10 +40,7 @@ module.exports = {
     register: (req, res, next) => {
       const { username, password, rePassword } = req.body;
 
-      if(password !== rePassword) {
-        console.log('password must be equael');
-        return;
-      }
+      if(password !== rePassword) { console.log('password must be equael'); return; }
 
       models.User.create({ username, password })
         .then((createdUser) => res.send(createdUser))

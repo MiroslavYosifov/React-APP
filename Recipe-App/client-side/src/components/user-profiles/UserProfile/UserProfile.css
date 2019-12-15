@@ -61,6 +61,9 @@
     width: 100%;
 }
 
+.User-profile-form p span {
+    color: red;
+}
 .User-profile-form p input,
 .User-profile-form p label {
     border: none;
