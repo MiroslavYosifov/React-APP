@@ -4,7 +4,7 @@
   top: 100%;
   left: 0; right: 0;
   height: 10em;
-  width: 80em;  
+  max-width: 100%;  
   background:rgb(231, 227, 221);
   color: gray;
 }

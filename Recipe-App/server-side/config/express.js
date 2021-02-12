@@ -4,27 +4,38 @@ const cors = require('cors');
 const secret = 'secret';
 
 module.exports = (app) => {
+    // for development
+        // app.use(cors({
+        //     origin: 'http://localhost:3000',
+        //     mode: 'no-cors',
+        //     credentials: true,
+        // }));
+    
+    //for production
       app.all('*', function(req, res,next) {
         /**
          * Response settings
          * @type {Object}
          */
-        var responseSettings = {
+
+        let responseSettings = {
             "AccessControlAllowOrigin": req.headers.origin,
-            "AccessControlAllowHeaders": "Content-Type,X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5,  Date, X-Api-Version, X-File-Name",
+            "AccessControlAllowHeaders": "Origin, Content-Type, X-Auth-Token",
             "AccessControlAllowMethods": "POST, GET, PUT, DELETE, OPTIONS",
             "AccessControlAllowCredentials": true
         };
+        console.log(req.headers.origin);
         /**
          * Headers
          */
-        res.header("Access-Control-Allow-Credentials", responseSettings.AccessControlAllowCredentials);
+
         res.header("Access-Control-Allow-Origin",  responseSettings.AccessControlAllowOrigin);
-        res.header("Access-Control-Allow-Headers", (req.headers['access-control-request-headers']) ? req.headers['access-control-request-headers'] : "x-requested-with");
-        res.header("Access-Control-Allow-Methods", (req.headers['access-control-request-method']) ? req.headers['access-control-request-method'] : responseSettings.AccessControlAllowMethods);
+        res.header("Access-Control-Allow-Headers", responseSettings.AccessControlAllowHeaders);
+        res.header("Access-Control-Allow-Methods", responseSettings.AccessControlAllowMethods);
+        res.header("Access-Control-Allow-Credentials", responseSettings.AccessControlAllowCredentials);
         
         if ('OPTIONS' == req.method) {
-            res.send(200);
+            res.sendStatus(200);
         }
         else {
             next();

@@ -1,6 +1,9 @@
+const url = "https://recipe--api.herokuapp.com";
+//const url = "http://localhost:3333";
+
 const userService = {
     register: async function (data) {
-      const res = await fetch(`http://localhost:3333/api/user/register`, {
+      const res = await fetch(`${url}/api/user/register`, {
       body: JSON.stringify(data),
       method: 'POST',
       headers: {
@@ -11,7 +14,7 @@ const userService = {
     },
   
     login: async function (data) {
-      const res = await fetch(`http://localhost:3333/api/user/login`, {
+      const res = await fetch(`${url}/api/user/login`, {
         body: JSON.stringify(data),
         method: 'POST',
         headers: {
@@ -20,11 +23,12 @@ const userService = {
         credentials: 'include'
       });
       const text = await res.text();
+      console.log(text);
       return res.status === 200 ? text : 'notlogged';
     },
   
     logout: async function () {
-      const res = await fetch(`http://localhost:3333/api/user/logout`, {
+      const res = await fetch(`${url}/api/user/logout`, {
         method: 'POST',
         credentials: 'include'
       });
@@ -32,7 +36,7 @@ const userService = {
     },
 
     changeUserProfileImage: async function (data) {
-      const res = await fetch(`http://localhost:3333/api/user/changeUserProfileImage`, {
+      const res = await fetch(`${url}/api/user/changeUserProfileImage`, {
       body: JSON.stringify(data),
       method: 'POST',
       credentials: 'include',
@@ -44,7 +48,7 @@ const userService = {
     },
 
     getmyProfile: async function () {
-      const res = await fetch(`http://localhost:3333/api/user/getmyProfile`, {
+      const res = await fetch(`${url}/api/user/getmyProfile`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json'
@@ -55,7 +59,7 @@ const userService = {
     },
 
     getUserProfile: async function (username) {
-      const res = await fetch(`http://localhost:3333/api/user/userProfile/${username}`, {
+      const res = await fetch(`${url}/api/user/userProfile/${username}`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json'

@@ -38,6 +38,7 @@ module.exports = {
         }).catch(next);
     },
     getMyRecipes: (req, res, next) => {
+        console.log("get my recipes");
         const userId = req.user._id;
         models.User.findById(userId)
           .populate('likedRecipes recipes')

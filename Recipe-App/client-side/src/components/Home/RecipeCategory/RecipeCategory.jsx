@@ -12,7 +12,7 @@ function RecipeCategory(props) {
     <section onClick={handleCategory} className="Recipe-category">
         <section className="Recipe-category-media">
             <img src={props.imageUlr} alt=""/>
-            <div><h1>{props.category}</h1></div>
+            <div><div><h1>{props.category}</h1></div></div>
         </section>
     </section>
   )

@@ -11,7 +11,7 @@ function RecipeNavigation () {
             <Link to="/recipes/likes?criterion=likes">Most Liked</Link>
             <Link to="/recipes/createdDate?criterion=createdDate">Most Recent</Link>
         </section>
-        <section>
+        <section className="RecipeNavigation-criterion">
             <h3>Category:</h3>
             <Link to="/recipes">All</Link>
             <Link to="/recipes/salad?category=salad">Salad</Link>

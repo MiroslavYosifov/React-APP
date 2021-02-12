@@ -7,6 +7,12 @@
 .My-fovorite-container {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     grid-gap: 1em;
 }
+
+@media (min-width: 768px) { 
+    .My-fovorite-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+};

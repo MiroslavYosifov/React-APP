@@ -1,4 +1,5 @@
 .SideNav {
+    z-index: 100;
     position: fixed;
     top: 16%; right: 3%;
 }

@@ -57,7 +57,14 @@ module.exports = {
             return;
           }
           const token = utils.jwt.createToken({ id: user._id });
-          res.cookie(config.authCookieName, token).send(user.username);
+          // for production
+          res.cookie(config.authCookieName, token, { 
+            sameSite: 'None', 
+            secure: true,  
+            httpOnly: true,
+           }).send({ username: user.username, token: token });
+          // for development
+          //res.cookie(config.authCookieName, token).send({ username: user.username, token: token });
         })
         .catch(next);
     },

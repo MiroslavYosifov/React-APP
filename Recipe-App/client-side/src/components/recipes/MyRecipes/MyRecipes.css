@@ -1,7 +1,13 @@
 .My-recipes-wrapper {
     width: 100%;
-    padding: 0 8em;
+    padding: 0;
 }
+
+@media (min-width: 768px) { 
+    .My-recipes-wrapper {
+        padding: 0 8em;
+    }
+};
 
 .My-recipes-wrapper header {
     width: 100%;

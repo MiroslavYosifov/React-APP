@@ -26,7 +26,8 @@ class MyProfile extends React.Component {
 
     render() {
         const { userData, recipes, likedRecipes } = this.state
-        const { isLogged } = this.props;    
+        const { isLogged } = this.props;
+        console.log(userData, isLogged);
         return (
           <section className="My-profile">
             <section className="My-profile">

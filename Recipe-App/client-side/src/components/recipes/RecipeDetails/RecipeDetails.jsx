@@ -5,8 +5,6 @@ import Comments from '../../comments/Comments/Comments'
 import PostComment from '../../comments/PostComment/PostComment';
 import EditRecipe from '../EditRecipe/EditRecipe';
 import recipeService from '../../../services/recipe-service';
-import commentService from '../../../services/comment-service';
-import { Link, Route } from 'react-router-dom';
 
 class RecipeDetails extends React.Component {
     constructor (props) {

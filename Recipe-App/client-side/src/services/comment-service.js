@@ -1,6 +1,9 @@
+const url = "https://recipe--api.herokuapp.com";
+//const url = "http://localhost:3333";
+
 const recipeService = {
     addComment: async function (data, recipeId) {   
-      const res = await fetch(`http://localhost:3333/api/comment/addComment/${recipeId}`, {
+      const res = await fetch(`${url}/api/comment/addComment/${recipeId}`, {
             body: JSON.stringify(data),
             method: 'POST',
             headers: {
@@ -12,7 +15,7 @@ const recipeService = {
     },
 
     getAllComments: async function () {
-        const res = await fetch(`http://localhost:3333/api/comment/getAllComments`, {
+        const res = await fetch(`${url}/api/comment/getAllComments`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json'

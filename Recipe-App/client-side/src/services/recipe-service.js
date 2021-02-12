@@ -1,6 +1,9 @@
+const url = "https://recipe--api.herokuapp.com";
+//const url = "http://localhost:3333";
+
 const recipeService = {
    searchRecipes: async function (searchQuery) {
-      const res = await fetch(`http://localhost:3333/api/recipe/searchRecipes${searchQuery}`, {
+      const res = await fetch(`${url}/api/recipe/searchRecipes${searchQuery}`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json'
@@ -9,7 +12,7 @@ const recipeService = {
     return await res.json();
     },
     addRecipe: async function (data) {   
-      const res = await fetch(`http://localhost:3333/api/recipe/addRecipe`, {
+      const res = await fetch(`${url}/api/recipe/addRecipe`, {
       body: JSON.stringify(data),
       method: 'POST',
       headers: {
@@ -21,7 +24,7 @@ const recipeService = {
     },
 
     getAllRecipes: async function () {
-        const res = await fetch(`http://localhost:3333/api/recipe/getAllRecipes`, {
+        const res = await fetch(`${url}/api/recipe/getAllRecipes`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json'
@@ -31,7 +34,7 @@ const recipeService = {
     },
 
     getRecipe: async function (id) {
-        const res = await fetch(`http://localhost:3333/api/recipe/getRecipe/${id}`, {
+        const res = await fetch(`${url}/api/recipe/getRecipe/${id}`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json'
@@ -42,7 +45,7 @@ const recipeService = {
     },
 
     getMyRecipes: async function () {
-        const res = await fetch(`http://localhost:3333/api/recipe/getMyRecipes`, {
+        const res = await fetch(`${url}/api/recipe/getMyRecipes`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json'
@@ -53,7 +56,7 @@ const recipeService = {
     },
     
     editMyRecipe: async function (data, id) {
-        const res = await fetch(`http://localhost:3333/api/recipe/editMyRecipe/${id}`, {
+        const res = await fetch(`${url}/api/recipe/editMyRecipe/${id}`, {
         body: JSON.stringify(data),
         method: 'PUT',
         headers: {
@@ -65,7 +68,7 @@ const recipeService = {
     },
 
     likeRecipe: async function (id) {
-        const res = await fetch(`http://localhost:3333/api/recipe/likeRecipe/${id}`, {
+        const res = await fetch(`${url}/api/recipe/likeRecipe/${id}`, {
         method: 'PUT',
         headers: {
           'Content-type': 'application/json'
@@ -76,7 +79,7 @@ const recipeService = {
     },
 
     disLikeRecipe: async function (id) {
-        const res = await fetch(`http://localhost:3333/api/recipe/disLikeRecipe/${id}`, {
+        const res = await fetch(`${url}/api/recipe/disLikeRecipe/${id}`, {
         method: 'PUT',
         headers: {
           'Content-type': 'application/json'
@@ -87,7 +90,7 @@ const recipeService = {
     },
 
     deleteMyRecipe: async function (id) {
-      const res = await fetch(`http://localhost:3333/api/recipe/deleteMyRecipe/${id}`, {
+      const res = await fetch(`${url}/api/recipe/deleteMyRecipe/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json'

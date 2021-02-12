@@ -1,8 +1,6 @@
 .Navigation {
   width: 100%;
-  /* background-color: rgb(228, 196, 108); */
-  /* background-color: #6379a8; */
-  background: white;
+  background: rgb(240, 240, 240);
   box-shadow: 0 0 0.6em 0.2em rgba(129, 129, 129, 0.61);
   position: fixed;
   top: 0;
@@ -10,6 +8,8 @@
 }
 
 .Navigation ul {
+  display: flex;
+  flex-wrap: wrap;
   padding: 0.6em;
 }
 

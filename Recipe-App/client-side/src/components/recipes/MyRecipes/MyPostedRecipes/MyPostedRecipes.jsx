@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function MyPostedRecipes({recipes, isLogged, hideRecipeElements}) {
   return (
-      <section className="My-posted-recipes">
+      <section className="My-posted-recipes mobile">
         <header>
           <h2>MY POSTED RECIPES</h2>
         </header>

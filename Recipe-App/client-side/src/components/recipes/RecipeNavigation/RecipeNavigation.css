@@ -6,15 +6,21 @@
 
 .RecipeNavigation section {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     margin-bottom: 0.6em;
 }
+
+/* .RecipeNavigation-criterion {
+    display: flex;
+} */
 
 .RecipeNavigation section a {
     background: rgb(110, 148, 163);
     color: white;
     padding: 0.6em 1em;
     margin-left: 0.4em;
+    margin-bottom: 0.4em;
     border: none;
     cursor: pointer;
     font-weight: bold;
@@ -29,4 +35,4 @@
 
 .RecipeNavigation .RecipeNavigation-criterion button {
     background: rgb(240, 204, 87);
-}
+};

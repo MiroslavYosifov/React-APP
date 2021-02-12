@@ -1,6 +1,6 @@
 .RecipeDetails {
     padding-top: 1em;
-    padding: 0 8em;
+    padding: 0;
     margin: 3em auto;
     width: 100%;
 }
@@ -16,21 +16,41 @@
     align-items: flex-start;
     width: 100%;
     margin: 0 auto;
-    padding: 4em 6em;
+    padding: 4em 2em;
     background: rgb(245, 242, 238);
 }
 
 
 .MainContentRecipeDetails .Recipe {
-    width: 55%;
+    width: 100%;
     border: 1px solid rgb(196, 196, 196);
     box-shadow: 0.4em 0.6em 1.4em 0.6em rgba(0, 0, 0, 0.25);
 }
 
 .MainContentRecipeDetails .ContentComments {
-    padding-left: 4em;
-    width: 45%;
+    width: 100%;
+    padding: 0;
 }
+
+
+@media (min-width: 768px) {
+    .RecipeDetails {
+        padding: 0 8em;
+    }
+    .MainContentRecipeDetails {
+        padding: 4em 6em;
+    }
+    .MainContentRecipeDetails .ContentComments {
+        padding-left: 4em;
+        width: 45%;
+    }
+
+    .MainContentRecipeDetails .Recipe {
+        width: 55%;
+    }
+};
+
+
 
 
 
