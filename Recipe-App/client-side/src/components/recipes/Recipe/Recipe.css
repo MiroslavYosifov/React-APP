@@ -1,9 +1,9 @@
 .Recipe {
+    background: white;
     border: 1px solid rgba(228, 228, 228, 0.75);
     border-radius: 0.2em;
     box-shadow: 0 0 0.6em 0.3em rgba(0, 0, 0, 0.25);
     overflow: hidden;
-    background: white;
 }
 
 
@@ -27,7 +27,7 @@
 }
 
 .Recipe-content-container {
-
+    background: white;
 }
 
 .Products {

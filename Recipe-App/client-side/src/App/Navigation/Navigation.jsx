@@ -2,8 +2,8 @@ import React from 'react';
 import './Navigation.css';
 import { Link } from 'react-router-dom';
 
-function Navigation({ isLogged, currentUser, props }) {
-  console.log(props);
+function Navigation({ isLogged, username }) {
+  console.log(username);
   return (    
       <nav className="Navigation">
         <ul>
@@ -14,6 +14,7 @@ function Navigation({ isLogged, currentUser, props }) {
           { isLogged && <Link to={`/myProfile`}>MyProfile</Link> }
           { !isLogged && <Link to="/register">Register</Link>}
           { !isLogged && <Link to="/login">Login</Link>}
+          { isLogged && <p> Hello {username}!</p>}
           { isLogged && <Link to="/logout">Logout</Link>}
         </ul>
       </nav>

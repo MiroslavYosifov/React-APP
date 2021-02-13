@@ -9,7 +9,8 @@ class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
-            inputError: ''
+            inputError: '',
+            token: ''
         }
   }
 
@@ -19,18 +20,30 @@ class Login extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const data = this.state;
-    schema.validate({...data}).then(() => {
-        this.props.login(this.props.history, data);
-      }).catch((err) => {
+    schema.validate({...data})
+    .then(() => {
+        userService.login(data).then(user => {
+          const parsedUserData = JSON.parse(user);
+          if(!parsedUserData.token) return console.log('NO TOKEN!!!');
+          localStorage.setItem('username', parsedUserData.username);
+          this.props.onLoginSubmit();
+          this.props.history.push('/');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      
           this.setState({inputError: err});
-      });
+    });
   }
 
   render() {
     const  { username, password, inputError } = this.state;
     const usernameError = inputError.path === 'username';
     const passwordError = inputError.path === 'password';
-
+   
     return (
       <section className="Login-wrapper">
         <header>

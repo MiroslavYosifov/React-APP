@@ -1,6 +1,7 @@
 const models = require('../models');
 const config = require('../config/config');
 const jwt = require('../utils/jwt');
+const { cloudinary } = require('../utils/cloudinary');
 
 module.exports = {
   get: {
@@ -38,7 +39,6 @@ module.exports = {
         }).catch(next);
     },
     getMyRecipes: (req, res, next) => {
-        console.log("get my recipes");
         const userId = req.user._id;
         models.User.findById(userId)
           .populate('likedRecipes recipes')
@@ -72,28 +72,70 @@ module.exports = {
 
   post: {
     addRecipe: (req, res, next) => {
-        const { title, imageUrl, preparation, ingredients, category } = req.body;
-        console.log(category);
         const userId = req.user._id;
-        models.Recipe.create({ title, imageUrl, preparation, ingredients, category, creator: userId }).then((createdRecipe) => {
-          models.User.updateOne({ _id: userId }, { "$push": { "recipes": createdRecipe._id } }).then(updateUser => {
-            res.send(createdRecipe)
-          }).catch(next);
-        }).catch(next)
+        const { title, compressedImage, preparation, ingredients, category} = req.body;
+        console.log('Add Image Method');
+        cloudinary.uploader.upload(compressedImage, {
+          upload_preset: 'recipe-prod',
+        })
+        .then(res => {
+            console.log(res);
+           return res.url;
+        })
+        .then( uploadedImageUrl => {
+            console.log(uploadedImageUrl);
+            models.Recipe.create({ title, imageUrl: uploadedImageUrl, preparation, ingredients, category, creator: userId })
+            .then((resCreatedRecipe) => {
+              return resCreatedRecipe
+            })
+            .then(createdRecipe => {
+              models.User.updateOne({ _id: userId }, { "$push": { "recipes": createdRecipe._id } }).then(updateUser => {
+                res.send(createdRecipe)
+              })
+            }).catch(err => {
+              console.log(err);
+            });
+
+        }).catch(err => {
+          console.log(err);
+        })
+        
+        
     },
   },
 
   put: {
     editMyRecipe: (req, res, next) => {
-      const { title, imageUrl, preparation, ingredients, category } = req.body;
-      console.log(category);
+      console.log('PUT Image Method');
       const recipId = req.params.id;
-      const userId = req.user._id;
-      models.Recipe.findOneAndUpdate({ _id: recipId }, { title, imageUrl, preparation, ingredients, category })
-        .exec( function( err, updatedRecipe ) {
-          if(err){ console.log(err); return; }
-          res.send(updatedRecipe);
-        });
+      const { title, preparation, ingredients, category, currentImageId, compressedImage } = req.body;
+      console.log(currentImageId);
+      
+      // TO DO VALIDATIONS
+      cloudinary.uploader.destroy(currentImageId)
+      .then(res => {
+        console.log('DELETED', res);
+      });
+      
+      cloudinary.uploader.upload(compressedImage, {
+        upload_preset: 'recipe-prod',
+      })
+      .then(res => {
+          console.log(res);
+         return res.url;
+      })
+      .then(uploadedImageUrl => {
+          console.log('Updated', uploadedImageUrl);
+          models.Recipe.findOneAndUpdate({ _id: recipId }, { title, imageUrl: uploadedImageUrl, preparation, ingredients, category })
+          .exec( function( err, updatedRecipe ) {
+            if(err){ console.log(err); return; }
+            res.send(updatedRecipe);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      
     },
 
     likeRecipe: (req, res, next) => {
@@ -118,11 +160,19 @@ module.exports = {
   },
   delete: {
     deleteMyRecipe: (req, res, next) => {
-      const recipId = req.params.id;
+      //const recipId = req.params.id;
+      const { imagePublicId, recipeId } = req.body;
       const userId = req.user._id;
-      models.Recipe.findOneAndDelete({ _id: recipId }).then(updatedRecipe => {
-        models.Comment.deleteMany({ recipe: recipId }).then(comments => {
-          models.User.updateOne({ _id: userId }, { '$pull': { recipes : recipId }}).then(user => {
+      console.log(imagePublicId);
+      // TO DO VALIDATIONS
+      cloudinary.uploader.destroy(imagePublicId)
+      .then(res => {
+        console.log('DELETED', res);
+      });
+
+      models.Recipe.findOneAndDelete({ _id: recipeId }).then(updatedRecipe => {
+        models.Comment.deleteMany({ recipe: recipeId }).then(comments => {
+          models.User.updateOne({ _id: userId }, { '$pull': { recipes : recipeId }}).then(user => {
             res.send(updatedRecipe);
           }).catch(next);
         }).catch(next);

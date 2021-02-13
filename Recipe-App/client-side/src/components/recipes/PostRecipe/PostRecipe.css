@@ -11,7 +11,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    width: 30%;
+    width: 94%;
     margin: 2em auto;
     padding: 1em 2em 2em 2em;
 }
@@ -24,11 +24,15 @@
 
 .PostRecipe p input {
     width: 100%;
+    padding: 0.2em;
+    border: none;
 }
 
 .PostRecipe p textarea,
 .PostRecipe p select {
     width: 100%;
+    padding: 0.2em;
+    border: none;
 }
 
 .PostRecipe p label {
@@ -46,3 +50,53 @@
     margin-bottom: 0.2em;
     margin-top: 1em;
 }
+
+/* upload input styling */
+
+.PostRecipe .file-wrapper {
+    margin: 0.2em 0;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.PostRecipe .file-wrapper input[type=file] {
+    background: transparent;
+    cursor: pointer;
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+}
+  
+.PostRecipe .file-wrapper input[type=file]:before {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  content: 'Upload a file';
+  display: inline-block;
+  background: rgb(68, 116, 206);
+  border-top-left-radius: 0.2em;
+  border-bottom-left-radius: 0.2em;
+  padding: 0.2em;
+  color: white;
+  text-align: center;
+}
+
+
+.PostRecipe .file-wrapper label {
+    display: inline;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0.2em 0.2em 0.2em 0.6em;
+    background: white;
+    border-top-right-radius: 0.2em;
+    border-bottom-right-radius: 0.2em;
+}
+
+
+@media (min-width: 768px) {
+    .PostRecipe {
+        width: 30%;
+    }
+};

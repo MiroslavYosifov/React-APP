@@ -1,5 +1,4 @@
-const url = "https://recipe--api.herokuapp.com";
-//const url = "http://localhost:3333";
+import url from './config';
 
 const recipeService = {
     addComment: async function (data, recipeId) {   

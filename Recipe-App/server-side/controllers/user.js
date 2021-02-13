@@ -1,3 +1,4 @@
+const env = process.env.NODE_ENV || 'development';
 const models = require('../models');
 const config = require('../config/config');
 const utils = require('../utils');
@@ -12,7 +13,6 @@ module.exports = {
         .populate('likedRecipes recipes')
         .exec( function( err, user ) {
           if(err){ console.log(err); return; }
-
           user.isCurrentLoggedUser = true;
           res.send(user);
         });
@@ -49,6 +49,7 @@ module.exports = {
     
     login: (req, res, next) => {
       const { username, password } = req.body;
+      
       models.User.findOne({ username })
         .then((user) => !!user ? Promise.all([user, user.matchPassword(password)]) : [null, null])
         .then(([user, match]) => {
@@ -57,20 +58,26 @@ module.exports = {
             return;
           }
           const token = utils.jwt.createToken({ id: user._id });
-          // for production
-          res.cookie(config.authCookieName, token, { 
-            sameSite: 'None', 
-            secure: true,  
-            httpOnly: true,
-           }).send({ username: user.username, token: token });
-          // for development
-          //res.cookie(config.authCookieName, token).send({ username: user.username, token: token });
+          
+          if(env === "development") {
+            // for development
+            res.cookie(config.authCookieName, token).send({ username: user.username, token: token });
+          } else if(env === "production") {
+            // for production
+            res.cookie(config.authCookieName, token, { 
+              sameSite: 'None', 
+              secure: true,  
+              httpOnly: true,
+             }).send({ username: user.username, token: token });
+          }
+         
+         
         })
         .catch(next);
     },
 
     logout: (req, res, next) => {
-      const token = req.cookies[config.authCookieName];
+      const { token } = req.body;
       console.log('-'.repeat(100));
       console.log(token);
       console.log('-'.repeat(100));

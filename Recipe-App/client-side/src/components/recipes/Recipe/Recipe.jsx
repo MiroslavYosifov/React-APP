@@ -13,8 +13,11 @@ class Recipe extends React.Component {
   }
 
   handleDelete = (e) => {
-    const recipeId = this.props.recipeId;  
-    recipeService.deleteMyRecipe(recipeId).then(() => {
+    const imagePublicId = `recipe-prod/${this.props.imageUrl.split('/recipe-prod/').reverse()[0].split('.')[0]}`;
+    const recipeId = this.props.recipeId;
+    const data = { recipeId, imagePublicId };
+
+    recipeService.deleteMyRecipe(data).then(() => {
       this.props.history.push('/myRecipes');
     });
   }

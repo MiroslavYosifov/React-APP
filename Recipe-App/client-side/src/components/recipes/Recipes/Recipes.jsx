@@ -1,9 +1,7 @@
 import React from 'react';
 import './Recipes.css';
-import queryString from 'query-string'
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Recipe from '../Recipe/Recipe';
-import PostRecipe from '../PostRecipe/PostRecipe';
 import recipeService from '../../../services/recipe-service';
 import RecipeNavigation from '../RecipeNavigation/RecipeNavigation';
 import Search from '../../Search/Search';

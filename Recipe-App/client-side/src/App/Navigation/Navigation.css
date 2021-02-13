@@ -28,3 +28,15 @@
 #logo {
   width: 56px;
 }
+
+.Navigation p {
+  text-decoration: none;
+  color: rgb(240, 99, 99);
+  font-weight: bold;
+  margin-left: auto;
+  font-size: 1.2em;
+}
+
+.Navigation ul a:last-child {
+  margin-right: 1em;
+}

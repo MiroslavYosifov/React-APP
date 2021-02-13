@@ -6,12 +6,12 @@ const config = {
     development: {
         port: process.env.PORT || 3333,
         dbURL: 'mongodb+srv://miro:0EYtbLvbictfbVek@myfirstcluster.7bryi.mongodb.net/myFirstData?retryWrites=true&w=majority',
-        authCookieName: 'x-auth-token'
+        authCookieName: 'x-auth-token',
     },
     production: {
         port: process.env.PORT || 3333,
         dbURL: 'mongodb+srv://miro:0EYtbLvbictfbVek@myfirstcluster.7bryi.mongodb.net/myFirstData?retryWrites=true&w=majority',
-        authCookieName: 'x-auth-token'
+        authCookieName: 'x-auth-token',
     },
 };
 

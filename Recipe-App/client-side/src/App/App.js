@@ -14,58 +14,43 @@ import Contacts from '../components/Contacts/Contacts';
 import Login from '../components/Login/Login';
 import Register from '../components/Register/Register';
 import Logout from '../components/Logout/Logout';
-import userService from '../services/user-service';
-
-function parseCookies() {
-  return document.cookie.split('; ').reduce((acc, cookie) => {
-    const [cookieName, cookieValue] = cookie.split('=');
-    acc[cookieName] = cookieValue;
-    return acc;
-  }, {})
-}
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    const cookies = parseCookies();
-    const isLogged = document.cookie ? true : false;
-    let currentUser: ''
+  constructor (props) {
+    super(props) 
     this.state = { 
-      isLogged,
-      currentUser: ''
-    };  
-  }
-  
-  logout = (history) => {
-    userService.logout().then(() => {
-      this.setState({ 
-        isLogged: false,
-        currentUser: ''
-      });
-      history.push('/');
-      return null;
-    });
+      isLogged: false,
+      currentUser: localStorage.getItem('username'),
+    }; 
   }
 
-  login = (history, data) => {        
-    userService.login(data).then((data) => {
-      if(data === 'notlogged') return;
-      this.setState({ 
-        isLogged: true,
-        currentUser: data
-      });
-      history.push('/');
-    });
+  onLoginSubmit = () => {
+      if(document.cookie) {
+        this.setState({ isLogged: true })
+      }
+  }
+
+  onLogoutSubmit = () => {
+    if(!document.cookie) {
+      this.setState({ isLogged: false })
+    }
+  }
+
+  componentDidMount () {
+    if(document.cookie) {
+      this.setState({ isLogged: true })
+    } else {
+      this.setState({ isLogged: false });
+      localStorage.removeItem('username');
+    }
   }
 
   render () {
     const { isLogged, currentUser } = this.state;
-    console.log('IsLogged => ', isLogged);
-    console.log('CurrentUser => ', currentUser);
     return (
       <BrowserRouter>
         <div className="App">
-          <Navigation props={this.props} isLogged ={isLogged} currentUser={currentUser}/>
+          <Navigation isLogged={isLogged} username={currentUser} />
           <div className="Container">
             <Switch>
               <Route exact path="/" component={Home} />
@@ -76,9 +61,9 @@ class App extends React.Component {
               <Route path="/contacts" component={Contacts} /> 
               { isLogged && <Route exact path="/myProfile" render={(props) => (<MyProfile {...props} isLogged={isLogged}/>)} />}
               { isLogged && <Route exact path="/userProfile/:id" render={(props) => (<UserProfile {...props} isLogged={isLogged}/>)} />}
-              { !isLogged && <Route path="/login" render={(props) => (<Login {...props} isLogged={isLogged} login={this.login}/>)} />} 
+              { !isLogged && <Route path="/login" render={(props) => (<Login  onLoginSubmit={this.onLoginSubmit} {...props} isLogged={isLogged}/>) } />} 
               { !isLogged && <Route path="/register" render={(props) => (<Register {...props} isLogged={isLogged}/>)}/>}
-              { isLogged && <Route path="/logout" render={(props) => (<Logout {...props} isLogged={isLogged} logout={this.logout}/>)} />}  />}
+              { isLogged && <Route path="/logout" render={(props) => (<Logout onLogoutSubmit={this.onLogoutSubmit} {...props} isLogged={isLogged}/>)} />}
             </Switch>
           </div>
           <Footer /> 
@@ -89,3 +74,38 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+
+  // constructor(props) {
+  //   super(props);
+  //   const cookies = parseCookies();
+  //   const isLogged = document.cookie ? true : false;
+  //   this.state = { 
+  //     isLogged,
+  //     currentUser: ''
+  //   };  
+  // }
+  
+  // logout = (history) => {
+  //   userService.logout().then(() => {
+  //     this.setState({ 
+  //       isLogged: false,
+  //       currentUser: ''
+  //     });
+  //     history.push('/');
+  //     return null;
+  //   });
+  // }
+
+  // login = (history, data) => {
+  //   console.log(data);    
+  //   userService.login(data).then((data) => {
+  //     if(data === 'notlogged') return;
+  //     this.setState({ 
+  //       isLogged: true,
+  //       currentUser: data
+  //     });
+  //     history.push('/');
+  //   });
+  // }

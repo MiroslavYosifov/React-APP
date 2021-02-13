@@ -1,13 +1,9 @@
 import React from 'react';
 import './RecipesCategoryList.css';
 import queryString from 'query-string'
-import { Link, Route } from 'react-router-dom';
 import Recipe from '../../Recipe/Recipe';
-import PostRecipe from '../../PostRecipe/PostRecipe';
 import recipeService from '../../../../services/recipe-service';
-import RecipeNavigation from '../../RecipeNavigation/RecipeNavigation';
-import Search from '../../../Search/Search';
-import SideNav from '../../../SideNav/SideNav';
+
 
 class RecipesCategoryList extends React.Component {
   constructor (props) {

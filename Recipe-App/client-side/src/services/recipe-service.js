@@ -1,5 +1,4 @@
-const url = "https://recipe--api.herokuapp.com";
-//const url = "http://localhost:3333";
+import url from './config';
 
 const recipeService = {
    searchRecipes: async function (searchQuery) {
@@ -89,8 +88,9 @@ const recipeService = {
       return await res.json();
     },
 
-    deleteMyRecipe: async function (id) {
-      const res = await fetch(`${url}/api/recipe/deleteMyRecipe/${id}`, {
+    deleteMyRecipe: async function (data) {
+      const res = await fetch(`${url}/api/recipe/deleteMyRecipe/${data.recipeId}`, {
+      body: JSON.stringify(data),
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json'
