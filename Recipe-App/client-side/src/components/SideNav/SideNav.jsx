@@ -22,7 +22,7 @@ class SideNav extends React.Component {
       <section className="SideNav">
         <ul>
           <li onClick={this.handleSearchCmp}>
-            { !isSearchHidden ? <i className="fas fa-search"></i> : <i class="fas fa-times"></i>}
+            { !isSearchHidden ? <i className="fas fa-search"></i> : <i className="fas fa-times"></i>}
           </li>
         </ul>
       </section>

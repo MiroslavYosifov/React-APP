@@ -25,9 +25,9 @@ class App extends React.Component {
   }
 
   onLoginSubmit = () => {
-      if(document.cookie) {
-        this.setState({ isLogged: true })
-      }
+    if(document.cookie) {
+      this.setState({ isLogged: true })
+    }
   }
 
   onLogoutSubmit = () => {
@@ -40,9 +40,17 @@ class App extends React.Component {
     if(document.cookie) {
       this.setState({ isLogged: true })
     } else {
-      this.setState({ isLogged: false });
       localStorage.removeItem('username');
+      this.setState({ isLogged: false });
     }
+  }
+
+  componentDidUpdate = () => {
+    //console.log('Updtavam se1', 'this.state.currentUser =>', this.state.currentUser, 'localStorage.getItem =>', localStorage.getItem('username'));
+    if(this.state.currentUser !== localStorage.getItem('username')) {
+      this.setState({ currentUser: localStorage.getItem('username') });
+    }
+    
   }
 
   render () {

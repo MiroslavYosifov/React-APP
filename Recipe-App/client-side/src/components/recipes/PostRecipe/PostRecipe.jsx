@@ -7,6 +7,7 @@ import * as yup from 'yup';
 
 import recipeService from '../../../services/recipe-service';
 
+import Spinner from '../../../UI/Spinner/Spinner';
 
 class PostRecipe extends React.Component {
     constructor (props) {
@@ -20,6 +21,7 @@ class PostRecipe extends React.Component {
                 fileInputState: '',
                 compressedImage: '',
                 uploadedFileName: 'uploded file',
+                isLoading: false,
             }
     }
 
@@ -52,16 +54,16 @@ class PostRecipe extends React.Component {
         if(!this.state.compressedImage) return;
 
         const data = this.state;
-        const reader = new FileReader();
-
-        reader.onerror = () => {
-            console.error('Something is wrong!');
-        };   
 
         schema.validate({...data}).then(() => {
+            this.setState({ isLoading: true });
             recipeService.addRecipe(data).then((res) => {
+                this.setState({ isLoading: false });
                 this.props.history.replace(`/reload`);
                 this.props.history.replace('/myRecipes');
+            }).catch(err => {
+                this.setState({ isLoading: false });
+                console.log(err);
             });
         }).catch((err) => {
             this.setState({inputError: err});
@@ -71,7 +73,7 @@ class PostRecipe extends React.Component {
 
 
     render() {
-        const  { title, ingredients, preparation, inputError, fileInputState, compressedImage, uploadedFileName } = this.state;
+        const  { title, ingredients, preparation, inputError, fileInputState, compressedImage, uploadedFileName, isLoading } = this.state;
         const titleError = inputError.path === 'title';
         const categoryError = inputError.path === 'category';
         const ingredientsError = inputError.path === 'ingredients';
@@ -79,6 +81,7 @@ class PostRecipe extends React.Component {
 
         return (
             <section className="PostRecipeWrapper">
+                 {isLoading && <Spinner/>}
                 <form className="PostRecipe" onSubmit={this.handleSubmit}>
                     <header>
                         <h2>Add Recipe</h2>

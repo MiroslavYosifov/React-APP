@@ -17,10 +17,11 @@ class Search extends React.Component {
         const searchParams = queryString.parse(searchQuery);
         this.setState ({ 
             searchParams: searchParams.search 
-        })
+        });
     }
 
     searchChangeHandler = (e) => { this.setState({ searchParams: e.target.value })}
+
     handleSubmit = (e) => {
         e.preventDefault();
         const url = 'recipes/' + 'search' + '?search=' + this.state.searchParams;

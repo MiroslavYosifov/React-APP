@@ -4,6 +4,7 @@ import Recipe from '../Recipe/Recipe'
 import Comments from '../../comments/Comments/Comments'
 import PostComment from '../../comments/PostComment/PostComment';
 import EditRecipe from '../EditRecipe/EditRecipe';
+import Spinner from '../../../UI/Spinner/Spinner';
 import recipeService from '../../../services/recipe-service';
 
 class RecipeDetails extends React.Component {
@@ -14,12 +15,14 @@ class RecipeDetails extends React.Component {
                 comments: [],
                 recipeCreator: '',
                 hideRecipeElements: Boolean,
-                isEditHidden: true
+                isEditHidden: true,
+                isLoading: false
             }  
     }
 
     componentDidMount() {
         const recipeId = this.props.match.params.id;
+        this.setState({ isLoading: true });
         recipeService.getRecipe(recipeId).then(recipe => {
             this.setState({
                 recipe: recipe,
@@ -27,6 +30,7 @@ class RecipeDetails extends React.Component {
                 recipeCreator: recipe.creator.username,
                 recipeId: recipeId,
                 hideRecipeElements: false,
+                isLoading: false,
             });
         });
     }
@@ -34,11 +38,12 @@ class RecipeDetails extends React.Component {
     showHideEdit = (e) => { this.setState({ isEditHidden: this.state.isEditHidden ? false : true })}
 
     render() {
-        const { recipe, recipeId, hideRecipeElements, comments, recipeCreator, isEditHidden } = this.state;
+        const { recipe, recipeId, hideRecipeElements, comments, recipeCreator, isEditHidden, isLoading } = this.state;
         const isLogged = this.props.isLogged;
 
         return (
             <div className="RecipeDetails">
+                {isLoading && <Spinner/>}
                 <div className="MainContentRecipeDetails">
                     <Recipe recipeId={recipe._id}
                             title={recipe.title}

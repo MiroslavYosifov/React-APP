@@ -3,6 +3,7 @@ import React from 'react';
 import './Register.css';
 import * as yup from 'yup';
 import userService from '../../services/user-service';
+import Spinner from '../../UI/Spinner/Spinner';
 
 class Register extends React.Component {
   constructor (props) {
@@ -12,6 +13,7 @@ class Register extends React.Component {
             password: '',
             rePassword: '',
             inputError: '',
+            isLoading: false,
         }
   }
 
@@ -22,9 +24,16 @@ class Register extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const data = this.state;
+    
     schema.validate({...data}).then(() => {
-        userService.register(data).then(() => {
+        this.setState({isLoading: true});
+        userService.register(data).then((res) => {
+          console.log('Register', res);
+          this.setState({isLoading: false});
           this.props.history.push('/login');
+          
+        }).catch(err=> {
+          console.log(err);
         });
       }).catch((err) => {
           this.setState({inputError: err});
@@ -32,13 +41,14 @@ class Register extends React.Component {
   }
 
   render() {
-    const  { username, password, rePassword, inputError } = this.state;
+    const  { username, password, rePassword, inputError, isLoading } = this.state;
     const usernameError = inputError.path === 'username';
     const passwordError = inputError.path === 'password';
     const rePasswordError = inputError.path === 'rePassword';
 
     return (
       <section className="Register-wrapper">
+        {isLoading && <Spinner/>}
         <header>
           <h2>Register</h2>
         </header>

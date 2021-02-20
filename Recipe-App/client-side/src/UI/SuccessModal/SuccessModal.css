@@ -1,0 +1,22 @@
+.ErrorModal {
+    position: fixed;
+    z-index: 500;
+    background-color: rgb(128, 128, 128);
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 0.4em;
+    box-shadow: 0 0 0.2em 0.2em rgba(56, 56, 56, 0.801);
+    padding: 16px;
+    left: 15%;
+    top: 30%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+    text-align: center;
+}
+
+@media (min-width: 600px) {
+    .Modal {
+        width: 500px;
+        left: calc(50% - 250px);
+    }
+}

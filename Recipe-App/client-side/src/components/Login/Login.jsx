@@ -2,6 +2,7 @@ import React from 'react';
 import './Login.css';
 import * as yup from 'yup';
 import userService from '../../services/user-service';
+import Spinner from '../../UI/Spinner/Spinner';
 
 class Login extends React.Component {
   constructor (props) {
@@ -10,7 +11,8 @@ class Login extends React.Component {
             username: '',
             password: '',
             inputError: '',
-            token: ''
+            resError: false,
+            isLoading: false,
         }
   }
 
@@ -22,30 +24,35 @@ class Login extends React.Component {
     const data = this.state;
     schema.validate({...data})
     .then(() => {
-        userService.login(data).then(user => {
+        this.setState({ isLoading: true });
+        userService.login(data)
+        .then(user => {
+          this.setState({ isLoading: false });
           const parsedUserData = JSON.parse(user);
-          if(!parsedUserData.token) return console.log('NO TOKEN!!!');
+          document.cookie = parsedUserData.token;
           localStorage.setItem('username', parsedUserData.username);
+
           this.props.onLoginSubmit();
           this.props.history.push('/');
         })
         .catch((err) => {
-          console.log(err);
+          this.setState({resError: true, isLoading: false });
         });
     })
     .catch((err) => {
-      
+        console.log(err);
           this.setState({inputError: err});
     });
   }
 
   render() {
-    const  { username, password, inputError } = this.state;
+    const  { username, password, inputError, resError, isLoading } = this.state;
     const usernameError = inputError.path === 'username';
     const passwordError = inputError.path === 'password';
    
     return (
       <section className="Login-wrapper">
+        {isLoading && <Spinner/>}
         <header>
           <h2>Login</h2>
         </header>
@@ -64,6 +71,7 @@ class Login extends React.Component {
             <button className="PostButton" type="Submit">Login</button>
           </p>
         </form>
+        {resError && <span className="Error">Invalid username or password</span>}
       </section>
     )
   }

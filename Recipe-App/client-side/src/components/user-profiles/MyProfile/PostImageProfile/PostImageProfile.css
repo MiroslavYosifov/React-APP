@@ -1,0 +1,41 @@
+.PostRecipe .file-wrapper {
+    margin: 0.2em 0;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.User-profile-form .file-wrapper input[type=file] {
+    background: transparent;
+    cursor: pointer;
+    width: 50%;
+    overflow: hidden;
+    padding: 0;
+}
+  
+.User-profile-form .file-wrapper input[type=file]:before {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  content: 'Upload a file';
+  display: inline-block;
+  background: rgb(68, 116, 206);
+  border-top-left-radius: 0.2em;
+  border-bottom-left-radius: 0.2em;
+  padding: 0.2em;
+  color: white;
+  text-align: center;
+}
+
+
+.User-profile-form .file-wrapper label {
+    width: 50%;
+    display: inline;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0.2em 0.2em 0.2em 0.6em;
+    background: white;
+    border-top-right-radius: 0.2em;
+    border-bottom-right-radius: 0.2em;
+}

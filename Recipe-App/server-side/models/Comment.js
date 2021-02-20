@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const Model = mongoose.model;
 
 const commentSchema = new Schema({
-    title: { type: String, unique: true, required: true },
+    title: { type: String, required: true },
     content: { type: String, require: true },
     createdDate: { type: Date, default: Date.now, required: true},
     creator: { type: String, required: true },

@@ -1,4 +1,6 @@
+//const url = "https://recipe--api.herokuapp.com";
 import url from './config';
+
 const userService = {
     register: async function (data) {
       const res = await fetch(`${url}/api/user/register`, {

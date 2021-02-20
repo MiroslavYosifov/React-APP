@@ -3,6 +3,7 @@ const models = require('../models');
 const config = require('../config/config');
 const utils = require('../utils');
 const jwt = require('../utils/jwt');
+const { cloudinary } = require('../utils/cloudinary');
 
 module.exports = {
   get: {
@@ -58,19 +59,17 @@ module.exports = {
             return;
           }
           const token = utils.jwt.createToken({ id: user._id });
-          
-          if(env === "development") {
-            // for development
-            res.cookie(config.authCookieName, token).send({ username: user.username, token: token });
-          } else if(env === "production") {
-            // for production
-            res.cookie(config.authCookieName, token, { 
-              sameSite: 'None', 
-              secure: true,  
-              httpOnly: true,
-             }).send({ username: user.username, token: token });
-          }
-         
+          console.log(env);
+          // for development
+          // res.cookie(config.authCookieName, token).send({ username: user.username, token: token });
+
+          // for production
+          res.cookie(config.authCookieName, token, { 
+            sameSite: 'None', 
+            secure: true,  
+            httpOnly: true,
+            httspOnly: true
+           }).send({ username: user.username, token: `x-auth-token=${token}` });
          
         })
         .catch(next);
@@ -90,10 +89,20 @@ module.exports = {
 
     changeUserProfileImage: (req, res, next) => {
       const userId = req.user._id;
-      const { profileImage } = req.body;
-      models.User.updateOne({ _id: userId }, { profileImage }).then(user => {
-        res.send(user);
-      }).catch(next)
+      const { compressedImage } = req.body;
+
+      cloudinary.uploader.upload(compressedImage, {
+        upload_preset: 'recipe-prod',
+      })
+      .then(res => {
+        console.log(res);
+         return res.url;
+      })
+      .then(uploadedImageUrl => {
+        models.User.updateOne({ _id: userId }, { profileImage: uploadedImageUrl }).then(user => {
+          res.send(user);
+        }).catch(next)
+      });
     }
   },
 

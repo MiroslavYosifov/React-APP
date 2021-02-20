@@ -6,7 +6,7 @@ import imageCompression from '../../../hocs/imageCompression';
 import convertImageToBase64 from '../../../hocs/convertImageToBase64';
 
 import recipeService from '../../../services/recipe-service';
-
+import Spinner from '../../../UI/Spinner/Spinner';
 
 class EditRecipe extends React.Component {
     constructor (props) {
@@ -21,6 +21,7 @@ class EditRecipe extends React.Component {
                 compressedImage: '',
                 currentImageId: '',
                 uploadedFileName: 'uploded file',
+                isLoading: false,
             }
     }
 
@@ -34,7 +35,9 @@ class EditRecipe extends React.Component {
               ingredients: recipe.ingredients,
               preparation: recipe.preparation,
           });
-      }).catch(err => {console.log(err)});
+      }).catch(err => {
+          console.log(err) 
+      });
     }
 
     changeTitle = (e) => { this.setState({ title: e.target.value })}
@@ -67,17 +70,20 @@ class EditRecipe extends React.Component {
         const recipeId = this.props.match.params.id;
         const data = this.state;
         schema.validate({...data}).then(() => {
+            this.setState({ isLoading: true })
             recipeService.editMyRecipe(data, recipeId).then((res) => {
+                this.setState({ isLoading: false })
                 this.props.history.replace(`/reload`);
                 this.props.history.replace(this.props.location.pathname);
             });
         }).catch((err) => {
+            this.setState({ isLoading: false })
             this.setState({inputError: err});
         });     
     }
 
     render() {
-        const  { title, ingredients, preparation, inputError, fileInputState, compressedImage, uploadedFileName } = this.state;
+        const  { title, ingredients, preparation, inputError, fileInputState, compressedImage, uploadedFileName, isLoading } = this.state;
         const titleError = inputError.path === 'title';
         const categoryError = inputError.path === 'category';
         const ingredientsError = inputError.path === 'ingredients';
@@ -85,6 +91,7 @@ class EditRecipe extends React.Component {
 
         return (
             <section className="EditRecipeWrapper">
+                {isLoading && <Spinner/>}
                 <header>
                     <h2>Edit Recipe</h2>
                 </header>

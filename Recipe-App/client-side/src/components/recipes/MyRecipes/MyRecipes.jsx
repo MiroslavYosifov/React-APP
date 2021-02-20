@@ -59,7 +59,7 @@ class MyRecipes extends React.Component {
     return (
       <div className="My-recipes-wrapper">
         <section className="My-recipes-nav">
-          {isLogged && <button onClick={this.handleShowHidePostRecipe} className="PostButton">{ isPostRecipeHidden ? "Show Add Recipe" : "Hide Add Recipe"}</button>}
+          {isLogged && <button onClick={this.handleShowHidePostRecipe} className="PostButton">Add Recipe</button>}
           {isLogged && <button onClick={this.handleShowHideFavoriteRecipes} className="LikeButton">{ isFavoriteRecipesHidden ? "Show Favorites Recipes" : "Hide Favorites Recipes"}</button>}
         </section>
         {isLogged && !isPostRecipeHidden && <PostRecipe {...this.props} />}

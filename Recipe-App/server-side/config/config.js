@@ -7,11 +7,13 @@ const config = {
         port: process.env.PORT || 3333,
         dbURL: 'mongodb+srv://miro:0EYtbLvbictfbVek@myfirstcluster.7bryi.mongodb.net/myFirstData?retryWrites=true&w=majority',
         authCookieName: 'x-auth-token',
+        domain: 'http://localhost:3000'
     },
     production: {
         port: process.env.PORT || 3333,
         dbURL: 'mongodb+srv://miro:0EYtbLvbictfbVek@myfirstcluster.7bryi.mongodb.net/myFirstData?retryWrites=true&w=majority',
         authCookieName: 'x-auth-token',
+        domain: 'https://murmuring-tor-82797.herokuapp.com'
     },
 };
 

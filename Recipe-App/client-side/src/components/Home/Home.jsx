@@ -4,7 +4,6 @@ import RecipeCategory from './RecipeCategory/RecipeCategory'
 import Background from './Background/Background';
 
 function Home(props) {
-  console.log(props);
   
   return (
       <main className="Home">

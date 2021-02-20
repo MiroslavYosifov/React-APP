@@ -8,6 +8,6 @@
 // }
 
 const prodUrl = 'https://recipe--api.herokuapp.com';
-const devUrl = 'http://localhost:3333';
+//const devUrl = 'http://localhost:3333';
 
 export default prodUrl;

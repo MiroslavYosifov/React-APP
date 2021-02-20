@@ -4,7 +4,7 @@ const Model = mongoose.model;
 const { String, Number, Boolean, ObjectId } = Schema.Types;
 
 const recipeSchema = new Schema({
-    title: { type: String, unique: true, required: true },
+    title: { type: String, required: true },
     createdDate: { type: Date, default: Date.now, required: true},
     imageUrl: { type: String, require: true, required: true },
     preparation: { type: String, require: true, required: true },

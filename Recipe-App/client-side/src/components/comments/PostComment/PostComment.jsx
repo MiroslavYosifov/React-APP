@@ -3,13 +3,16 @@ import './PostComment.css';
 import * as yup from 'yup';
 import commentService from '../../../services/comment-service';
 
+import Spinner from '../../../UI/Spinner/Spinner';
+
 class PostComment extends React.Component {
     constructor (props) {
         super(props) 
             this.state = {
             title: '',
             content: '',
-            inputError: ''
+            inputError: '',
+            isLoading: '',
         }
     }
 
@@ -21,23 +24,27 @@ class PostComment extends React.Component {
         const recipeId = this.props.match.params.id;
         const data = this.state;
         schema.validate({...data}).then(() => {
+            this.setState({ isLoading: true });
             commentService.addComment(data,recipeId).then(() => {
+            this.setState({ isLoading: false });
             this.props.history.replace(`/reload`);
             this.props.history.replace(this.props.location.pathname);
             });
           }).catch((err) => {
-              this.setState({inputError: err});
+                this.setState({ isLoading: false });
+                this.setState({inputError: err});
           });
         
     }
 
     render() {
-        const  { title, content, inputError } = this.state;
+        const  { title, content, inputError, isLoading } = this.state;
         const titleError = inputError.path === 'title';
         const contentError = inputError.path === 'content';
 
         return (
               <div className="RecipePostComment">
+                {isLoading && <Spinner/>}
                 <header>
                     <h3>Post comment</h3>
                 </header>

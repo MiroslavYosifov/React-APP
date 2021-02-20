@@ -3,6 +3,8 @@ const config = require('../config/config');
 const jwt = require('../utils/jwt');
 const { cloudinary } = require('../utils/cloudinary');
 
+// TO DO VALIDATIONS // TO DO VALIDATIONS // TO DO VALIDATIONS // TO DO VALIDATIONS
+
 module.exports = {
   get: {
     searchRecipes: (req, res, next) => {
@@ -74,29 +76,32 @@ module.exports = {
     addRecipe: (req, res, next) => {
         const userId = req.user._id;
         const { title, compressedImage, preparation, ingredients, category} = req.body;
-        console.log('Add Image Method');
+
         cloudinary.uploader.upload(compressedImage, {
           upload_preset: 'recipe-prod',
         })
         .then(res => {
-            console.log(res);
            return res.url;
         })
         .then( uploadedImageUrl => {
-            console.log(uploadedImageUrl);
             models.Recipe.create({ title, imageUrl: uploadedImageUrl, preparation, ingredients, category, creator: userId })
             .then((resCreatedRecipe) => {
+              console.log("resCreatedRecipe", resCreatedRecipe);
               return resCreatedRecipe
             })
             .then(createdRecipe => {
               models.User.updateOne({ _id: userId }, { "$push": { "recipes": createdRecipe._id } }).then(updateUser => {
+                console.log("updateUser", updateUser);
+
                 res.send(createdRecipe)
               })
-            }).catch(err => {
+            })
+            .catch(err => {
               console.log(err);
             });
 
-        }).catch(err => {
+        })
+        .catch(err => {
           console.log(err);
         })
         
@@ -106,36 +111,37 @@ module.exports = {
 
   put: {
     editMyRecipe: (req, res, next) => {
-      console.log('PUT Image Method');
+
       const recipId = req.params.id;
       const { title, preparation, ingredients, category, currentImageId, compressedImage } = req.body;
-      console.log(currentImageId);
       
-      // TO DO VALIDATIONS
-      cloudinary.uploader.destroy(currentImageId)
-      .then(res => {
-        console.log('DELETED', res);
-      });
-      
-      cloudinary.uploader.upload(compressedImage, {
-        upload_preset: 'recipe-prod',
+      cloudinary.uploader
+      .destroy(currentImageId)
+      .then(deleteResponse => {
+        return Promise.all([res])
       })
       .then(res => {
-          console.log(res);
-         return res.url;
-      })
-      .then(uploadedImageUrl => {
-          console.log('Updated', uploadedImageUrl);
-          models.Recipe.findOneAndUpdate({ _id: recipId }, { title, imageUrl: uploadedImageUrl, preparation, ingredients, category })
-          .exec( function( err, updatedRecipe ) {
-            if(err){ console.log(err); return; }
-            res.send(updatedRecipe);
-          });
+        cloudinary.uploader.upload(compressedImage, {
+          upload_preset: 'recipe-prod',
+        })
+        .then(res => {
+           return res.url;
+        })
+        .then(uploadedImageUrl => {
+            models.Recipe.findOneAndUpdate({ _id: recipId }, { title, imageUrl: uploadedImageUrl, preparation, ingredients, category })
+            .exec( function( err, updatedRecipe ) {
+
+              if(err){ console.log(err); return; }
+              res[0].send(updatedRecipe);
+            });
+        })
+        .catch(err => {
+          console.log(err);
+        })
       })
       .catch(err => {
-        console.log(err);
-      })
-      
+          console.log(err);
+      });
     },
 
     likeRecipe: (req, res, next) => {
